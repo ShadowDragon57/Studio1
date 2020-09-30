@@ -9,7 +9,8 @@ public class PlayerKeyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        float timer1 = 0;
+        float timer2 = 0;
     }
 
     // Update is called once per frame

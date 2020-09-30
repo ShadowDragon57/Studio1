@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Abilities : MonoBehaviour
     {
         int abiCoolDown1 = 3;
         int abiCoolDown2 = 5;
+
     }
 
     void Ability1()
