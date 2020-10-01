@@ -17,15 +17,17 @@ public class PlayerKeyController : MonoBehaviour
     float timer2 = 0;
 
     //Movement Speeds
-    public float forwardForce = 2000f;
-    public float backForce = -2000f;
-    public float leftForce = -2000f;
-    public float rightForce = 2000f;
+    public float forwardForce = 1000f;
+    public float backForce = -1000f;
+    public float leftForce = -500f;
+    public float rightForce = 500f;
 
     public float airMovementSpeed = 200f;
 
+    public float sprintSpeed = 1500f;
+
     //Checkers
-    public bool grounded = true;
+    public bool grounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -76,11 +78,35 @@ public class PlayerKeyController : MonoBehaviour
             {
                 rb.AddForce(rightForce * Time.deltaTime, 0, 0);
             }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                rb.AddForce(0, 0, sprintSpeed * Time.deltaTime);
+            }
         }
 
+        //Determines movement speed in the air
         if (grounded == false)
         {
+            if (Input.GetKey(KeyCode.W))
+            {
+                rb.AddForce(0, 0, airMovementSpeed * Time.deltaTime);
+            }
 
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb.AddForce(airMovementSpeed * Time.deltaTime, 0, 0);
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb.AddForce(0, 0, airMovementSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb.AddForce(airMovementSpeed * Time.deltaTime, 0, 0);
+            }
         }
 
         //Ability Activations

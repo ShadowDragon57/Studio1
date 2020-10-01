@@ -32,6 +32,8 @@ public class Abilities : MonoBehaviour
 
     }
 
+    //Abilities
+
     //Test Jump Ability
     public void Ability1()
     {
