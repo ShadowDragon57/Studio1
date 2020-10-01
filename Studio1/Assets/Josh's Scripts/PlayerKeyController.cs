@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerKeyController : MonoBehaviour
 {
+    //Temp Vars
+    public int Karma = 0;
+
     //References
     public Abilities abilities;
     public Rigidbody rb;
@@ -12,7 +15,6 @@ public class PlayerKeyController : MonoBehaviour
     //Timers
     float timer1 = 0;
     float timer2 = 0;
-
 
     //Movement Speeds
     public float forwardForce = 2000f;
@@ -23,7 +25,7 @@ public class PlayerKeyController : MonoBehaviour
     public float airMovementSpeed = 200f;
 
     //Checkers
-    public bool grounded = false;
+    public bool grounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -80,38 +82,62 @@ public class PlayerKeyController : MonoBehaviour
         {
 
         }
-        
+
         //Ability Activations
-
-        if (Input.GetKeyDown(KeyCode.Q) && timer1 < 0)
+        switch (Karma)
         {
-            //Causes Ability
-            abilities.Ability1();
+            case 0:
+                if (Input.GetKeyDown(KeyCode.Q) && timer1 < 0)
+                {
+                    //Causes Ability
+                    abilities.Ability1();
 
-            //Abilty CoolDown
-            timer1 = abilities.abiCoolDown1;          
-        }
+                    //Abilty CoolDown
+                    timer1 = abilities.abiCoolDown1;
+                }
 
-        if (timer1 > -1)
-        {
-            timer1 -= 1 * Time.deltaTime;
-            Debug.Log(timer1);
-        }
+                if (timer1 > -1)
+                {
+                    timer1 -= 1 * Time.deltaTime;
+                    Debug.Log(timer1);
+                }
 
-        if (Input.GetKeyDown(KeyCode.E) && timer2 < 0)
-        {
-            //Causes Ability
-            abilities.Ability2();
+                if (Input.GetKeyDown(KeyCode.E) && timer2 < 0)
+                {
+                    //Causes Ability
+                    abilities.Ability2();
 
 
-            //Abilty CoolDown
-            timer2 = abilities.abiCoolDown2;
-        }
+                    //Abilty CoolDown
+                    timer2 = abilities.abiCoolDown2;
+                }
 
-        if (timer2 >= 0)
-        {
-            timer2 -= 1 * Time.deltaTime;
-            Debug.Log(timer2);
-        }
+                if (timer2 >= 0)
+                {
+                    timer2 -= 1 * Time.deltaTime;
+                    Debug.Log(timer2);
+                }
+                break;
+            case 20:
+
+
+                break;
+            case 40:
+
+
+                break;
+            case 60:
+
+
+                break;
+            case 80:
+
+
+                break;
+            case 100:
+
+
+                break;
+        }               
     }
 }
