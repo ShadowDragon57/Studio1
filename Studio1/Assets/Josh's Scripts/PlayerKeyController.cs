@@ -17,14 +17,14 @@ public class PlayerKeyController : MonoBehaviour
     float timer2 = 0;
 
     //Movement Speeds
-    public float forwardForce = 1000f;
-    public float backForce = -1000f;
-    public float leftForce = -500f;
-    public float rightForce = 500f;
+    float forwardForce = 1000f;
+    float backForce = -1000f;
+    float leftForce = -500f;
+    float rightForce = 500f;
 
-    public float airMovementSpeed = 200f;
+    float airMovementSpeed = 200f;
 
-    public float sprintSpeed = 1500f;
+    float sprintSpeed = 1500f;
 
     //Checkers
     public bool grounded = false;
