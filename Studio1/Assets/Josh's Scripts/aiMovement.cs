@@ -5,13 +5,23 @@ using UnityEngine;
 public class aiMovement : MonoBehaviour
 {
     public Transform player;
-    public float moveSpeed = 5f;
-    public float distance = 0;
+    [SerializeField]
+    private float moveSpeed, distance;
+    private bool playerContact = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        moveSpeed = 5f;
+        distance = 0;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            playerContact = true;
+        }
     }
 
     // Update is called once per frame
@@ -19,9 +29,16 @@ public class aiMovement : MonoBehaviour
     {
         transform.LookAt(player);
 
-        if(Vector3.Distance(transform.position, player.position) >= distance)
+        //Looks at player and begins to move towards them
+        if(Vector3.Distance(transform.position, player.position) >= distance && playerContact != true)
         {
             transform.position += transform.forward * moveSpeed * Time.deltaTime;
+        }
+
+        //Begin Attack Animations based what their tag is. Such as spears, swords etc
+        if (gameObject.tag == "Sword")
+        {
+            //SwordAI
         }
     }
 }

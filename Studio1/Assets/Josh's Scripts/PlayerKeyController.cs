@@ -1,44 +1,45 @@
-﻿using JetBrains.Annotations;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerKeyController : MonoBehaviour
 {
-    //Temp Vars
-    public int Karma = 0;
-
     //References
-    public Abilities abilities;
+    Abilities abilities;
+    FaithCalculator faith;
+
     public Rigidbody rb;
 
-    //Timers
-    float timer1 = 0;
-    float timer2 = 0;
-
-    //Movement Speeds
-    public float forwardForce = 1000f;
-    public float backForce = -1000f;
-    public float leftForce = -500f;
-    public float rightForce = 500f;
-
-    public float airMovementSpeed = 200f;
-
-    public float sprintSpeed = 1500f;
-
-    //Checkers
+    //Other Vars
     public bool grounded = false;
+    public bool wDown;
+    public bool fDown;
+    public bool QabiUp;
+    public bool EabiUp;
 
-    // Start is called before the first frame update
+    //Movement Speed Vars
+    [SerializeField]
+    private float leftSpeed, rightSpeed, forwardSpeed, backSpeed, sprintSpeed, airMovement;
+
+    //Timer Var
+    private float Qtimer;
+    private float Etimer;
+
     void Start()
     {
-        
+        //Defining Speed Vars
+        leftSpeed = 50f;
+        rightSpeed = 50f;
+        forwardSpeed = 100f;
+        backSpeed = 100f;
+        sprintSpeed = 150f;
+        airMovement = 20f;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision col)
     {
-        //Checks if the gameObject is touching the floor
-        if (collision.gameObject.tag == "Ground")
+        if (col.gameObject.name == "Ground")
         {
             grounded = true;
         }
@@ -47,123 +48,209 @@ public class PlayerKeyController : MonoBehaviour
         {
             grounded = false;
         }
+
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //Movement Commands
-        //Checks in the player is grounded before allowing them to move
+        //Checks to see if they're walking forward
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            wDown = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            wDown = false;
+        }
+
+        //Checks to see if the F button is being pressed
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            fDown = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            fDown = false;
+        }
+
+        //Checks if the player is currently on the ground
         if (grounded == true)
-        { 
-            if (Input.GetKey(KeyCode.W))
+        {
+            //Movement Keys
+            if (Input.GetKey(KeyCode.W) && fDown != true)
             {
-                //The brackets contain x, y, z
-                //X refers to left and right (generally) and z, front and back
-                //Y refers to height e.g Jumping
-                rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+                rb.position += Vector3.forward * Time.deltaTime * forwardSpeed;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                rb.AddForce(leftForce * Time.deltaTime, 0, 0);
+                rb.position += Vector3.left * Time.deltaTime * leftSpeed;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(0, 0, backForce * Time.deltaTime);
+                rb.position += Vector3.back * Time.deltaTime * rightSpeed;
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                rb.AddForce(rightForce * Time.deltaTime, 0, 0);
+                rb.position += Vector3.right * Time.deltaTime * backSpeed;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.F) && wDown == true)
             {
-                rb.AddForce(0, 0, sprintSpeed * Time.deltaTime);
+                rb.position += Vector3.forward * Time.deltaTime * sprintSpeed;
             }
         }
 
-        //Determines movement speed in the air
+        //Checks if Player is in the air
+        //Air Movement
         if (grounded == false)
         {
             if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(0, 0, airMovementSpeed * Time.deltaTime);
+                rb.position += Vector3.forward * Time.deltaTime * airMovement;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                rb.AddForce(airMovementSpeed * Time.deltaTime, 0, 0);
+                rb.position += Vector3.left * Time.deltaTime * airMovement;
             }
 
             if (Input.GetKey(KeyCode.S))
             {
-                rb.AddForce(0, 0, airMovementSpeed * Time.deltaTime);
+                rb.position += Vector3.back * Time.deltaTime * airMovement;
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                rb.AddForce(airMovementSpeed * Time.deltaTime, 0, 0);
+                rb.position += Vector3.right * Time.deltaTime * airMovement;
             }
         }
 
-        //Ability Activations
-        switch (Karma)
+        //Abilities
+
+        if (Qtimer >= 0)
         {
-            case 0:
-                if (Input.GetKeyDown(KeyCode.Q) && timer1 < 0)
-                {
-                    //Causes Ability
-                    abilities.Ability1();
+            Qtimer -= Time.deltaTime;
+            QabiUp = true;
+        }
 
-                    //Abilty CoolDown
-                    timer1 = abilities.abiCoolDown1;
-                }
+        if (Input.GetKey(KeyCode.Q) && QabiUp == true)
+        {
+            //Changes Q Ability based on faith
+            if (faith.faithCount == 0)
+            {
+                abilities.Q_Ability1();
+                Qtimer = abilities.QabiCoolDown1;
+                QabiUp = false;
+            }
 
-                if (timer1 > -1)
-                {
-                    timer1 -= 1 * Time.deltaTime;
-                    Debug.Log(timer1);
-                }
+            if (faith.faithCount <= 20 && faith.faithCount > 0)
+            {
+                abilities.Q_Ability2();
+                Qtimer = abilities.QabiCoolDown2;
+                QabiUp = false;
+            }
 
-                if (Input.GetKeyDown(KeyCode.E) && timer2 < 0)
-                {
-                    //Causes Ability
-                    abilities.Ability2();
+            if (faith.faithCount <= 40 && faith.faithCount > 20)
+            {
+                abilities.Q_Ability3();
+                Qtimer = abilities.QabiCoolDown3;
+                QabiUp = false;
+            }
 
-
-                    //Abilty CoolDown
-                    timer2 = abilities.abiCoolDown2;
-                }
-
-                if (timer2 >= 0)
-                {
-                    timer2 -= 1 * Time.deltaTime;
-                    Debug.Log(timer2);
-                }
-                break;
-            case 20:
-
-
-                break;
-            case 40:
+            if (faith.faithCount <= 60 && faith.faithCount > 40)
+            {
+                abilities.Q_Ability4();
+                Qtimer = abilities.QabiCoolDown4;
+                QabiUp = false;
+            }
 
 
-                break;
-            case 60:
+            if (faith.faithCount <= 80 && faith.faithCount > 60)
+            {
+                abilities.Q_Ability5();
+                Qtimer = abilities.QabiCoolDown5;
+                QabiUp = false;
+            }
+
+            if (faith.faithCount < 100 && faith.faithCount > 80)
+            {
+                abilities.Q_Ability6();
+                Qtimer = abilities.QabiCoolDown6;
+                QabiUp = false;
+            }
+
+            if (faith.faithCount == 100)
+            {
+                abilities.Q_Ability7();
+                Qtimer = abilities.QabiCoolDown7;
+                QabiUp = false;
+            }
+        }
+
+        if (Etimer >= 0)
+        {
+            Etimer -= Time.deltaTime;
+            EabiUp = true;
+        }
+
+        if (Input.GetKey(KeyCode.E) && EabiUp == true)
+        {
+            //Changes E Ability based on faith
+            if (faith.faithCount == 0)
+            {
+                abilities.E_Ability1();
+                Qtimer = abilities.EabiCoolDown1;
+                EabiUp = false;
+            }
+
+            if (faith.faithCount <= 20 && faith.faithCount > 0)
+            {
+                abilities.E_Ability2();
+                Qtimer = abilities.EabiCoolDown2;
+                EabiUp = false;
+            }
+
+            if (faith.faithCount <= 40 && faith.faithCount > 20)
+            {
+                abilities.E_Ability3();
+                Qtimer = abilities.EabiCoolDown3;
+                EabiUp = false;
+            }
+
+            if (faith.faithCount <= 60 && faith.faithCount > 40)
+            {
+                abilities.E_Ability4();
+                Qtimer = abilities.EabiCoolDown4;
+                EabiUp = false;
+            }
 
 
-                break;
-            case 80:
+            if (faith.faithCount <= 80 && faith.faithCount > 60)
+            {
+                abilities.E_Ability5();
+                Qtimer = abilities.EabiCoolDown5;
+                EabiUp = false;
+            }
 
+            if (faith.faithCount < 100 && faith.faithCount > 80)
+            {
+                abilities.E_Ability6();
+                Qtimer = abilities.EabiCoolDown6;
+                EabiUp = false;
 
-                break;
-            case 100:
+            }
 
-
-                break;
-        }               
+            if (faith.faithCount == 100)
+            {
+                abilities.E_Ability7();
+                Qtimer = abilities.EabiCoolDown7;
+                EabiUp = false;
+            }
+        }
     }
 }
