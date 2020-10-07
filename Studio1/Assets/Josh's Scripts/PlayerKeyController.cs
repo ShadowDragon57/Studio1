@@ -8,6 +8,7 @@ public class PlayerKeyController : MonoBehaviour
     //References
     Abilities abilities;
     ConvictionCalculator conviction;
+    CameraFollow cam;
 
     public Rigidbody rb;
 
@@ -17,6 +18,7 @@ public class PlayerKeyController : MonoBehaviour
     public bool fDown;
     public bool QabiUp;
     public bool EabiUp;
+    public Vector3 stayStill = new Vector3 (0, 0, 0);
 
     //Movement Speed Vars
     [SerializeField]
@@ -39,7 +41,7 @@ public class PlayerKeyController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Ground")
+        if (col.gameObject.tag == "Ground")
         {
             grounded = true;
         }
@@ -222,8 +224,8 @@ public class PlayerKeyController : MonoBehaviour
                 abilities.E_Ability5();
                 Qtimer = abilities.EabiCoolDown5;
                 EabiUp = false;
-
             }
         }
     }
+
 }

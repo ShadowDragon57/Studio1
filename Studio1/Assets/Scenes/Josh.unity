@@ -876,6 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1134699468}
+  camTransform: {fileID: 1356040002}
   offset: {x: 0, y: 2, z: -5}
 --- !u!1 &2004777507
 GameObject:
