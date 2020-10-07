@@ -7,7 +7,7 @@ public class PlayerKeyController : MonoBehaviour
 {
     //References
     Abilities abilities;
-    FaithCalculator faith;
+    ConvictionCalculator conviction;
 
     public Rigidbody rb;
 
@@ -141,28 +141,28 @@ public class PlayerKeyController : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) && QabiUp == true)
         {
             //Changes Q Ability based on faith
-            if (faith.faithCount == 0)
+            if (conviction.convictionCount == 0)
             {
                 abilities.Q_Ability1();
                 Qtimer = abilities.QabiCoolDown1;
                 QabiUp = false;
             }
 
-            if (faith.faithCount <= 20 && faith.faithCount > 0)
+            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
             {
                 abilities.Q_Ability2();
                 Qtimer = abilities.QabiCoolDown2;
                 QabiUp = false;
             }
 
-            if (faith.faithCount <= 40 && faith.faithCount > 20)
+            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
             {
                 abilities.Q_Ability3();
                 Qtimer = abilities.QabiCoolDown3;
                 QabiUp = false;
             }
 
-            if (faith.faithCount <= 60 && faith.faithCount > 40)
+            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
             {
                 abilities.Q_Ability4();
                 Qtimer = abilities.QabiCoolDown4;
@@ -170,21 +170,21 @@ public class PlayerKeyController : MonoBehaviour
             }
 
 
-            if (faith.faithCount <= 80 && faith.faithCount > 60)
+            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
             {
                 abilities.Q_Ability5();
                 Qtimer = abilities.QabiCoolDown5;
                 QabiUp = false;
             }
 
-            if (faith.faithCount < 100 && faith.faithCount > 80)
+            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
             {
                 abilities.Q_Ability6();
                 Qtimer = abilities.QabiCoolDown6;
                 QabiUp = false;
             }
 
-            if (faith.faithCount == 100)
+            if (conviction.convictionCount == 100)
             {
                 abilities.Q_Ability7();
                 Qtimer = abilities.QabiCoolDown7;
@@ -201,28 +201,28 @@ public class PlayerKeyController : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && EabiUp == true)
         {
             //Changes E Ability based on faith
-            if (faith.faithCount == 0)
+            if (conviction.convictionCount == 0)
             {
                 abilities.E_Ability1();
                 Qtimer = abilities.EabiCoolDown1;
                 EabiUp = false;
             }
 
-            if (faith.faithCount <= 20 && faith.faithCount > 0)
+            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
             {
                 abilities.E_Ability2();
                 Qtimer = abilities.EabiCoolDown2;
                 EabiUp = false;
             }
 
-            if (faith.faithCount <= 40 && faith.faithCount > 20)
+            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
             {
                 abilities.E_Ability3();
                 Qtimer = abilities.EabiCoolDown3;
                 EabiUp = false;
             }
 
-            if (faith.faithCount <= 60 && faith.faithCount > 40)
+            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
             {
                 abilities.E_Ability4();
                 Qtimer = abilities.EabiCoolDown4;
@@ -230,14 +230,14 @@ public class PlayerKeyController : MonoBehaviour
             }
 
 
-            if (faith.faithCount <= 80 && faith.faithCount > 60)
+            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
             {
                 abilities.E_Ability5();
                 Qtimer = abilities.EabiCoolDown5;
                 EabiUp = false;
             }
 
-            if (faith.faithCount < 100 && faith.faithCount > 80)
+            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
             {
                 abilities.E_Ability6();
                 Qtimer = abilities.EabiCoolDown6;
@@ -245,7 +245,7 @@ public class PlayerKeyController : MonoBehaviour
 
             }
 
-            if (faith.faithCount == 100)
+            if (conviction.convictionCount == 100)
             {
                 abilities.E_Ability7();
                 Qtimer = abilities.EabiCoolDown7;
