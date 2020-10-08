@@ -8,9 +8,14 @@ public class PlayerKeyController : MonoBehaviour
     //References
     Abilities abilities;
     ConvictionCalculator conviction;
-    CameraFollow cam;
+    CameraFollow camscript;
 
     public Rigidbody rb;
+    public Transform cam;
+
+    //Turning Vars
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
 
     //Other Vars
     public bool grounded = false;
@@ -18,7 +23,7 @@ public class PlayerKeyController : MonoBehaviour
     public bool fDown;
     public bool QabiUp;
     public bool EabiUp;
-    public Vector3 stayStill = new Vector3 (0, 0, 0);
+    public Vector3 stayStill = new Vector3(0, 0, 0);
 
     //Movement Speed Vars
     [SerializeField]
@@ -53,8 +58,27 @@ public class PlayerKeyController : MonoBehaviour
 
     }
 
-    void Update()
+    public void Update()
     {
+        //Allows you to press the arrow keys or the wasd to move?
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        //Normalised ensures that if you press 2 buttons, it won't accelerate to be twice as fast
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        //Magnitude checks if you're moving in any direction
+        if (direction.magnitude >= 0.1f)
+        {
+            //Determines the angle
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, turnSmoothVelocity);
+            //Normalising in this instance makes it a gradual change
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
+
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        }
+
         //Checks to see if they're walking forward
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -78,10 +102,8 @@ public class PlayerKeyController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
-        //Checks if the player is currently on the ground
-
         //Movement Keys
         if (Input.GetKey(KeyCode.W) && fDown != true && grounded == true)
         {
