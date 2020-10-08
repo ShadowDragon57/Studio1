@@ -8,8 +8,14 @@ public class PlayerKeyController : MonoBehaviour
     //References
     Abilities abilities;
     ConvictionCalculator conviction;
+    CameraFollow camscript;
 
     public Rigidbody rb;
+    public Transform cam;
+
+    //Turning Vars
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
 
     //Other Vars
     public bool grounded = false;
@@ -17,6 +23,7 @@ public class PlayerKeyController : MonoBehaviour
     public bool fDown;
     public bool QabiUp;
     public bool EabiUp;
+    public Vector3 stayStill = new Vector3(0, 0, 0);
 
     //Movement Speed Vars
     [SerializeField]
@@ -39,7 +46,7 @@ public class PlayerKeyController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Ground")
+        if (col.gameObject.tag == "Ground")
         {
             grounded = true;
         }
@@ -51,8 +58,27 @@ public class PlayerKeyController : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    public void Update()
     {
+        //Allows you to press the arrow keys or the wasd to move?
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        //Normalised ensures that if you press 2 buttons, it won't accelerate to be twice as fast
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        //Magnitude checks if you're moving in any direction
+        if (direction.magnitude >= 0.1f)
+        {
+            //Determines the angle
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, turnSmoothVelocity);
+            //Normalising in this instance makes it a gradual change
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
+
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        }
+
         //Checks to see if they're walking forward
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -74,61 +100,60 @@ public class PlayerKeyController : MonoBehaviour
         {
             fDown = false;
         }
+    }
 
-        //Checks if the player is currently on the ground
-        if (grounded == true)
+    public void FixedUpdate()
+    {
+        //Movement Keys
+        if (Input.GetKey(KeyCode.W) && fDown != true && grounded == true)
         {
-            //Movement Keys
-            if (Input.GetKey(KeyCode.W) && fDown != true)
-            {
-                rb.position += Vector3.forward * Time.deltaTime * forwardSpeed;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                rb.position += Vector3.left * Time.deltaTime * leftSpeed;
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                rb.position += Vector3.back * Time.deltaTime * rightSpeed;
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                rb.position += Vector3.right * Time.deltaTime * backSpeed;
-            }
-
-            if (Input.GetKey(KeyCode.F) && wDown == true)
-            {
-                rb.position += Vector3.forward * Time.deltaTime * sprintSpeed;
-            }
+            rb.position += Vector3.forward * Time.deltaTime * forwardSpeed;
         }
+
+        if (Input.GetKey(KeyCode.A) && grounded == true)
+        {
+            rb.position += Vector3.left * Time.deltaTime * leftSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.S) && grounded == true)
+        {
+            rb.position += Vector3.back * Time.deltaTime * rightSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.D) && grounded == true)
+        {
+            rb.position += Vector3.right * Time.deltaTime * backSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.F) && wDown == true && grounded == true)
+        {
+            rb.position += Vector3.forward * Time.deltaTime * sprintSpeed;
+        }
+
 
         //Checks if Player is in the air
         //Air Movement
-        if (grounded == false)
+
+        if (Input.GetKey(KeyCode.W) && grounded == false)
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                rb.position += Vector3.forward * Time.deltaTime * airMovement;
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                rb.position += Vector3.left * Time.deltaTime * airMovement;
-            }
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                rb.position += Vector3.back * Time.deltaTime * airMovement;
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                rb.position += Vector3.right * Time.deltaTime * airMovement;
-            }
+            rb.position += Vector3.forward * Time.deltaTime * airMovement;
         }
+
+        if (Input.GetKey(KeyCode.A) && grounded == false)
+        {
+            rb.position += Vector3.left * Time.deltaTime * airMovement;
+        }
+
+        if (Input.GetKey(KeyCode.S) && grounded == false)
+        {
+            rb.position += Vector3.back * Time.deltaTime * airMovement;
+        }
+
+        if (Input.GetKey(KeyCode.D) && grounded == false)
+        {
+            rb.position += Vector3.right * Time.deltaTime * airMovement;
+        }
+
 
         //Abilities
 
@@ -141,53 +166,39 @@ public class PlayerKeyController : MonoBehaviour
         if (Input.GetKey(KeyCode.Q) && QabiUp == true)
         {
             //Changes Q Ability based on faith
-            if (conviction.convictionCount == 0)
+            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
             {
                 abilities.Q_Ability1();
                 Qtimer = abilities.QabiCoolDown1;
                 QabiUp = false;
             }
 
-            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
+            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
             {
                 abilities.Q_Ability2();
                 Qtimer = abilities.QabiCoolDown2;
                 QabiUp = false;
             }
 
-            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
+            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
             {
                 abilities.Q_Ability3();
                 Qtimer = abilities.QabiCoolDown3;
                 QabiUp = false;
             }
 
-            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
+
+            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
             {
                 abilities.Q_Ability4();
                 Qtimer = abilities.QabiCoolDown4;
                 QabiUp = false;
             }
 
-
-            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
+            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
             {
                 abilities.Q_Ability5();
                 Qtimer = abilities.QabiCoolDown5;
-                QabiUp = false;
-            }
-
-            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
-            {
-                abilities.Q_Ability6();
-                Qtimer = abilities.QabiCoolDown6;
-                QabiUp = false;
-            }
-
-            if (conviction.convictionCount == 100)
-            {
-                abilities.Q_Ability7();
-                Qtimer = abilities.QabiCoolDown7;
                 QabiUp = false;
             }
         }
@@ -201,56 +212,42 @@ public class PlayerKeyController : MonoBehaviour
         if (Input.GetKey(KeyCode.E) && EabiUp == true)
         {
             //Changes E Ability based on faith
-            if (conviction.convictionCount == 0)
+            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
             {
                 abilities.E_Ability1();
                 Qtimer = abilities.EabiCoolDown1;
                 EabiUp = false;
             }
 
-            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
+            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
             {
                 abilities.E_Ability2();
                 Qtimer = abilities.EabiCoolDown2;
                 EabiUp = false;
             }
 
-            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
+            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
             {
                 abilities.E_Ability3();
                 Qtimer = abilities.EabiCoolDown3;
                 EabiUp = false;
             }
 
-            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
+
+            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
             {
                 abilities.E_Ability4();
                 Qtimer = abilities.EabiCoolDown4;
                 EabiUp = false;
             }
 
-
-            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
+            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
             {
                 abilities.E_Ability5();
                 Qtimer = abilities.EabiCoolDown5;
                 EabiUp = false;
             }
-
-            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
-            {
-                abilities.E_Ability6();
-                Qtimer = abilities.EabiCoolDown6;
-                EabiUp = false;
-
-            }
-
-            if (conviction.convictionCount == 100)
-            {
-                abilities.E_Ability7();
-                Qtimer = abilities.EabiCoolDown7;
-                EabiUp = false;
-            }
         }
     }
+
 }
