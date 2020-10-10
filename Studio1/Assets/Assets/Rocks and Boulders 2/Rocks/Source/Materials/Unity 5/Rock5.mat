@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rock5
-  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: d84268709d11078d11005b9844295342, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON _DETAIL_MULX2 _EMISSION _METALLICGLOSSMAP _NORMALMAP
     _PARALLAXMAP _SPECGLOSSMAP
   m_LightmapFlags: 1
@@ -114,7 +114,6 @@ Material:
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Opacity: 1
-    - _Outline: 0.005
     - _Parallax: 0.05
     - _Shininess: 200
     - _SmoothnessTextureChannel: 0
@@ -142,7 +141,6 @@ Material:
     - _GSpeed: {r: 1.2, g: 1.375, b: 1.1, a: 1.5}
     - _GSteepness: {r: 1, g: 1, b: 1, a: 1}
     - _InvFadeParemeter: {r: 0.15, g: 0.15, b: 0.5, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _ReflectionColor: {r: 0.54, g: 0.95, b: 0.99, a: 0.5}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
