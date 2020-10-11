@@ -4,17 +4,86 @@ using UnityEngine;
 
 public class PlayerController2 : MonoBehaviour
 {
+    //References
+    ConvictionCalculator conviction;
+    public Abilities abilities;
     public CharacterController controller;
     public Transform cam;
 
-    public float speed = 6f;
-
+    //Direction Related
     public float turnSmoothTime = 0.1f;
     float smoothVeloctiy;
+    Vector3 velocity;
+    public float gravity = -9.807f;
+
+    //Other Vars
+    public bool grounded = false;
+    public bool wDown;
+    public bool fDown;
+    public bool QabiUp;
+    public bool EabiUp;
+
+    //Movement Speed Vars
+    [SerializeField]
+    private float leftSpeed, rightSpeed, forwardSpeed, backSpeed, sprintSpeed, airMovement;
+
+    //Timer Var
+    private float Qtimer;
+    private float Etimer;
+
+    void Start()
+    {
+        //Defining Speed Vars
+        leftSpeed = 50f;
+        rightSpeed = 50f;
+        forwardSpeed = 100f;
+        backSpeed = 100f;
+        sprintSpeed = 150f;
+        airMovement = 20f;
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
+
+        else
+        {
+            grounded = false;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
+        //Checks if W is down to see if the player can incrase speed
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            wDown = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            wDown = false;
+        }
+
+        //Checks to see if the F button is being pressed
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            fDown = true;
+        }
+
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            fDown = false;
+        }
+
+        //gravity
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
         //Allows you to press the arrow keys or the wasd to move?
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -31,28 +100,158 @@ public class PlayerController2 : MonoBehaviour
             //Normalising in this instance makes it a gradual change
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
 
-            if (Input.GetKey(KeyCode.W) /*&& fDown != true && grounded == true*/)
+            if (Input.GetKey(KeyCode.W) && fDown != true && grounded == true)
             {
-                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                controller.Move(moveDir * speed * Time.deltaTime);
+                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveFor * forwardSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.A) /*&& grounded == true*/)
+            if (Input.GetKey(KeyCode.A) && grounded == true)
             {
-                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.left;
-                controller.Move(moveDir * speed * Time.deltaTime);
+                Vector3 moveLeft = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveLeft * leftSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.S) /*&& grounded == true*/)
+            if (Input.GetKey(KeyCode.S) && grounded == true)
             {
-                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.back;
-                controller.Move(moveDir * speed * Time.deltaTime);
+                Vector3 moveBack = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveBack * backSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.D) /*&& grounded == true*/)
+            if (Input.GetKey(KeyCode.D) && grounded == true)
             {
-                Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.right;
-                controller.Move(moveDir * speed * Time.deltaTime);
+                Vector3 moveRight = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveRight * rightSpeed * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.F) && wDown == true && grounded == true)
+            {
+                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveFor * sprintSpeed * Time.deltaTime);
+            }
+
+            //Checks if Player is in the air
+            //Air Movement
+
+            if (Input.GetKey(KeyCode.W) && grounded == false)
+            {
+                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveFor * airMovement * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.A) && grounded == false)
+            {
+                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveFor * airMovement * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.S) && grounded == false)
+            {
+                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveFor * airMovement * Time.deltaTime);
+            }
+
+            if (Input.GetKey(KeyCode.D) && grounded == false)
+            {
+                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                controller.Move(moveFor * airMovement * Time.deltaTime);
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //Abilities
+
+        if (Qtimer >= 0)
+        {
+            Qtimer -= Time.deltaTime;
+            QabiUp = true;
+        }
+
+        if (Input.GetKey(KeyCode.Q) && QabiUp == true)
+        {
+            //Changes Q Ability based on faith
+            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
+            {
+                abilities.Q_Ability1();
+                Qtimer = abilities.QabiCoolDown1;
+                QabiUp = false;
+            }
+
+            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
+            {
+                abilities.Q_Ability2();
+                Qtimer = abilities.QabiCoolDown2;
+                QabiUp = false;
+            }
+
+            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
+            {
+                abilities.Q_Ability3();
+                Qtimer = abilities.QabiCoolDown3;
+                QabiUp = false;
+            }
+
+
+            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
+            {
+                abilities.Q_Ability4();
+                Qtimer = abilities.QabiCoolDown4;
+                QabiUp = false;
+            }
+
+            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
+            {
+                abilities.Q_Ability5();
+                Qtimer = abilities.QabiCoolDown5;
+                QabiUp = false;
+            }
+        }
+
+        if (Etimer >= 0)
+        {
+            Etimer -= Time.deltaTime;
+            EabiUp = true;
+        }
+
+        if (Input.GetKey(KeyCode.E) && EabiUp == true)
+        {
+            //Changes E Ability based on faith
+            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
+            {
+                abilities.E_Ability1();
+                Qtimer = abilities.EabiCoolDown1;
+                EabiUp = false;
+            }
+
+            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
+            {
+                abilities.E_Ability2();
+                Qtimer = abilities.EabiCoolDown2;
+                EabiUp = false;
+            }
+
+            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
+            {
+                abilities.E_Ability3();
+                Qtimer = abilities.EabiCoolDown3;
+                EabiUp = false;
+            }
+
+
+            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
+            {
+                abilities.E_Ability4();
+                Qtimer = abilities.EabiCoolDown4;
+                EabiUp = false;
+            }
+
+            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
+            {
+                abilities.E_Ability5();
+                Qtimer = abilities.EabiCoolDown5;
+                EabiUp = false;
             }
         }
     }
