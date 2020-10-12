@@ -16,8 +16,13 @@ public class PlayerController2 : MonoBehaviour
     Vector3 velocity;
     public float gravity = -9.807f;
 
+    //Ground Collision
+    public Transform groundCheck;
+    public float groundDistance = 0.0f;
+    public LayerMask groundMask;
+    public bool isGrounded;
+
     //Other Vars
-    public bool grounded = false;
     public bool wDown;
     public bool fDown;
     public bool QabiUp;
@@ -42,22 +47,17 @@ public class PlayerController2 : MonoBehaviour
         airMovement = 20f;
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Ground")
-        {
-            grounded = true;
-        }
-
-        else
-        {
-            grounded = false;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //Checks if the player is touching the ground
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
         //Checks if W is down to see if the player can incrase speed
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -81,8 +81,11 @@ public class PlayerController2 : MonoBehaviour
         }
 
         //gravity
+
+        //Because the original equation of velocity requires time sqared, this is the best way to do it
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
 
         //Allows you to press the arrow keys or the wasd to move?
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -100,31 +103,31 @@ public class PlayerController2 : MonoBehaviour
             //Normalising in this instance makes it a gradual change
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
 
-            if (Input.GetKey(KeyCode.W) && fDown != true && grounded == true)
+            if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
             {
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * forwardSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.A) && grounded == true)
+            if (Input.GetKey(KeyCode.A) && isGrounded == true)
             {
                 Vector3 moveLeft = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveLeft * leftSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.S) && grounded == true)
+            if (Input.GetKey(KeyCode.S) && isGrounded == true)
             {
                 Vector3 moveBack = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveBack * backSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.D) && grounded == true)
+            if (Input.GetKey(KeyCode.D) && isGrounded == true)
             {
                 Vector3 moveRight = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveRight * rightSpeed * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.F) && wDown == true && grounded == true)
+            if (Input.GetKey(KeyCode.F) && wDown == true && isGrounded == true)
             {
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * sprintSpeed * Time.deltaTime);
@@ -133,25 +136,25 @@ public class PlayerController2 : MonoBehaviour
             //Checks if Player is in the air
             //Air Movement
 
-            if (Input.GetKey(KeyCode.W) && grounded == false)
+            if (Input.GetKey(KeyCode.W) && isGrounded == false)
             {
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * airMovement * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.A) && grounded == false)
+            if (Input.GetKey(KeyCode.A) && isGrounded == false)
             {
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * airMovement * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.S) && grounded == false)
+            if (Input.GetKey(KeyCode.S) && isGrounded == false)
             {
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * airMovement * Time.deltaTime);
             }
 
-            if (Input.GetKey(KeyCode.D) && grounded == false)
+            if (Input.GetKey(KeyCode.D) && isGrounded == false)
             {
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * airMovement * Time.deltaTime);
