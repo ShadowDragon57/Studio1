@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1d63bc19913544ab69ffcafc7fc492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conviction: {fileID: 0}
+  conviction: {fileID: 795337722}
   convictionCount: 0
 --- !u!114 &604861013
 MonoBehaviour:
@@ -470,6 +470,9 @@ MonoBehaviour:
   - {fileID: 1934421969}
   - {fileID: 1970347110}
   - {fileID: 1825981000}
+  activeTier: {fileID: 0}
+  oneAbove: {fileID: 0}
+  oneBelow: {fileID: 0}
 --- !u!1 &795337720
 GameObject:
   m_ObjectHideFlags: 0

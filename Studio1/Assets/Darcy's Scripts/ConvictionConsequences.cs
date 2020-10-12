@@ -9,19 +9,25 @@ public class ConvictionConsequences : MonoBehaviour
     private Text health;
 
     [SerializeField]
-    private float healthCount, convictionCount, healthAfterChange;
+    private float healthCount, convictionCount, healthAfterChange, timeCount;
     [SerializeField]
     private GameObject[] tiers = new GameObject[5];
-
+  
     private GameObject activeTier, oneAbove, oneBelow;
+
+    private int current;
+
+    private bool changeOnce;
 
     void Start()
     {
-        foreach(GameObject s in tiers) //turning off all of the spheres
+        foreach(var s in tiers) //turning off all of the spheres
         {
             s.SetActive(false); 
         }
-        tiers[3].SetActive(true); //turning back on the third one
+        current = 2;
+        changeOnce = true;
+        tiers[current].SetActive(true); //turning back on the third one
         healthCount = 100.0f;
         health.text = healthCount.ToString();
     }
@@ -60,17 +66,57 @@ public class ConvictionConsequences : MonoBehaviour
 
     private void WhichTier()
     {
-        convictionCount = GetComponent<ConvictionCalculator>().convictionCount;
-        foreach(GameObject s in tiers)
+        convictionCount = GetComponent<ConvictionCalculator>().convictionCount; //getting the value of conviction from the calculator
+
+        if(current == 4) //this checks to see if the array is at its max
         {
-            if(s.activeInHierarchy == true)
+            activeTier = tiers[current];
+            oneBelow = tiers[current - 1];
+        }
+        else if (current == 0) //this checks to see if the array is at its min
+        {
+            activeTier = tiers[current];
+            oneAbove = tiers[current + 1];
+        }
+        else //this is only allowed to happen if the array is in between its min and max
+        {
+            activeTier = tiers[current];
+            oneAbove = tiers[current + 1];
+            oneBelow = tiers[current - 1];
+        }
+
+        if(changeOnce == true) // the bool makes it so that the if statement will only happen once
+        {
+            if (convictionCount >= 100.0f) //checking to see if the conviction is at its max
             {
-                activeTier = s;
+                if(current < 4) //only allowed to happen if the array isnt at its max
+                {
+                    activeTier.SetActive(false);
+                    oneAbove.SetActive(true);
+                    current++;
+                }
+                changeOnce = false;
+            }
+            if (convictionCount <= 0.0f) //checking to see if the conviction is at its min
+            {
+                if(current > 0) //only allowed to happen if the array isnt at its min
+                {
+                    activeTier.SetActive(false);
+                    oneBelow.SetActive(true);
+                    current--;
+                }
+                changeOnce = false;
             }
         }
-        if(convictionCount <= 0.0f)
+
+        if(changeOnce == false) //if the bool is false, it will count to 1.5 and set it back to true, this allows it to only happen once every 1.5 seconds
         {
-            activeTier.SetActive(false);
+            timeCount += Time.deltaTime;
+        }
+        if(timeCount >= 1.5)
+        {
+            changeOnce = true; 
+            timeCount = 0;
         }
     }
 }
