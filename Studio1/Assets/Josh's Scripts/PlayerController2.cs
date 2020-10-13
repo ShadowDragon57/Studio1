@@ -81,7 +81,6 @@ public class PlayerController2 : MonoBehaviour
         }
 
         //gravity
-
         //Because the original equation of velocity requires time sqared, this is the best way to do it
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -100,35 +99,39 @@ public class PlayerController2 : MonoBehaviour
             //Determines the angle
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, smoothVeloctiy);
-            //Normalising in this instance makes it a gradual change
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
 
             if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
             {
+                //Normalising in this instance makes it a gradual change
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * forwardSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.A) && isGrounded == true)
             {
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveLeft = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveLeft * leftSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.S) && isGrounded == true)
             {
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveBack = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveBack * backSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D) && isGrounded == true)
             {
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveRight = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveRight * rightSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.F) && wDown == true && isGrounded == true)
             {
+                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
                 controller.Move(moveFor * sprintSpeed * Time.deltaTime);
             }

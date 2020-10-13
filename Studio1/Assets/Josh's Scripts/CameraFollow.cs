@@ -10,11 +10,11 @@ public class CameraFollow : MonoBehaviour
 
     //The distance away from the object
     [SerializeField]
-    private Vector3 offset = new Vector3(0, 2, -10);
     public Quaternion rotation;
 
     //Holds the value for the rotation
     public float currentX = 0.0f;
+    public float currentY = 0.0f;
 
     //Manages how quickly the mouse rotates
     //As of testing on the 8/10/2020, 200 appears to be the most optimal sensitivity
@@ -31,8 +31,6 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.position + offset;
-
         if (Input.GetMouseButtonDown(1))
         {
             rightButtonDown = true;
@@ -48,6 +46,7 @@ public class CameraFollow : MonoBehaviour
         {
             //Adding the time.deltatime at the end allows this to be frame independent
             currentX += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            currentY += Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         }
 
     }
