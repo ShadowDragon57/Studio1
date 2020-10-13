@@ -19,11 +19,11 @@ public class ConvictionCalculator : MonoBehaviour
     {
         if(convictionCount > 5.0f)
         {
-            naturalTickAmount = 0.10f * convictionCount; //naturaltickamount is 10 percent of whatever the faith is 
+            naturalTickAmount = 0.10f * convictionCount; //naturaltickamount is 10 percent of whatever the conviction is 
             tickTimeCount += Time.deltaTime;
             if (tickTimeCount >= 3) //allows for the tick to happen every set amount of seconds
             {
-                convictionCount -= naturalTickAmount; //faith loses 10 percent of its value every tick
+                convictionCount -= naturalTickAmount; //conviction loses 10 percent of its value every tick
                 tickTimeCount = 0; //resetting time each tick
             }
         }
@@ -33,20 +33,20 @@ public class ConvictionCalculator : MonoBehaviour
             tickTimeCount += Time.deltaTime;
             if (tickTimeCount >= 3) //allows for the tick to happen every set amount of seconds
             {
-                convictionCount -= naturalTickAmount; //faith goes down by 0.5 every tick
+                convictionCount -= naturalTickAmount; //conviction goes down by 0.5 every tick
                 tickTimeCount = 0; //resetting time each tick
             }
         }
-        if (convictionCount >= 100.0f)
+        if (convictionCount >= 100.0f) //if conviction reaches 100, it will reset back to 50 after 1.5 seconds
         {
             tierResetTimeCount += Time.deltaTime;
-            if (tierResetTimeCount >= 1.5)
+            if (tierResetTimeCount >= 1.5) // it occurs after 1.5 to allow for the consequences script to execute its stuff before the value gets reset
             {
                 convictionCount = 50.0f;
                 tierResetTimeCount = 0;
             }           
         }
-        if (convictionCount < 0.0f)
+        if (convictionCount < 0.0f) //if conviction reaches 0, it will reset back to 90 after 1.5 seconds
         {
             tierResetTimeCount += Time.deltaTime;
             if (tierResetTimeCount >= 1.5)
@@ -55,6 +55,6 @@ public class ConvictionCalculator : MonoBehaviour
                 tierResetTimeCount = 0;
             }
         }
-        conviction.text = convictionCount.ToString("0.0");
+        conviction.text = convictionCount.ToString("0.0"); //writing to the canvas
     }
 }

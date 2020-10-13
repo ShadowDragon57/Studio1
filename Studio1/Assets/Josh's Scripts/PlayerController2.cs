@@ -39,12 +39,12 @@ public class PlayerController2 : MonoBehaviour
     void Start()
     {
         //Defining Speed Vars
-        leftSpeed = 50f;
-        rightSpeed = 50f;
-        forwardSpeed = 100f;
-        backSpeed = 100f;
-        sprintSpeed = 150f;
-        airMovement = 20f;
+        leftSpeed = 20f;
+        rightSpeed = 20f;
+        forwardSpeed = 40f;
+        backSpeed = 20f;
+        sprintSpeed = 80f;
+        airMovement = 5f;
     }
 
     // Update is called once per frame
