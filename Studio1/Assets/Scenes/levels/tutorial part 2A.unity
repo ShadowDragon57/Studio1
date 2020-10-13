@@ -9619,28 +9619,12 @@ PrefabInstance:
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.y
-<<<<<<< Updated upstream:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
       value: -0.00000002545933
-=======
-<<<<<<< HEAD:Studio1/Assets/tutorial part 2A.unity
-      value: -0.000000012258926
-=======
-      value: -0.00000002545933
->>>>>>> df6112d65d13ac1b54f3962369e328ded4d5579c:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
->>>>>>> Stashed changes:Studio1/Assets/tutorial part 2A.unity
       objectReference: {fileID: 0}
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.z
-<<<<<<< Updated upstream:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
       value: 0.0000000065482566
-=======
-<<<<<<< HEAD:Studio1/Assets/tutorial part 2A.unity
-      value: 0.0000000025514966
-=======
-      value: 0.0000000065482566
->>>>>>> df6112d65d13ac1b54f3962369e328ded4d5579c:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
->>>>>>> Stashed changes:Studio1/Assets/tutorial part 2A.unity
       objectReference: {fileID: 0}
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
@@ -9674,32 +9658,23 @@ PrefabInstance:
       objectReference: {fileID: 243324507}
     - target: {fileID: 1184134244558465792, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
-<<<<<<< Updated upstream:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
-=======
-<<<<<<< HEAD:Studio1/Assets/tutorial part 2A.unity
-=======
->>>>>>> Stashed changes:Studio1/Assets/tutorial part 2A.unity
       propertyPath: m_YAxis.m_InvertInput
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1184134244558465792, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
-<<<<<<< Updated upstream:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
-=======
->>>>>>> df6112d65d13ac1b54f3962369e328ded4d5579c:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
->>>>>>> Stashed changes:Studio1/Assets/tutorial part 2A.unity
       propertyPath: m_XAxis.m_InvertInput
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000007992529
+      value: -0.000000008645815
       objectReference: {fileID: 0}
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.528225e-10
+      value: 0.0000000034318204
       objectReference: {fileID: 0}
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
@@ -20359,18 +20334,8 @@ PrefabInstance:
       objectReference: {fileID: 159642084}
     - target: {fileID: 918260062323354694, guid: 7b004ca6177b0d64d94c27e45228fcdb,
         type: 3}
-<<<<<<< Updated upstream:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
       propertyPath: gravity
       value: -20
-=======
-<<<<<<< HEAD:Studio1/Assets/tutorial part 2A.unity
-      propertyPath: groundDistance
-      value: 0.1
-=======
-      propertyPath: gravity
-      value: -20
->>>>>>> df6112d65d13ac1b54f3962369e328ded4d5579c:Studio1/Assets/Scenes/levels/tutorial part 2A.unity
->>>>>>> Stashed changes:Studio1/Assets/tutorial part 2A.unity
       objectReference: {fileID: 0}
     - target: {fileID: 918260062323354695, guid: 7b004ca6177b0d64d94c27e45228fcdb,
         type: 3}
