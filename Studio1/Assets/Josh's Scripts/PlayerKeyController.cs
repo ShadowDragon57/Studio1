@@ -107,27 +107,27 @@ public class PlayerKeyController : MonoBehaviour
         //Movement Keys
         if (Input.GetKey(KeyCode.W) && fDown != true && grounded == true)
         {
-            rb.position += Vector3.forward * Time.deltaTime * forwardSpeed;
+            rb.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * forwardSpeed;
         }
 
         if (Input.GetKey(KeyCode.A) && grounded == true)
         {
-            rb.position += Vector3.left * Time.deltaTime * leftSpeed;
+            rb.position -= transform.TransformDirection(Vector3.left) * Time.deltaTime * leftSpeed;
         }
 
         if (Input.GetKey(KeyCode.S) && grounded == true)
         {
-            rb.position += Vector3.back * Time.deltaTime * rightSpeed;
+            rb.position -= transform.TransformDirection(Vector3.back) * Time.deltaTime * backSpeed;
         }
 
         if (Input.GetKey(KeyCode.D) && grounded == true)
         {
-            rb.position += Vector3.right * Time.deltaTime * backSpeed;
+            rb.position += transform.TransformDirection(Vector3.right) * Time.deltaTime * rightSpeed;
         }
 
         if (Input.GetKey(KeyCode.F) && wDown == true && grounded == true)
         {
-            rb.position += Vector3.forward * Time.deltaTime * sprintSpeed;
+            rb.position += transform.TransformDirection(Vector3.forward) * Time.deltaTime * sprintSpeed;
         }
 
 

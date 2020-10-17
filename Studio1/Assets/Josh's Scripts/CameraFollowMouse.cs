@@ -15,8 +15,8 @@ public class CameraFollowMouse : MonoBehaviour
     private float currentY = 0.0f;
 
     //Controls how quickly the camera follows the mouse
-    private float sensitivityX = 4.0f;
-    private float sensitivityY = 1.0f;
+    private float sensitivityX = 50.0f;
+    private float sensitivityY = 50.0f;
     private float sensitivity = 4.0f;
 
     // Start is called before the first frame update
@@ -28,17 +28,21 @@ public class CameraFollowMouse : MonoBehaviour
 
     void Update()
     {
-        currentX += Input.GetAxis("Mouse X");
-        currentY += Input.GetAxis("Mouse Y");
-        //distance += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+        if (Input.GetMouseButton(1))
+        {
+            currentX += Input.GetAxis("Mouse X") * Time.deltaTime * sensitivityX;
+            currentY += Input.GetAxis("Mouse Y") * Time.deltaTime * sensitivityY;
+            distance += Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+        }
 
-       
+
+
 
     }
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 dir = new Vector3(0, 0, 1);
+        Vector3 dir = new Vector3(0, 2, -5);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
         camTransform.position = lookAt.position + rotation * dir;
         camTransform.LookAt(lookAt.position);
