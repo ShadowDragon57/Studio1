@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Collider_Transparent
-  m_Shader: {fileID: 4800000, guid: 80aa867ac363ac043847b06ad71604cd, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: _CELPRIMARYMODE_SINGLE _TEXTUREBLENDINGMODE_MULTIPLY _UNITYSHADOWMODE_NONE
     _WINDQUALITY_NONE
   m_LightmapFlags: 4
@@ -69,6 +69,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ToonShade:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_8A2B8817: 0
     - _AlphaClip: 0
@@ -112,6 +116,7 @@ Material:
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _OpacityThreshold: 0
+    - _Outline: 0.005
     - _OverrideLightmapDir: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -164,6 +169,7 @@ Material:
     - _FlatSpecularColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _LightmapDirection: {r: 0, g: 1, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnityShadowColor: {r: 0.85023, g: 0.85034, b: 0.85045, a: 0.85056}
