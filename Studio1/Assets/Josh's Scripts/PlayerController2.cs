@@ -8,6 +8,7 @@ public class PlayerController2 : MonoBehaviour
     ConvictionCalculator conviction;
     public Abilities abilities;
     public CharacterController controller;
+    public Animator anim;
     public Transform cam;
 
     //Direction Related
@@ -84,12 +85,12 @@ public class PlayerController2 : MonoBehaviour
         }
 
         //Checks to see if the F button is being pressed
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && Input.GetKeyDown(KeyCode.LeftShift))
         {
             fDown = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.F) && Input.GetKeyUp(KeyCode.LeftShift))
         {
             fDown = false;
         }
@@ -120,6 +121,19 @@ public class PlayerController2 : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
                 controller.Move(moveFor.normalized * forwardSpeed * Time.deltaTime);
+
+                if (wDown == true)
+                {
+                    anim.SetBool("running", true); //Maybe Change this to walking later
+                    anim.SetInteger("condition", 1);
+
+                }
+
+                if (wDown == false)
+                {
+                    anim.SetBool("running", false);
+                    anim.SetInteger("condition", 0);
+                }
             }
 
             if (Input.GetKey(KeyCode.A) && isGrounded == true)

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnightControl : MonoBehaviour
+
+public class PlayerControllerAnim : MonoBehaviour
 {
 	float speed = 4;
 	float rotSpeed = 100;
@@ -22,8 +23,6 @@ public class KnightControl : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-
-
 		controller = GetComponent<CharacterController>();
 		anim = GetComponent<Animator>();
 	}
@@ -34,21 +33,20 @@ public class KnightControl : MonoBehaviour
 	{
 		Movement();
 		GetInput();
-
-
 	}
+
 	void Movement()
 	{
 		if (controller.isGrounded)
 		{
 
-
-			if (Input.GetKey(KeyCode.W)) //For Walking
+			if (Input.GetKey(KeyCode.W))
 			{
 				if (anim.GetBool("attacking") == true)
 				{
 					return;
 				}
+
 				else if (anim.GetBool("attacking") == false)
 				{
 					anim.SetBool("running", true);
@@ -58,13 +56,12 @@ public class KnightControl : MonoBehaviour
 					moveDir = transform.TransformDirection(moveDir);
 				}
 			}
+
 			if (Input.GetKeyUp(KeyCode.W))
 			{
 				anim.SetBool("running", false);
 				anim.SetInteger("condition", 0);
 				moveDir = new Vector3(0, 0, 0);
-
-
 			}
 		}
 		rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
@@ -86,7 +83,6 @@ public class KnightControl : MonoBehaviour
 					anim.SetBool("running", false);
 					anim.SetInteger("condition", 0);
 				}
-
 				if (anim.GetBool("running") == false)
 				{
 					Attacking();
@@ -96,10 +92,10 @@ public class KnightControl : MonoBehaviour
 	}
 
 	void Attacking()
-
 	{
 		StartCoroutine(AttackRoutine());
 	}
+
 	IEnumerator AttackRoutine()
 	{
 		anim.SetBool("attacking", true);
