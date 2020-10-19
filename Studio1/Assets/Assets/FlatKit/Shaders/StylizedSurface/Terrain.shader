@@ -44,13 +44,13 @@
         _GradientSize("[DR_GRADIENT_ON]Size", Float) = 10.0
         _GradientAngle("[DR_GRADIENT_ON]Gradient Angle", Range(0, 360)) = 0
 
-        //_FLAT_KIT_BUILT_IN_BEGIN_
+        /*_FLAT_KIT_BUILT_IN_BEGIN_
         _LightContribution("[FOLDOUT(Advanced Lighting){4}]Light Color Contribution", Range(0, 1)) = 0
-        //_FLAT_KIT_BUILT_IN_END_
-        /*_FLAT_KIT_URP_BEGIN_
+        _FLAT_KIT_BUILT_IN_END_*/
+        //_FLAT_KIT_URP_BEGIN_
         _LightContribution("[FOLDOUT(Advanced Lighting){5}]Light Color Contribution", Range(0, 1)) = 0
         _LightFalloffSize("Falloff size (point / spot)", Range(0.0001, 1)) = 0.0001
-        _FLAT_KIT_URP_END_*/
+        //_FLAT_KIT_URP_END_
 
         // Used to provide light direction to cel shading if all light in the scene is baked.
         [Header(Override light direction)]
@@ -78,7 +78,7 @@
     }
 
     // -----------------------------------------------
-    //_FLAT_KIT_BUILT_IN_BEGIN_
+    /*_FLAT_KIT_BUILT_IN_BEGIN_
     SubShader {
         Tags {
             "Queue" = "Geometry-100"
@@ -153,11 +153,11 @@
     Dependency "BaseMapGenShader" = "Hidden/TerrainEngine/Splatmap/Standard-BaseGen"
     
     Fallback "Nature/Terrain/Diffuse"
-    //_FLAT_KIT_BUILT_IN_END_
+    _FLAT_KIT_BUILT_IN_END_*/
     // -----------------------------------------------
 
     // -----------------------------------------------
-    /*_FLAT_KIT_URP_BEGIN_
+    //_FLAT_KIT_URP_BEGIN_
     HLSLINCLUDE
 
     #pragma multi_compile_local __ _ALPHATEST_ON
@@ -308,7 +308,7 @@
     Dependency "AddPassShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)"
     Dependency "BaseMapShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)"
     Dependency "BaseMapGenShader" = "Hidden/Universal Render Pipeline/Terrain/Lit (Basemap Gen)"
-    _FLAT_KIT_URP_END_*/
+    //_FLAT_KIT_URP_END_
     // -----------------------------------------------
 
     CustomEditor "StylizedSurfaceEditor"
