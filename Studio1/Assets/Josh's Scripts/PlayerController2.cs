@@ -10,6 +10,7 @@ public class PlayerController2 : MonoBehaviour
     public CharacterController controller;
     public Animator anim;
     public Transform cam;
+    
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -52,7 +53,6 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         //Ability CoolDowns
-
         if (Qtimer >= 0)
         {
             Qtimer -= Time.deltaTime;
@@ -108,6 +108,21 @@ public class PlayerController2 : MonoBehaviour
         //Normalised ensures that if you press 2 buttons, it won't accelerate to be twice as fast
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+       
+        //Makes model begin walk animation
+        if (wDown == true)
+        {
+            anim.SetBool("running", true); //Maybe Change this to walking later
+            anim.SetInteger("condition", 1);
+        }
+
+        //Stops walk animation
+        if (wDown == false)
+        {
+            anim.SetBool("running", false);
+            anim.SetInteger("condition", 0);
+        }
+
         //Magnitude checks if you're moving in any direction
         if (direction.magnitude >= 0.1f)
         {
@@ -115,25 +130,13 @@ public class PlayerController2 : MonoBehaviour
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, smoothVeloctiy);
 
+
             if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
             {
                 //Normalising in this instance makes it a gradual change
                 transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
                 Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
                 controller.Move(moveFor.normalized * forwardSpeed * Time.deltaTime);
-
-                if (wDown == true)
-                {
-                    anim.SetBool("running", true); //Maybe Change this to walking later
-                    anim.SetInteger("condition", 1);
-
-                }
-
-                if (wDown == false)
-                {
-                    anim.SetBool("running", false);
-                    anim.SetInteger("condition", 0);
-                }
             }
 
             if (Input.GetKey(KeyCode.A) && isGrounded == true)
