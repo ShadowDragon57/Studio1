@@ -8,7 +8,9 @@ public class PlayerController2 : MonoBehaviour
     ConvictionCalculator conviction;
     public Abilities abilities;
     public CharacterController controller;
+    public Animator anim;
     public Transform cam;
+    
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -51,7 +53,6 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         //Ability CoolDowns
-
         if (Qtimer >= 0)
         {
             Qtimer -= Time.deltaTime;
@@ -84,12 +85,12 @@ public class PlayerController2 : MonoBehaviour
         }
 
         //Checks to see if the F button is being pressed
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && Input.GetKeyDown(KeyCode.LeftShift))
         {
             fDown = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.F) && Input.GetKeyUp(KeyCode.LeftShift))
         {
             fDown = false;
         }
@@ -107,12 +108,28 @@ public class PlayerController2 : MonoBehaviour
         //Normalised ensures that if you press 2 buttons, it won't accelerate to be twice as fast
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
+       
+        //Makes model begin walk animation
+        if (wDown == true)
+        {
+            anim.SetBool("running", true); //Maybe Change this to walking later
+            anim.SetInteger("condition", 1);
+        }
+
+        //Stops walk animation
+        if (wDown == false)
+        {
+            anim.SetBool("running", false);
+            anim.SetInteger("condition", 0);
+        }
+
         //Magnitude checks if you're moving in any direction
         if (direction.magnitude >= 0.1f)
         {
             //Determines the angle
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, smoothVeloctiy);
+
 
             if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
             {

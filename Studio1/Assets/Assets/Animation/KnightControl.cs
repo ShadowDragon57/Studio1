@@ -43,7 +43,7 @@ public class KnightControl : MonoBehaviour
 		{
 
 
-			if (Input.GetKey(KeyCode.W))
+			if (Input.GetKey(KeyCode.W)) //For Walking
 			{
 				if (anim.GetBool("attacking") == true)
 				{
@@ -86,6 +86,7 @@ public class KnightControl : MonoBehaviour
 					anim.SetBool("running", false);
 					anim.SetInteger("condition", 0);
 				}
+
 				if (anim.GetBool("running") == false)
 				{
 					Attacking();
