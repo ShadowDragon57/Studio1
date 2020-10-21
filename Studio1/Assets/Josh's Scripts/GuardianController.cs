@@ -16,6 +16,9 @@ public class GuardianController : MonoBehaviour
 
     private GameObject throwableRock;
 
+    public Quaternion playerRotation;
+    public Quaternion camRotation;
+
     [SerializeField]
     private int numberOfRocks;
 
@@ -55,6 +58,7 @@ public class GuardianController : MonoBehaviour
         positionMouse.z = 10f;
 
         //Allows interaction with game objects
+        GameObject playerController = GameObject.Find("Player Controller");
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -65,16 +69,17 @@ public class GuardianController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "grabbableRock" && numberOfRocks < 1)
+                if (hit.transform.tag == "grabbableRock" && numberOfRocks < 1 && flyingRock == false)
                 {
-                    Instantiate(rockPrefab, hit.point, Quaternion.identity);
+                    Instantiate(rockPrefab, hit.point, Quaternion.Euler(0, playerController.GetComponent<Transform>().rotation.y, 0));
+                    playerRotation = playerController.GetComponent<Transform>().rotation;
                     numberOfRocks += 1;
                 }
             }
         }
 
         //Gets the spawned rock to follow the mouse while the left mouse button is being held
-        if (leftButtonDown && flyingRock == false)
+        if (leftButtonDown)
         {
             throwableRock = GameObject.Find("rockPrefab(Clone)");
             throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);   
@@ -105,7 +110,7 @@ public class GuardianController : MonoBehaviour
         {
             numberOfRocks = 0;
             //makes object shoot off one mouse button is release
-            throwableRock.GetComponent<Rigidbody>().AddRelativeForce(throwableRock.transform.forward * speed * Time.deltaTime);
+            throwableRock.GetComponent<Rigidbody>().AddRelativeForce(transform.TransformDirection(throwableRock.transform.forward) * speed * Time.deltaTime);
             //Allows another rock to be picked up and thrown
             throwableRock.name = "Flying Rock";
         }

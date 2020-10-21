@@ -12,12 +12,12 @@ public class ConvictionConsequences : MonoBehaviour
     private float healthCount, convictionCount, healthAfterChange, timeCount;
     [SerializeField]
     private GameObject[] tiers = new GameObject[5];
-  
-    private GameObject activeTier, oneAbove, oneBelow;
+
+    private GameObject activeTier, oneAbove, oneBelow, currentIdeology;
 
     private int current;
 
-    private bool changeOnce;
+    private bool changeOnce, changeHealth;
 
     void Start()
     {
@@ -30,41 +30,52 @@ public class ConvictionConsequences : MonoBehaviour
         tiers[current].SetActive(true); //turning back on the third one
         healthCount = 100.0f;
         health.text = healthCount.ToString();
+        changeHealth = false;
     }
 
     void Update()
     {
-        HealthScaledByFaith();
-        WhichTier();
+        if(changeHealth == true)
+        {
+            HealthScaledByIdeology();
+            changeHealth = false;
+        }
+        WhichIdeology();
     }
 
-    private void HealthScaledByFaith()
+    private void HealthScaledByIdeology()
     {
-        convictionCount = GetComponent<ConvictionCalculator>().convictionCount; //grabbing the value of the faith from the calculator
-        if(convictionCount <= 90 && convictionCount > 75) //these if statements control how much health the character has, scaled based                                                
-        {                                           //on the current faith
-            healthAfterChange = 1.50f * healthCount; //increased by half
-        }
-        if(convictionCount <= 75 && convictionCount > 50)
+        currentIdeology = tiers[current];
+        if (currentIdeology.CompareTag("revelry")) //reverly causes the health to be doubled
         {
-            healthAfterChange = 1.25f * healthCount; //increased by a quarter
+            healthAfterChange = healthCount * 2;
+            healthCount = healthAfterChange;
+            health.text = healthCount.ToString();
         }
-        if(convictionCount <= 50 && convictionCount > 25)
+        if (currentIdeology.CompareTag("bliss")) //bliss causes health to be increased by 50 percent.
         {
-            healthAfterChange = healthCount; //default value
+            healthAfterChange = healthCount * 1.5f;
+            healthCount = healthAfterChange;
+            health.text = healthCount.ToString();
         }
-        if(convictionCount <= 25 && convictionCount > 10)
+        if (currentIdeology.CompareTag("animosity")) //animosity is the default- there is no health change. however i have kept it here just in case we want to add something
         {
-            healthAfterChange = 0.75f * healthCount; //decreased by a quarter
         }
-        if(convictionCount <= 10)
+        if (currentIdeology.CompareTag("discontent")) //discontent reduces health by 50 percent.
         {
-            healthAfterChange = 0.50f * healthCount; //decrease by half
+            healthAfterChange = healthCount * 0.50f;
+            healthCount = healthAfterChange;
+            health.text = healthCount.ToString();
         }
-        health.text = healthAfterChange.ToString("0");
+        if (currentIdeology.CompareTag("hatred")) //hatred halves health
+        {
+            healthAfterChange = healthCount / 2;
+            healthCount = healthAfterChange;
+            health.text = healthCount.ToString();
+        }
     }
 
-    private void WhichTier()
+    private void WhichIdeology()
     {
         convictionCount = GetComponent<ConvictionCalculator>().convictionCount; //getting the value of conviction from the calculator
 
@@ -93,6 +104,7 @@ public class ConvictionConsequences : MonoBehaviour
                 {
                     activeTier.SetActive(false);
                     oneAbove.SetActive(true);
+                    changeHealth = true;
                     current++;
                 }
                 changeOnce = false;
@@ -103,6 +115,7 @@ public class ConvictionConsequences : MonoBehaviour
                 {
                     activeTier.SetActive(false);
                     oneBelow.SetActive(true);
+                    changeHealth = true;
                     current--;
                 }
                 changeOnce = false;

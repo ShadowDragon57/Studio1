@@ -6,6 +6,13 @@ TagManager:
   tags:
   - Ground
   - CamController
+  - grabbableRock
+  - throwRock
+  - revelry
+  - bliss
+  - animosity
+  - discontent
+  - hatred
   layers:
   - Default
   - TransparentFX
