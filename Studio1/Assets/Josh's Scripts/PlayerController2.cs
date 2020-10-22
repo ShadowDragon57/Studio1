@@ -108,16 +108,9 @@ public class PlayerController2 : MonoBehaviour
         //Normalised ensures that if you press 2 buttons, it won't accelerate to be twice as fast
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-       
-        //Makes model begin walk animation
-        if (wDown == true)
-        {
-            anim.SetBool("running", true); //Maybe Change this to walking later
-            anim.SetInteger("condition", 1);
-        }
 
         //Stops walk animation
-        if (wDown == false)
+        if (direction.magnitude <= 0.1)
         {
             anim.SetBool("running", false);
             anim.SetInteger("condition", 0);
@@ -126,6 +119,10 @@ public class PlayerController2 : MonoBehaviour
         //Magnitude checks if you're moving in any direction
         if (direction.magnitude >= 0.1f)
         {
+            //Makes model begin walk animation
+            anim.SetBool("running", true); //Maybe Change this to walking later
+            anim.SetInteger("condition", 1);
+
             //Determines the angle
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, smoothVeloctiy);

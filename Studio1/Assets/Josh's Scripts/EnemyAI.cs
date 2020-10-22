@@ -7,7 +7,8 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     //Reference for player
-    public Transform target;
+    public GameObject player;
+    public Vector3 target;
 
     //Distances
     public int alertDistance = 10;
@@ -23,15 +24,22 @@ public class EnemyAI : MonoBehaviour
     //Other Vars
     public float moveSpeed = 100f;
 
+    public void Awake()
+    {
+        player = GameObject.Find("CoatBase");
+        target = player.GetComponent<Transform>().position;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
         //Alerted State
         //Checks for the distance between the player and the object
         //If player get too close, they will be alerted
-        if (Vector3.Distance(target.position, transform.position) <= alertDistance)
+        if (Vector3.Distance(target, transform.position) <= alertDistance)
         {
-            Vector3 direction = target.position - transform.position;
+            Vector3 direction = target - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = rotation;
 
@@ -54,7 +62,7 @@ public class EnemyAI : MonoBehaviour
         //Causes the enemy to get all up in the players face and yeet off screen
         if (timer1 <= 0 && gameObject.name == "Bomb")
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, Time.time);
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.time);
         }
 
         //Follows the player around 
