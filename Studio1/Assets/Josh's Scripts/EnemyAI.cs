@@ -26,8 +26,6 @@ public class EnemyAI : MonoBehaviour
 
     public void Awake()
     {
-        player = GameObject.Find("CoatBase");
-        target = player.GetComponent<Transform>().position;
     }
 
 

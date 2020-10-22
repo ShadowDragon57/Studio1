@@ -1,43 +1,85 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 
 public class BladeAI : MonoBehaviour
 {
+    //Public variables
     public float fieldOfViewAngle = 110f;
     public bool playerSighted = false;
-    public Transform bladeTransform;
 
+    //Private References
     private SphereCollider col;
     private GameObject player;
     private Vector3 playerLoc;
+
+    //Speed Variables
+    public float movementSpeed = 200;
+    public bool refreshTrigger = false;
+    public bool inRange = false;
 
     // Start is called before the first frame update
     public void Awake()
     {
         col = GetComponent<SphereCollider>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerLoc = player.GetComponent<Transform>().position;
-
     }
     
     // Update is called once per frame
     void Update()
     {
-        
+        playerLoc = player.GetComponent<Transform>().position;
+
+        if (playerSighted && !inRange)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, playerLoc, movementSpeed * Time.deltaTime);
+            Vector3 direction = playerLoc - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = rotation;
+
+        }
+
+        //Stops the player if they're
+        if (Vector3.Distance(transform.position, playerLoc) <= 10f)
+        {
+            inRange = true;
+            transform.position = transform.position;
+            //Activate Attack Animation. Deactivate Running Animation
+        }
+
+        if (Vector3.Distance(transform.position, playerLoc) >= 10f)
+        {
+            inRange = false;
+            //Deactivate Attack Animation
+        }
+
+    }
+
+    public void FixedUpdate()
+    {
+        //Continually checks if player has entered field of vision
+
+        if (refreshTrigger)
+        {
+            col.enabled = false;
+            col.enabled = true;
+            refreshTrigger = false;
+        }
+
     }
 
     //Used to detect if the player is within the enemies field of view
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             //Grabs the direction the enemy is currently facing
             Vector3 direction = other.transform.position - transform.position;
             float angle = Vector3.Angle(direction, transform.forward);
 
             //If it finds that the player is within half the angle for the field of view, it has seen the player
-            if (angle < fieldOfViewAngle * 0.5f)
+            if (angle < fieldOfViewAngle)
             {
                 RaycastHit hit;
 
@@ -48,12 +90,16 @@ public class BladeAI : MonoBehaviour
                 if (Physics.Raycast(transform.position + (transform.up * 2.25f), direction.normalized, out hit, col.radius))
                 {
                     //When the player gets detected
-                    if (hit.collider.gameObject.tag == "Player")
+                    if (hit.collider.gameObject.CompareTag("Player") && !inRange)
                     {
                         playerSighted = true;
-                        bladeTransform.position = Vector3.MoveTowards(bladeTransform.position, playerLoc, Time.deltaTime);
                     }
                 }
+                else
+                {
+                    refreshTrigger = true;
+                }
+
             }
         }
     }

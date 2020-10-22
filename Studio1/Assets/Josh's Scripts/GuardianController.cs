@@ -69,7 +69,7 @@ public class GuardianController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "grabbableRock" && numberOfRocks < 1 && flyingRock == false)
+                if (hit.transform.CompareTag("grabbableRock") && numberOfRocks < 1 && flyingRock == false)
                 {
                     Instantiate(rockPrefab, hit.point, Quaternion.Euler(0, playerController.GetComponent<Transform>().rotation.y, 0));
                     playerRotation = playerController.GetComponent<Transform>().rotation;

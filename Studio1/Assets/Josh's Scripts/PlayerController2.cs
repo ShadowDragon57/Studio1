@@ -10,7 +10,7 @@ public class PlayerController2 : MonoBehaviour
     public CharacterController controller;
     public Animator anim;
     public Transform cam;
-    
+
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -105,19 +105,19 @@ public class PlayerController2 : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+
         //Normalised ensures that if you press 2 buttons, it won't accelerate to be twice as fast
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-
         //Stops walk animation
-        if (direction.magnitude <= 0.1)
+        if (direction.magnitude < 0.000000001f)
         {
             anim.SetBool("running", false);
             anim.SetInteger("condition", 0);
         }
 
         //Magnitude checks if you're moving in any direction
-        if (direction.magnitude >= 0.1f)
+        if (direction.magnitude >= 0.00000001f)
         {
             //Makes model begin walk animation
             anim.SetBool("running", true); //Maybe Change this to walking later
@@ -127,41 +127,33 @@ public class PlayerController2 : MonoBehaviour
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, smoothVeloctiy);
 
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
+            Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
             {
-                //Normalising in this instance makes it a gradual change
-                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
-                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveFor.normalized * forwardSpeed * Time.deltaTime);
+                controller.Move(moveFor * forwardSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.A) && isGrounded == true)
             {
-                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
-                Vector3 moveLeft = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveLeft.normalized * leftSpeed * Time.deltaTime);
+                controller.Move(moveFor * leftSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.S) && isGrounded == true)
             {
-                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
-                Vector3 moveBack = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveBack.normalized * backSpeed * Time.deltaTime);
+
+                controller.Move(moveFor * backSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D) && isGrounded == true)
             {
-                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
-                Vector3 moveRight = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveRight.normalized * rightSpeed * Time.deltaTime);
+                controller.Move(moveFor * rightSpeed * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.F) && wDown == true && isGrounded == true)
             {
-                transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
-                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveFor.normalized * sprintSpeed * Time.deltaTime);
+                controller.Move(moveFor * sprintSpeed * Time.deltaTime);
             }
 
             //Checks if Player is in the air
@@ -169,26 +161,22 @@ public class PlayerController2 : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W) && isGrounded == false)
             {
-                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveFor.normalized * airMovement * Time.deltaTime);
+                controller.Move(moveFor * airMovement * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.A) && isGrounded == false)
             {
-                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveFor.normalized * airMovement * Time.deltaTime);
+                controller.Move(moveFor * airMovement * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.S) && isGrounded == false)
             {
-                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveFor.normalized * airMovement * Time.deltaTime);
+                controller.Move(moveFor * airMovement * Time.deltaTime);
             }
 
             if (Input.GetKey(KeyCode.D) && isGrounded == false)
             {
-                Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward.normalized;
-                controller.Move(moveFor.normalized * airMovement * Time.deltaTime);
+                controller.Move(moveFor * airMovement * Time.deltaTime);
             }
         }
     }
