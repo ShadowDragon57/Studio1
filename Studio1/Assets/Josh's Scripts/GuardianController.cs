@@ -75,11 +75,21 @@ public class GuardianController : MonoBehaviour
                     playerRotation = playerController.GetComponent<Transform>().rotation;
                     numberOfRocks += 1;
                 }
+
+                else
+                {
+                    return;
+                }
+            }
+
+            else
+            {
+                return;
             }
         }
 
         //Gets the spawned rock to follow the mouse while the left mouse button is being held
-        if (leftButtonDown)
+        if (leftButtonDown && numberOfRocks > 0)
         {
             throwableRock = GameObject.Find("rockPrefab(Clone)");
             throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);   
@@ -102,7 +112,10 @@ public class GuardianController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             leftButtonDown = false;
-            flyingRock = true;
+            if (numberOfRocks > 0)
+            {
+                flyingRock = true;
+            }
             
         }
 

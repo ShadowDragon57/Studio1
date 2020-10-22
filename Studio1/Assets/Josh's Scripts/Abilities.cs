@@ -7,6 +7,7 @@ public class Abilities : MonoBehaviour
 {
     //References
     public Rigidbody rb;
+    private Vector3 playerVelocity;
 
     //CoolDown Length Variables
     public int QabiCoolDown1 = 3;
@@ -42,7 +43,7 @@ public class Abilities : MonoBehaviour
     {
         Debug.Log("Ability 1 used");
 
-        rb.AddForce(0, jumpForce, 0);
+        playerVelocity.y += Mathf.Sqrt(jumpForce * -3.0f);
     }
 
     public void Q_Ability2()

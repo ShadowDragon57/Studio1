@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &367141550317823320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6891634312641130792}
+  - component: {fileID: 3099358828853713623}
+  m_Layer: 0
+  m_Name: Abilities
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6891634312641130792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367141550317823320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1956889890320640480}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3099358828853713623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367141550317823320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca417d3e56396374e9947e426778b15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  QabiCoolDown1: 3
+  QabiCoolDown2: 5
+  QabiCoolDown3: 3
+  QabiCoolDown4: 5
+  QabiCoolDown5: 3
+  QabiCoolDown6: 5
+  QabiCoolDown7: 5
+  EabiCoolDown1: 3
+  EabiCoolDown2: 5
+  EabiCoolDown3: 3
+  EabiCoolDown4: 5
+  EabiCoolDown5: 3
+  EabiCoolDown6: 5
+  EabiCoolDown7: 5
 --- !u!1 &628254714099445839
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +277,7 @@ GameObject:
   - component: {fileID: 2063490312707788442}
   m_Layer: 0
   m_Name: CoatBase
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,6 +297,7 @@ Transform:
   - {fileID: 4886231271577629998}
   - {fileID: 2063490313827964074}
   - {fileID: 2063490313235065222}
+  - {fileID: 6891634312641130792}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
