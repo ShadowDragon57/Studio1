@@ -10,8 +10,6 @@ public class RockDestroyer : MonoBehaviour
 
     public float timer = 5;
     public bool collisionReached = false;
-    public bool changedOnce = false;
-
     public void Update()
     {
         if (gameObject.name == "Flying Rock")
@@ -23,12 +21,6 @@ public class RockDestroyer : MonoBehaviour
             Vector3 direction = rotation * Vector3.forward;
 
             transform.position += direction * Time.deltaTime * 100;
-
-            if (changedOnce == false)
-            {
-                transform.rotation = rotation;
-                changedOnce = true;
-            }
         }
 
         if (collisionReached == false)
