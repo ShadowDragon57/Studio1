@@ -10,6 +10,9 @@ public class PlayerController2 : MonoBehaviour
     public CharacterController controller;
     public Animator anim;
     public Transform cam;
+    public SphereCollider col;
+    public BladeAI blade;
+
 
 
     //Direction Related
@@ -264,6 +267,14 @@ public class PlayerController2 : MonoBehaviour
                 Qtimer = abilities.EabiCoolDown5;
                 EabiUp = false;
             }
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "")
+        {
+
         }
     }
 }

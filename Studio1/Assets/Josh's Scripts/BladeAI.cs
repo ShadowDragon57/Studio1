@@ -1,23 +1,33 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Security.Permissions;
 using UnityEngine;
 
 public class BladeAI : MonoBehaviour
 {
+
     //Public variables
     public float fieldOfViewAngle = 110f;
     public bool playerSighted = false;
+    public Animator anim;
+    
 
     //Private References
     private SphereCollider col;
     private GameObject player;
     private Vector3 playerLoc;
+    private Vector3 formerTransform;
+    private Quaternion formerRotation;
+
+
+
 
     //Speed Variables
     public float movementSpeed = 200;
     public bool refreshTrigger = false;
     public bool inRange = false;
+    public bool repeatAttack = false;
 
     // Start is called before the first frame update
     public void Awake()
@@ -38,22 +48,48 @@ public class BladeAI : MonoBehaviour
             Quaternion rotation = Quaternion.LookRotation(direction);
             transform.rotation = rotation;
 
+            anim.SetBool("running", true);
+            anim.SetInteger("condition", 1);
+
         }
 
         //Stops the player if they're
-        if (Vector3.Distance(transform.position, playerLoc) <= 10f)
+        if (Vector3.Distance(transform.position, playerLoc) <= 5f)
         {
-            inRange = true;
-            transform.position = transform.position;
             //Activate Attack Animation. Deactivate Running Animation
+            inRange = true;
+            anim.SetBool("running", false);
+            anim.SetInteger("condition", 0);
+            transform.rotation = transform.rotation;
+            
         }
 
-        if (Vector3.Distance(transform.position, playerLoc) >= 10f)
+        if (inRange)
+        {
+            Attacking();
+        }
+
+        if (Vector3.Distance(transform.position, playerLoc) >= 5f)
         {
             inRange = false;
-            //Deactivate Attack Animation
+            //Activate Running Animation
+
         }
 
+    }
+
+    void Attacking()
+
+    {
+        StartCoroutine(AttackRoutine());
+    }
+    IEnumerator AttackRoutine()
+    {
+        anim.SetBool("attacking", true);
+        anim.SetInteger("condition", 2);
+        yield return new WaitForSeconds(2);
+        anim.SetBool("attacking", false);
+        anim.SetInteger("condition", 0);
     }
 
     public void FixedUpdate()
@@ -66,7 +102,6 @@ public class BladeAI : MonoBehaviour
             col.enabled = true;
             refreshTrigger = false;
         }
-
     }
 
     //Used to detect if the player is within the enemies field of view
@@ -102,5 +137,9 @@ public class BladeAI : MonoBehaviour
 
             }
         }
+
+
+
+
     }
 }
