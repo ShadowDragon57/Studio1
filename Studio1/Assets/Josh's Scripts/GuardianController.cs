@@ -15,6 +15,7 @@ public class GuardianController : MonoBehaviour
     public Vector3 positionMouse;
 
     private GameObject throwableRock;
+    private GameObject currentHeldObject;
 
     public Quaternion playerRotation;
     public Quaternion camRotation;
@@ -40,6 +41,7 @@ public class GuardianController : MonoBehaviour
     private bool leftButtonDown = false;
 
     public bool flyingRock = false;
+    public bool holdingObject = false;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,12 @@ public class GuardianController : MonoBehaviour
                     numberOfRocks += 1;
                 }
 
+                //if (hit.collider.gameObject.layer == 12)
+                //{
+                //    currentHeldObject = hit.collider.gameObject;
+                //    holdingObject = true;
+                //}
+
                 else
                 {
                     return;
@@ -94,6 +102,16 @@ public class GuardianController : MonoBehaviour
             throwableRock = GameObject.Find("rockPrefab(Clone)");
             throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);   
         }
+
+        //if (currentHeldObject != null && holdingObject)
+        //{
+        //    currentHeldObject.GetComponent<Transform>().position = Camera.main.ScreenToViewportPoint(positionMouse);
+
+        //    if (Input.GetMouseButtonUp(0))
+        //    {
+        //        currentHeldObject = null;
+        //    }
+        //}
 
 
         //If mouse button is pressed, then it will turn the bool to true

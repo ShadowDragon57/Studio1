@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Permissions;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class BladeAI : MonoBehaviour
 {
@@ -11,35 +13,64 @@ public class BladeAI : MonoBehaviour
     public float fieldOfViewAngle = 110f;
     public bool playerSighted = false;
     public Animator anim;
+
+    //Timers
+    [SerializeField]
+    private float timer = 10;
+    private float previousTimerValue;
+    [SerializeField]
+    private float attackTimer = 1;
+    private float previousAttackValue = 1;
     
 
     //Private References
     private SphereCollider col;
     private GameObject player;
     private Vector3 playerLoc;
-    private Vector3 formerTransform;
-    private Quaternion formerRotation;
+    private Vector3 previousPlayerPosition;
+    private NavMeshAgent agent;
 
+    //Health and such
+    public int bladeHealth = 4;
 
-
+    //Attack Variables
+    public bool inRange = false;
+    public bool canAttack= false;
 
     //Speed Variables
     public float movementSpeed = 200;
     public bool refreshTrigger = false;
-    public bool inRange = false;
-    public bool repeatAttack = false;
+
 
     // Start is called before the first frame update
     public void Awake()
     {
         col = GetComponent<SphereCollider>();
         player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent>();
     }
-    
+
+    public void Start()
+    {
+        previousAttackValue = attackTimer;
+        previousTimerValue = timer;
+    }
+
     // Update is called once per frame
     void Update()
     {
         playerLoc = player.GetComponent<Transform>().position;
+
+        //Checks if player is currently allowed to attack
+        if (attackTimer != 0 && canAttack == false)
+        {
+            attackTimer -= Time.deltaTime;
+        }
+
+        if (attackTimer <= 0)
+        {
+            canAttack = true;
+        }
 
         if (playerSighted && !inRange)
         {
@@ -66,8 +97,25 @@ public class BladeAI : MonoBehaviour
 
         if (inRange)
         {
-            Attacking();
+            if (timer >=0)
+            {
+                //Resets scene if player dies
+                timer -= Time.deltaTime;
+            }
+
+            if (timer <= 0)
+            {
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+            }
+
+            if (canAttack)
+            {
+                Attacking();
+            }
         }
+
+
 
         if (Vector3.Distance(transform.position, playerLoc) >= 5f)
         {
@@ -79,7 +127,6 @@ public class BladeAI : MonoBehaviour
     }
 
     void Attacking()
-
     {
         StartCoroutine(AttackRoutine());
     }
@@ -90,11 +137,18 @@ public class BladeAI : MonoBehaviour
         yield return new WaitForSeconds(2);
         anim.SetBool("attacking", false);
         anim.SetInteger("condition", 0);
+        attackTimer = 2;
+        canAttack = false;
     }
 
     public void FixedUpdate()
     {
         //Continually checks if player has entered field of vision
+
+        if (bladeHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         if (refreshTrigger)
         {
@@ -128,18 +182,67 @@ public class BladeAI : MonoBehaviour
                     if (hit.collider.gameObject.CompareTag("Player") && !inRange)
                     {
                         playerSighted = true;
+                        previousPlayerPosition = player.transform.position;
                     }
                 }
+
+                ////Later for audio
+
+                //if (CalculatePathLength(player.transform.position) <= col.radius)
+                //{
+                //    previousPlayerPosition = player.transform.position;
+                //}
+
                 else
                 {
                     refreshTrigger = true;
                 }
-
             }
         }
 
-
-
-
     }
+
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        playerSighted = false;
+    //    }
+    //}
+
+
+    //I DON'T KNOW WHY THIS FUNCTION WORKS BUT IT WORK, SO SCREW IT AND I AM GOING TO SLEEP
+    //Calculates the length of the path between the player and the enemy
+    private float CalculatePathLength(Vector3 targetPosition)
+    {
+        NavMeshPath path = new NavMeshPath();
+
+        if (agent.enabled)
+        
+            agent.CalculatePath(targetPosition, path);
+
+            //Finds all the corners on the path and adds them all up to get the total distance
+            Vector3[] allWayPoints = new Vector3[path.corners.Length + 2];
+
+            //Enemies current location
+            allWayPoints[0] = transform.position;
+            allWayPoints[allWayPoints.Length - 1] = targetPosition;
+
+            //Will always look one less times because there is always one less distance for the total of corners
+            for (int i = 0; i < path.corners.Length; i++)
+            {
+                allWayPoints[i + 1] = path.corners[i];
+            }
+
+        float pathLength = 0f;
+
+            for (int i = 0; i < allWayPoints.Length - 1; i++)
+            {
+                pathLength += Vector3.Distance(allWayPoints[i], allWayPoints[i+1]);
+            }
+        
+
+        return pathLength;
+    }
+
 }

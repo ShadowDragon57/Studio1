@@ -8,7 +8,7 @@ public class RockDestroyer : MonoBehaviour
     public GuardianController guardian;
     public Rigidbody rb;
 
-    public float timer = 5;
+    public float timer = 3;
     public bool collisionReached = false;
     public void Update()
     {
@@ -44,6 +44,12 @@ public class RockDestroyer : MonoBehaviour
             guardian = guardianController.GetComponent<GuardianController>();
 
             guardian.flyingRock = false;
+            Destroy(gameObject);
+        }
+
+        if (col.gameObject.layer == 11 && col.gameObject.CompareTag("Blade"))
+        {
+            col.gameObject.GetComponent<BladeAI>().bladeHealth -= 1;
             Destroy(gameObject);
         }
     }
