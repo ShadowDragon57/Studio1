@@ -7,6 +7,7 @@ public class RockDestroyer : MonoBehaviour
 {
     public GuardianController guardian;
     public Rigidbody rb;
+    public ConvictionCalculator conviction;
 
     public float timer = 3;
     public bool collisionReached = false;
@@ -50,6 +51,15 @@ public class RockDestroyer : MonoBehaviour
         if (col.gameObject.layer == 11 && col.gameObject.CompareTag("Blade"))
         {
             col.gameObject.GetComponent<BladeAI>().bladeHealth -= 1;
+            Destroy(gameObject);
+        }
+
+        if (col.gameObject.CompareTag("Player"))
+        {
+            guardian.antiMouseLock = true;
+            guardian.playerHit = true;
+            conviction.convictionCount -= 10;
+            guardian.flyingRock = false;
             Destroy(gameObject);
         }
     }

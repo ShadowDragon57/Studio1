@@ -12,6 +12,7 @@ public class PlayerController2 : MonoBehaviour
     public Transform cam;
     public SphereCollider col;
     public BladeAI blade;
+    public GuardianController guardian;
 
 
 
@@ -270,11 +271,11 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "")
-        {
-
-        }
-    }
+    //public void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.CompareTag("throwRock"))
+    //    {
+    //        guardian.flyingRock = false;
+    //    }
+    //}
 }

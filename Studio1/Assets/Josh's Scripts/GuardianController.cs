@@ -37,11 +37,12 @@ public class GuardianController : MonoBehaviour
     [SerializeField]
     private bool camLocked;
 
-    [SerializeField]
-    private bool leftButtonDown = false;
+    public bool leftButtonDown = false;
 
     public bool flyingRock = false;
     public bool holdingObject = false;
+    public bool antiMouseLock = false;
+    public bool playerHit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -62,7 +63,7 @@ public class GuardianController : MonoBehaviour
         //Allows interaction with game objects
         GameObject playerController = GameObject.Find("Player Controller");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && antiMouseLock == false)
         {
             leftButtonDown = true;
             RaycastHit hit;
@@ -100,7 +101,7 @@ public class GuardianController : MonoBehaviour
         if (leftButtonDown && numberOfRocks > 0)
         {
             throwableRock = GameObject.Find("rockPrefab(Clone)");
-            throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);   
+            throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);
         }
 
         //if (currentHeldObject != null && holdingObject)
@@ -134,7 +135,7 @@ public class GuardianController : MonoBehaviour
             {
                 flyingRock = true;
             }
-            
+           
         }
 
         if (flyingRock == true)
@@ -157,6 +158,23 @@ public class GuardianController : MonoBehaviour
         {
             freeLook.m_YAxis.m_MaxSpeed = 0;
             freeLook.m_XAxis.m_MaxSpeed = 0;
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (antiMouseLock)
+        {
+            leftButtonDown = false;
+            antiMouseLock = false;
+        }
+
+        if (playerHit == true)
+        {
+            flyingRock = false;
+            numberOfRocks = 0;
+            playerHit = false;
         }
     }
 }
