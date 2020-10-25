@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 585404244}
   m_Layer: 0
   m_Name: yellow
-  m_TagString: Untagged
+  m_TagString: discontent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -464,15 +464,13 @@ MonoBehaviour:
   healthCount: 0
   convictionCount: 0
   healthAfterChange: 0
+  timeCount: 0
   tiers:
   - {fileID: 1967293524}
   - {fileID: 585404243}
   - {fileID: 1934421969}
   - {fileID: 1970347110}
   - {fileID: 1825981000}
-  activeTier: {fileID: 0}
-  oneAbove: {fileID: 0}
-  oneBelow: {fileID: 0}
 --- !u!1 &795337720
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,7 +799,7 @@ GameObject:
   - component: {fileID: 1825981002}
   m_Layer: 0
   m_Name: purple
-  m_TagString: Untagged
+  m_TagString: revelry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,7 +892,7 @@ GameObject:
   - component: {fileID: 1934421971}
   m_Layer: 0
   m_Name: red
-  m_TagString: Untagged
+  m_TagString: animosity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -944,7 +942,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e3e215cbb1e433469a6f1da0dbd4c0e, type: 2}
+  - {fileID: 2100000, guid: 11f611af0dbf78b419c523b0410529a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -987,7 +985,7 @@ GameObject:
   - component: {fileID: 1967293526}
   m_Layer: 0
   m_Name: blue
-  m_TagString: Untagged
+  m_TagString: hatred
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1080,7 +1078,7 @@ GameObject:
   - component: {fileID: 1970347112}
   m_Layer: 0
   m_Name: green
-  m_TagString: Untagged
+  m_TagString: bliss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

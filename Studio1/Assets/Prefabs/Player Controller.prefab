@@ -65,6 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilities: {fileID: 0}
   controller: {fileID: 918260062323354693}
+  anim: {fileID: 0}
   cam: {fileID: 0}
   turnSmoothTime: 0.1
   gravity: -9.807
@@ -225,6 +226,7 @@ Transform:
   m_Children:
   - {fileID: 918260062448029203}
   - {fileID: 918260062480527653}
+  - {fileID: 4354390902083109330}
   m_Father: {fileID: 918260060823736907}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -291,3 +293,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &7225133676801759201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4354390902083109330}
+  - component: {fileID: 2308005913250628024}
+  m_Layer: 0
+  m_Name: Guardian Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4354390902083109330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7225133676801759201}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 918260062493374468}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2308005913250628024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7225133676801759201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdd7811dce3d5d49b67a74e99ed943a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freeLook: {fileID: 1184134244558465792, guid: 0a56007069ca9d34a8782c3994c3c51c,
+    type: 3}
+  controller: {fileID: 918260062323354694}
+  rockPrefab: {fileID: 7461616216529896787, guid: 658b5c223920f9846b00dd8c12168902,
+    type: 3}
+  positionMouse: {x: 0, y: 0, z: 0}
+  numberOfRocks: 0
+  xMovement: 300
+  yMovement: 3
+  speed: 0
+  camLocked: 0
+  leftButtonDown: 0
+  flyingRock: 0

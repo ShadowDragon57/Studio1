@@ -389,3 +389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  alertDistance: 10
+  attackDistance: 5
+  moveSpeed: 100

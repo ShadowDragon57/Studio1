@@ -6,6 +6,15 @@ TagManager:
   tags:
   - Ground
   - CamController
+  - grabbableRock
+  - throwRock
+  - revelry
+  - bliss
+  - animosity
+  - discontent
+  - hatred
+  - Blade
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -17,9 +26,9 @@ TagManager:
   - 
   - Ground
   - Spells
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Interactable
   - 
   - 
   - 

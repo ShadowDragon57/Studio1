@@ -15,6 +15,10 @@ public class GuardianController : MonoBehaviour
     public Vector3 positionMouse;
 
     private GameObject throwableRock;
+    private GameObject currentHeldObject;
+
+    public Quaternion playerRotation;
+    public Quaternion camRotation;
 
     [SerializeField]
     private int numberOfRocks;
@@ -33,10 +37,12 @@ public class GuardianController : MonoBehaviour
     [SerializeField]
     private bool camLocked;
 
-    [SerializeField]
-    private bool leftButtonDown = false;
+    public bool leftButtonDown = false;
 
     public bool flyingRock = false;
+    public bool holdingObject = false;
+    public bool antiMouseLock = false;
+    public bool playerHit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,8 +61,9 @@ public class GuardianController : MonoBehaviour
         positionMouse.z = 10f;
 
         //Allows interaction with game objects
+        GameObject playerController = GameObject.Find("Player Controller");
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && antiMouseLock == false)
         {
             leftButtonDown = true;
             RaycastHit hit;
@@ -65,20 +72,47 @@ public class GuardianController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.tag == "grabbableRock" && numberOfRocks < 1)
+                if (hit.transform.CompareTag("grabbableRock") && numberOfRocks < 1 && flyingRock == false)
                 {
-                    Instantiate(rockPrefab, hit.point, Quaternion.identity);
+                    Instantiate(rockPrefab, hit.point, Quaternion.Euler(0, playerController.GetComponent<Transform>().rotation.y, 0));
+                    playerRotation = playerController.GetComponent<Transform>().rotation;
                     numberOfRocks += 1;
                 }
+
+                //if (hit.collider.gameObject.layer == 12)
+                //{
+                //    currentHeldObject = hit.collider.gameObject;
+                //    holdingObject = true;
+                //}
+
+                else
+                {
+                    return;
+                }
+            }
+
+            else
+            {
+                return;
             }
         }
 
         //Gets the spawned rock to follow the mouse while the left mouse button is being held
-        if (leftButtonDown && flyingRock == false)
+        if (leftButtonDown && numberOfRocks > 0)
         {
             throwableRock = GameObject.Find("rockPrefab(Clone)");
-            throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);   
+            throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);
         }
+
+        //if (currentHeldObject != null && holdingObject)
+        //{
+        //    currentHeldObject.GetComponent<Transform>().position = Camera.main.ScreenToViewportPoint(positionMouse);
+
+        //    if (Input.GetMouseButtonUp(0))
+        //    {
+        //        currentHeldObject = null;
+        //    }
+        //}
 
 
         //If mouse button is pressed, then it will turn the bool to true
@@ -97,15 +131,18 @@ public class GuardianController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             leftButtonDown = false;
-            flyingRock = true;
-            
+            if (numberOfRocks > 0)
+            {
+                flyingRock = true;
+            }
+           
         }
 
         if (flyingRock == true)
         {
             numberOfRocks = 0;
             //makes object shoot off one mouse button is release
-            throwableRock.GetComponent<Rigidbody>().AddRelativeForce(throwableRock.transform.forward * speed * Time.deltaTime);
+            throwableRock.GetComponent<Rigidbody>().AddRelativeForce(transform.TransformDirection(throwableRock.transform.forward) * speed * Time.deltaTime);
             //Allows another rock to be picked up and thrown
             throwableRock.name = "Flying Rock";
         }
@@ -121,6 +158,23 @@ public class GuardianController : MonoBehaviour
         {
             freeLook.m_YAxis.m_MaxSpeed = 0;
             freeLook.m_XAxis.m_MaxSpeed = 0;
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (antiMouseLock)
+        {
+            leftButtonDown = false;
+            antiMouseLock = false;
+        }
+
+        if (playerHit == true)
+        {
+            flyingRock = false;
+            numberOfRocks = 0;
+            playerHit = false;
         }
     }
 }
