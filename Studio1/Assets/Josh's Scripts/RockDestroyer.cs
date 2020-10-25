@@ -9,8 +9,12 @@ public class RockDestroyer : MonoBehaviour
     public Rigidbody rb;
     public ConvictionCalculator conviction;
 
+    private GameObject currentEnemy; 
+
     public float timer = 3;
     public bool collisionReached = false;
+    public bool hitEnemy = false;
+
     public void Update()
     {
         if (gameObject.name == "Flying Rock")
@@ -30,13 +34,23 @@ public class RockDestroyer : MonoBehaviour
 
             if (timer <= 0)
             {
+                guardian.flyingRock = false;
                 Destroy(gameObject);
+            }
+        }
+
+        if (currentEnemy != null)
+        {
+            if (hitEnemy)
+            {
+
+                hitEnemy = false;
             }
         }
 
     }
 
-    public void OnCollisionEnter(Collision col)
+    public void OnCollissionEnter(Collision col)
     {
         if (col.gameObject.layer == 0 && col.gameObject.name != "Flying Rock")
         {
@@ -48,9 +62,12 @@ public class RockDestroyer : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (col.gameObject.layer == 11 && col.gameObject.CompareTag("Blade"))
+        if (col.gameObject.CompareTag("Blade"))
         {
-            col.gameObject.GetComponent<BladeAI>().bladeHealth -= 1;
+            currentEnemy = col.gameObject;
+            currentEnemy.GetComponent<BladeAI>().bladeHealth -= 1;
+            //hitEnemy = true;
+            guardian.flyingRock = false;
             Destroy(gameObject);
         }
 

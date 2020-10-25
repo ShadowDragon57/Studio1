@@ -21,7 +21,8 @@ public class BladeAI : MonoBehaviour
     [SerializeField]
     private float attackTimer = 1;
     private float previousAttackValue = 1;
-    
+
+    public int timesHit = 0;
 
     //Private References
     private SphereCollider col;
@@ -155,6 +156,14 @@ public class BladeAI : MonoBehaviour
             col.enabled = false;
             col.enabled = true;
             refreshTrigger = false;
+        }
+    }
+
+    public void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("throwRock"))
+        {
+            bladeHealth -= 1;
         }
     }
 
