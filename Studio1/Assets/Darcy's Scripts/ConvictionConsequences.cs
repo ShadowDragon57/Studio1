@@ -13,9 +13,10 @@ public class ConvictionConsequences : MonoBehaviour
     [SerializeField]
     private GameObject[] tiers = new GameObject[5];
 
-    private GameObject activeTier, oneAbove, oneBelow, currentIdeology;
+    private GameObject activeTier, oneAbove, oneBelow;
+    public GameObject currentIdeology;
 
-    private int current;
+    public int current;
 
     private bool changeOnce, changeHealth;
 
@@ -28,6 +29,7 @@ public class ConvictionConsequences : MonoBehaviour
         current = 2;
         changeOnce = true;
         tiers[current].SetActive(true); //turning back on the third one
+        currentIdeology = tiers[current];
         healthCount = 100.0f;
         health.text = healthCount.ToString();
         changeHealth = false;
@@ -35,7 +37,8 @@ public class ConvictionConsequences : MonoBehaviour
 
     void Update()
     {
-        if(changeHealth == true)
+        currentIdeology = tiers[current];
+        if (changeHealth == true)
         {
             HealthScaledByIdeology();
             changeHealth = false;
@@ -45,7 +48,6 @@ public class ConvictionConsequences : MonoBehaviour
 
     private void HealthScaledByIdeology()
     {
-        currentIdeology = tiers[current];
         if (currentIdeology.CompareTag("revelry")) //reverly causes the health to be doubled
         {
             healthAfterChange = healthCount * 2;

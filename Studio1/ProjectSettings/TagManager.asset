@@ -15,6 +15,7 @@ TagManager:
   - hatred
   - Blade
   - Interactable
+  - Enemy
   layers:
   - Default
   - TransparentFX

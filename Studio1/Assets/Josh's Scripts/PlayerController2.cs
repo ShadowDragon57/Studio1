@@ -6,7 +6,6 @@ public class PlayerController2 : MonoBehaviour
 {
     //References
     ConvictionCalculator conviction;
-    public Abilities abilities;
     public CharacterController controller;
     public Animator anim;
     public Transform cam;
@@ -14,7 +13,8 @@ public class PlayerController2 : MonoBehaviour
     public BladeAI blade;
     public GuardianController guardian;
 
-
+    //Ability Related
+    private GameObject currentIdeology;
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -56,6 +56,9 @@ public class PlayerController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Grabbing the current ideology from ConvictionConsequences
+        currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
+
         //Ability CoolDowns
         if (Qtimer >= 0)
         {
@@ -189,86 +192,67 @@ public class PlayerController2 : MonoBehaviour
     {
         //Abilities
 
-        if (Input.GetKey(KeyCode.Q) && QabiUp == true)
+        if (Input.GetKey(KeyCode.Q) /*&& QabiUp == true*/)
         {
-            //Changes Q Ability based on faith
-            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
+            //Changes Q Ability based on current ideology
+            if (currentIdeology.CompareTag("revelry"))
             {
-                abilities.Q_Ability1();
-                Qtimer = abilities.QabiCoolDown1;
                 QabiUp = false;
             }
 
-            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
+            if (currentIdeology.CompareTag("bliss"))
             {
-                abilities.Q_Ability2();
-                Qtimer = abilities.QabiCoolDown2;
                 QabiUp = false;
             }
 
-            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
+            if (currentIdeology.CompareTag("animosity"))
             {
-                abilities.Q_Ability3();
-                Qtimer = abilities.QabiCoolDown3;
+                GameObject.Find("Abilities").GetComponent<Abilities2>().StrikeCast();
                 QabiUp = false;
             }
 
-
-            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
+            if (currentIdeology.CompareTag("discontent"))
             {
-                abilities.Q_Ability4();
-                Qtimer = abilities.QabiCoolDown4;
                 QabiUp = false;
             }
 
-            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
+            if (currentIdeology.CompareTag("hatred"))
             {
-                abilities.Q_Ability5();
-                Qtimer = abilities.QabiCoolDown5;
                 QabiUp = false;
             }
         }
 
 
-        if (Input.GetKey(KeyCode.E) && EabiUp == true)
+        if (Input.GetKey(KeyCode.E) /*&& EabiUp == true*/)
         {
-            //Changes E Ability based on faith
-            if (conviction.convictionCount <= 20 && conviction.convictionCount > 0)
+            //Changes Q Ability based on current ideology
+            if (currentIdeology.CompareTag("revelry"))
             {
-                abilities.E_Ability1();
-                Qtimer = abilities.EabiCoolDown1;
                 EabiUp = false;
             }
 
-            if (conviction.convictionCount <= 40 && conviction.convictionCount > 20)
+            if (currentIdeology.CompareTag("bliss"))
             {
-                abilities.E_Ability2();
-                Qtimer = abilities.EabiCoolDown2;
                 EabiUp = false;
             }
 
-            if (conviction.convictionCount <= 60 && conviction.convictionCount > 40)
+            if (currentIdeology.CompareTag("animosity"))
             {
-                abilities.E_Ability3();
-                Qtimer = abilities.EabiCoolDown3;
+                GameObject.Find("Abilities").GetComponent<Abilities2>().EarthenCast();
                 EabiUp = false;
             }
 
-
-            if (conviction.convictionCount <= 80 && conviction.convictionCount > 60)
+            if (currentIdeology.CompareTag("discontent"))
             {
-                abilities.E_Ability4();
-                Qtimer = abilities.EabiCoolDown4;
                 EabiUp = false;
             }
 
-            if (conviction.convictionCount < 100 && conviction.convictionCount > 80)
+            if (currentIdeology.CompareTag("hatred"))
             {
-                abilities.E_Ability5();
-                Qtimer = abilities.EabiCoolDown5;
                 EabiUp = false;
             }
         }
+    }
     }
 
     //public void OnCollisionEnter(Collision col)
@@ -278,4 +262,3 @@ public class PlayerController2 : MonoBehaviour
     //        guardian.flyingRock = false;
     //    }
     //}
-}
