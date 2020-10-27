@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 2063490312707788443}
   - component: {fileID: 2063490312707788442}
   m_Layer: 0
-  m_Name: CoatBase
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,12 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d090af995f6e26640a553484abc3714c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities: {fileID: 0}
   controller: {fileID: 2063490312707788443}
   anim: {fileID: 5604844258283533210}
   cam: {fileID: 0}
-  col: {fileID: 0}
-  blade: {fileID: 0}
+  guardian: {fileID: 0}
   turnSmoothTime: 0.1
   gravity: -9.807
   groundCheck: {fileID: 2063490313827964074}
@@ -418,7 +416,7 @@ GameObject:
   - component: {fileID: 2063490313235065222}
   - component: {fileID: 2063490313235065221}
   m_Layer: 0
-  m_Name: GuardianController
+  m_Name: Guardian Controller
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,6 +462,9 @@ MonoBehaviour:
   camLocked: 0
   leftButtonDown: 0
   flyingRock: 0
+  holdingObject: 0
+  antiMouseLock: 0
+  playerHit: 0
 --- !u!1 &2063490313827964075
 GameObject:
   m_ObjectHideFlags: 0

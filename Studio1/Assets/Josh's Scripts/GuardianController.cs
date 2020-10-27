@@ -61,7 +61,7 @@ public class GuardianController : MonoBehaviour
         positionMouse.z = 10f;
 
         //Allows interaction with game objects
-        GameObject playerController = GameObject.Find("Player Controller");
+        GameObject playerController = GameObject.Find("Player");
 
         if (Input.GetMouseButtonDown(0) && antiMouseLock == false)
         {

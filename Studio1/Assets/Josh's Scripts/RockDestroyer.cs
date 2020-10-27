@@ -7,13 +7,19 @@ public class RockDestroyer : MonoBehaviour
 {
     public GuardianController guardian;
     public Rigidbody rb;
-    public ConvictionCalculator conviction;
+    //public ConvictionCalculator conviction;
 
     private GameObject currentEnemy; 
 
-    public float timer = 5;
+    public float timer = 3;
     public bool collisionReached = false;
     public bool hitEnemy = false;
+
+    public void Awake()
+    {
+        collisionReached = false;
+
+    }
 
     public void Update()
     {
@@ -74,7 +80,13 @@ public class RockDestroyer : MonoBehaviour
         {
             guardian.antiMouseLock = true;
             guardian.playerHit = true;
-            conviction.convictionCount -= 10;
+            //conviction.convictionCount -= 10;
+            guardian.flyingRock = false;
+            Destroy(gameObject);
+        }
+
+        else
+        {
             guardian.flyingRock = false;
             Destroy(gameObject);
         }
