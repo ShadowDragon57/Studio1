@@ -9,8 +9,7 @@ public class PlayerController2 : MonoBehaviour
     public CharacterController controller;
     public Animator anim;
     public Transform cam;
-    public SphereCollider col;
-    public BladeAI blade;
+    //public SphereCollider col;
     public GuardianController guardian;
 
     //Ability Related
@@ -34,7 +33,7 @@ public class PlayerController2 : MonoBehaviour
     public bool QabiUp;
     public bool EabiUp;
 
-    //Movement Speed Vars
+    //Movement Speed Varsbl
     [SerializeField]
     private float leftSpeed, rightSpeed, forwardSpeed, backSpeed, sprintSpeed, airMovement;
 
@@ -57,7 +56,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         //Grabbing the current ideology from ConvictionConsequences
-        currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
+        //currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
 
         //Ability CoolDowns
         if (Qtimer >= 0)

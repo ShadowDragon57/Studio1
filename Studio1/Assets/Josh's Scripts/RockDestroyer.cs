@@ -11,7 +11,7 @@ public class RockDestroyer : MonoBehaviour
 
     private GameObject currentEnemy; 
 
-    public float timer = 3;
+    public float timer = 5;
     public bool collisionReached = false;
     public bool hitEnemy = false;
 
@@ -19,7 +19,6 @@ public class RockDestroyer : MonoBehaviour
     {
         if (gameObject.name == "Flying Rock")
         {
-
             GameObject guardianController = GameObject.Find("Guardian Controller");
             guardian = guardianController.GetComponent<GuardianController>();
             Quaternion rotation = guardian.playerRotation;
@@ -50,14 +49,14 @@ public class RockDestroyer : MonoBehaviour
 
     }
 
-    public void OnCollissionEnter(Collision col)
+
+    public void OnCollisionEnter(Collision col)
     {
+        GameObject guardianController = GameObject.Find("Guardian Controller");
+        guardian = guardianController.GetComponent<GuardianController>();
+
         if (col.gameObject.layer == 0 && col.gameObject.name != "Flying Rock")
         {
-            collisionReached = true;
-            GameObject guardianController = GameObject.Find("Guardian Controller");
-            guardian = guardianController.GetComponent<GuardianController>();
-
             guardian.flyingRock = false;
             Destroy(gameObject);
         }
@@ -66,7 +65,7 @@ public class RockDestroyer : MonoBehaviour
         {
             currentEnemy = col.gameObject;
             currentEnemy.GetComponent<BladeAI>().bladeHealth -= 1;
-            //hitEnemy = true;
+            hitEnemy = true;
             guardian.flyingRock = false;
             Destroy(gameObject);
         }

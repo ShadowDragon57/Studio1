@@ -75,6 +75,7 @@ public class BladeAI : MonoBehaviour
 
         if (playerSighted && !inRange)
         {
+            //Done by Sophia
             transform.position = Vector3.MoveTowards(transform.position, playerLoc, movementSpeed * Time.deltaTime);
             Vector3 direction = playerLoc - transform.position;
             Quaternion rotation = Quaternion.LookRotation(direction);
@@ -86,9 +87,10 @@ public class BladeAI : MonoBehaviour
         }
 
         //Stops the player if they're
-        if (Vector3.Distance(transform.position, playerLoc) <= 5f)
+        if (Vector3.Distance(transform.position, playerLoc) <= 5f && playerSighted)
         {
             //Activate Attack Animation. Deactivate Running Animation
+            //Done by Sophia
             inRange = true;
             anim.SetBool("running", false);
             anim.SetInteger("condition", 0);
@@ -110,6 +112,7 @@ public class BladeAI : MonoBehaviour
                 SceneManager.LoadScene(scene.name);
             }
 
+            //Done by Sophia
             if (canAttack)
             {
                 Attacking();
@@ -127,19 +130,23 @@ public class BladeAI : MonoBehaviour
 
     }
 
+    //Done by Sophia
     void Attacking()
     {
         StartCoroutine(AttackRoutine());
     }
+
+    //Done by Sophia
     IEnumerator AttackRoutine()
     {
+        
         anim.SetBool("attacking", true);
         anim.SetInteger("condition", 2);
         yield return new WaitForSeconds(2);
         anim.SetBool("attacking", false);
         anim.SetInteger("condition", 0);
-        attackTimer = 2;
         canAttack = false;
+        attackTimer = 1;
     }
 
     public void FixedUpdate()
@@ -177,7 +184,7 @@ public class BladeAI : MonoBehaviour
             float angle = Vector3.Angle(direction, transform.forward);
 
             //If it finds that the player is within half the angle for the field of view, it has seen the player
-            if (angle < fieldOfViewAngle)
+            if (angle <= fieldOfViewAngle * 0.5f)
             {
                 RaycastHit hit;
 

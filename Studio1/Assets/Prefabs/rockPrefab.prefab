@@ -147,7 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guardian: {fileID: 0}
   rb: {fileID: 0}
-  conviction: {fileID: 0}
   timer: 3
   collisionReached: 0
   hitEnemy: 0
