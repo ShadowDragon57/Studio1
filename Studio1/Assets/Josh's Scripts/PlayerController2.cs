@@ -13,7 +13,7 @@ public class PlayerController2 : MonoBehaviour
     public GuardianController guardian;
 
     //Ability Related
-    private GameObject currentIdeology;
+    public GameObject currentIdeology;
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -56,7 +56,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         //Grabbing the current ideology from ConvictionConsequences
-        //currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
+        currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
 
         //Ability CoolDowns
         if (Qtimer >= 0)
