@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class RockDestroyer : MonoBehaviour
 {
-    public GuardianController guardian;
+    public GuardianController2 guardian;
     public Rigidbody rb;
-    //public ConvictionCalculator conviction;
+    public ConvictionCalculator conviction;
 
     private GameObject currentEnemy; 
 
@@ -19,18 +19,19 @@ public class RockDestroyer : MonoBehaviour
     {
         collisionReached = false;
 
+        //If there are errors, ensure that the gameObject holding the guardian controller is named like this
+        GameObject guardianController = GameObject.Find("Guardian Controller");
+        guardian = guardianController.GetComponent<GuardianController2>();
     }
 
     public void Update()
     {
         if (gameObject.name == "Flying Rock")
         {
-            GameObject guardianController = GameObject.Find("Guardian Controller");
-            guardian = guardianController.GetComponent<GuardianController>();
             Quaternion rotation = guardian.playerRotation;
-            Vector3 direction = rotation * Vector3.forward;
 
-            transform.position += direction * Time.deltaTime * 100;
+            transform.position += Vector3.MoveTowards(transform.position, guardian.hitPosition, 100 * Time.deltaTime);
+            transform.rotation = rotation;
         }
 
         if (collisionReached == false)
@@ -58,9 +59,6 @@ public class RockDestroyer : MonoBehaviour
 
     public void OnCollisionEnter(Collision col)
     {
-        GameObject guardianController = GameObject.Find("Guardian Controller");
-        guardian = guardianController.GetComponent<GuardianController>();
-
         if (col.gameObject.layer == 0 && col.gameObject.name != "Flying Rock")
         {
             guardian.flyingRock = false;
@@ -79,8 +77,7 @@ public class RockDestroyer : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             guardian.antiMouseLock = true;
-            guardian.playerHit = true;
-            //conviction.convictionCount -= 10;
+            conviction.convictionCount -= 10;
             guardian.flyingRock = false;
             Destroy(gameObject);
         }

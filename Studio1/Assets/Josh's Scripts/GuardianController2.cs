@@ -14,8 +14,10 @@ public class GuardianController2 : MonoBehaviour
     public GameObject rockPrefab;
     public Vector3 positionMouse;
 
+    //Holds value for where the mouse clicks
+    public Vector3 hitPosition;
+
     private GameObject throwableRock;
-    private GameObject currentHeldObject;
 
     public Quaternion playerRotation;
     public Quaternion camRotation;
@@ -42,7 +44,7 @@ public class GuardianController2 : MonoBehaviour
     public bool flyingRock = false;
     public bool holdingObject = false;
     public bool antiMouseLock = false;
-    public bool playerHit = false;
+    public bool rockReady = false;
 
     // Start is called before the first frame update
     void Start()
@@ -72,11 +74,17 @@ public class GuardianController2 : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.CompareTag("grabbableRock") && numberOfRocks < 1 && flyingRock == false)
+                //Spawn Rock
+                if (hit.transform.CompareTag("grabbableRock") && !rockReady && flyingRock == false)
                 {
                     Instantiate(rockPrefab, hit.point, Quaternion.Euler(0, playerController.GetComponent<Transform>().rotation.y, 0));
                     playerRotation = playerController.GetComponent<Transform>().rotation;
-                    numberOfRocks += 1;
+                }
+
+                //Throw Rock
+                else if (rockReady)
+                {
+                    hitPosition = hit.transform.position;
                 }
 
                 else
@@ -92,7 +100,7 @@ public class GuardianController2 : MonoBehaviour
         }
 
         //Gets the spawned rock to follow the mouse while the left mouse button is being held
-        if (leftButtonDown && numberOfRocks > 0)
+        if (leftButtonDown && rockReady)
         {
             throwableRock = GameObject.Find("rockPrefab(Clone)");
             throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);
@@ -114,16 +122,12 @@ public class GuardianController2 : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             leftButtonDown = false;
-            if (numberOfRocks > 0)
-            {
-                flyingRock = true;
-            }
 
         }
 
         if (flyingRock == true)
         {
-            numberOfRocks = 0;
+            rockReady = false;
             //makes object shoot off one mouse button is release
             throwableRock.GetComponent<Rigidbody>().AddRelativeForce(transform.TransformDirection(throwableRock.transform.forward) * speed * Time.deltaTime);
             //Allows another rock to be picked up and thrown
@@ -151,13 +155,6 @@ public class GuardianController2 : MonoBehaviour
         {
             leftButtonDown = false;
             antiMouseLock = false;
-        }
-
-        if (playerHit == true)
-        {
-            flyingRock = false;
-            numberOfRocks = 0;
-            playerHit = false;
         }
     }
 }

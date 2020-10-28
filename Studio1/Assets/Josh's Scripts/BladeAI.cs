@@ -39,7 +39,7 @@ public class BladeAI : MonoBehaviour
     public bool canAttack= false;
 
     //Speed Variables
-    public float movementSpeed = 200;
+    public float movementSpeed = 20;
     public bool refreshTrigger = false;
 
 
@@ -208,11 +208,11 @@ public class BladeAI : MonoBehaviour
                 //{
                 //    previousPlayerPosition = player.transform.position;
                 //}
+            }
 
-                else
-                {
-                    refreshTrigger = true;
-                }
+            else
+            {
+                refreshTrigger = true;
             }
         }
 

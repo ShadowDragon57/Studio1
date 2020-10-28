@@ -6,10 +6,19 @@ public class Interactables : MonoBehaviour
 {
     //Offset for the mosue to keep the gameObject in it''s original relative position from the player
     private Vector3 mOffset;
+    //Original Position;
+    private Vector3 oriPos;
 
     public bool grounded;
+    public bool returnedTo0;
+
 
     private float mZCoord;
+
+    public void Awake()
+    {
+        oriPos = transform.position;
+    }
     private void OnMouseDown()
     {
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
@@ -38,9 +47,9 @@ public class Interactables : MonoBehaviour
     {
         if (transform.position.y <= -1)
         {
-            transform.position = new Vector3(transform.position.x, 0,
-                transform.position.z);
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             grounded = false;
+            returnedTo0 = true;
         }
     }
 
@@ -49,6 +58,12 @@ public class Interactables : MonoBehaviour
         if (other.gameObject.layer == 8)
         {
             grounded = true;
+        }
+
+        if (other.gameObject.layer != 0 && returnedTo0)
+        {
+            transform.position = oriPos;
+            returnedTo0 = false;
         }
     }
 }
