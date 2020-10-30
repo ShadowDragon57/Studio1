@@ -13,6 +13,8 @@ public class GuardianController2 : MonoBehaviour
 
     public GameObject rockPrefab;
     public Vector3 positionMouse;
+    private Vector3 rockPosition;
+    private GameObject player;
 
     //Holds value for where the mouse clicks
     public Vector3 hitPosition;
@@ -58,12 +60,17 @@ public class GuardianController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Tracks playerPosition;
+        player = GameObject.Find("Player");
+        rockPosition = player.GetComponent<Transform>().position;
+
         //Tracks Mouse Location
         positionMouse = Input.mousePosition;
         positionMouse.z = 10f;
 
         //Allows interaction with game objects
         GameObject playerController = GameObject.Find("Player Controller");
+
 
         if (Input.GetMouseButtonDown(0) && antiMouseLock == false)
         {
@@ -103,7 +110,7 @@ public class GuardianController2 : MonoBehaviour
         if (leftButtonDown && rockReady)
         {
             throwableRock = GameObject.Find("rockPrefab(Clone)");
-            throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);
+            throwableRock.GetComponent<Transform>().position = Vector3.MoveTowards(throwableRock.GetComponent<Transform>().position, player.GetComponent<Transform>().position, 100 * Time.deltaTime);
         }
 
         //If mouse button is pressed, then it will turn the bool to true

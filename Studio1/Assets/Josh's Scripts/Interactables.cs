@@ -10,8 +10,6 @@ public class Interactables : MonoBehaviour
     private Vector3 oriPos;
 
     public bool grounded;
-    public bool returnedTo0;
-
 
     private float mZCoord;
 
@@ -23,11 +21,14 @@ public class Interactables : MonoBehaviour
     {
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
+        //Holds the object at the same position away from the character
+        //Allows the player to move with an object
         mOffset = gameObject.transform.position - GetMouseWorldPos();
     }
 
     private Vector3 GetMouseWorldPos()
     {
+        //Grabs Mouse Position
         Vector3 mousePoint = Input.mousePosition;
 
         //Z Coordinate of game object in game
@@ -38,7 +39,7 @@ public class Interactables : MonoBehaviour
 
     private void OnMouseDrag()
     {
-
+        //Ensures that the mouse remains at its relative distance
         transform.position = GetMouseWorldPos() + mOffset;
 
     }
@@ -49,21 +50,22 @@ public class Interactables : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             grounded = false;
-            returnedTo0 = true;
         }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            transform.position = oriPos;
+        }
+
     }
 
     public void OnTriggerEnter(Collider other)
     {
+        //Checks if the object is currently going through the ground
+        //Make sure to add in colliders where the object shouldn't be going through the floor
         if (other.gameObject.layer == 8)
         {
             grounded = true;
-        }
-
-        if (other.gameObject.layer != 0 && returnedTo0)
-        {
-            transform.position = oriPos;
-            returnedTo0 = false;
         }
     }
 }

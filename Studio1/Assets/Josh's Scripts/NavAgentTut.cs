@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+//Means this script won't run without a playermotor script
+[RequireComponent(typeof(PlayerMotor))]
 public class NavAgentTut : MonoBehaviour
 {
-
+    public PlayerMotor motor;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,7 @@ public class NavAgentTut : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-
+            motor.MoveToPoint()
         }
     }
 

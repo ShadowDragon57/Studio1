@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RockDestroyer : MonoBehaviour
 {
-    public GuardianController2 guardian;
+    public GuardianController guardian;
     public Rigidbody rb;
     public ConvictionCalculator conviction;
 
@@ -21,7 +21,7 @@ public class RockDestroyer : MonoBehaviour
 
         //If there are errors, ensure that the gameObject holding the guardian controller is named like this
         GameObject guardianController = GameObject.Find("Guardian Controller");
-        guardian = guardianController.GetComponent<GuardianController2>();
+        guardian = guardianController.GetComponent<GuardianController>();
     }
 
     public void Update()
@@ -29,8 +29,9 @@ public class RockDestroyer : MonoBehaviour
         if (gameObject.name == "Flying Rock")
         {
             Quaternion rotation = guardian.playerRotation;
+            Vector3 direction = rotation * Vector3.forward;
 
-            transform.position += Vector3.MoveTowards(transform.position, guardian.hitPosition, 100 * Time.deltaTime);
+            transform.position += direction * Time.deltaTime * 100;
             transform.rotation = rotation;
         }
 

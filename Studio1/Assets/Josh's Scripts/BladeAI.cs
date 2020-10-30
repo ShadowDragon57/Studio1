@@ -32,7 +32,7 @@ public class BladeAI : MonoBehaviour
     private NavMeshAgent agent;
 
     //Health and such
-    public int bladeHealth = 4;
+    public int bladeHealth = 1;
 
     //Attack Variables
     public bool inRange = false;
@@ -218,13 +218,13 @@ public class BladeAI : MonoBehaviour
 
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        playerSighted = false;
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerSighted = false;
+        }
+    }
 
 
     //I DON'T KNOW WHY THIS FUNCTION WORKS BUT IT WORK, SO SCREW IT AND I AM GOING TO SLEEP
