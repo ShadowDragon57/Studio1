@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7461616216532900179}
   - component: {fileID: 7461616216531901331}
   - component: {fileID: 7461616216522520211}
-  - component: {fileID: -3855173271525421454}
   - component: {fileID: -2678521719429849402}
-  - component: {fileID: -989181176466375227}
-  - component: {fileID: 8310625958967045597}
+  - component: {fileID: 2856267946136306055}
+  - component: {fileID: 5909319735568225523}
+  - component: {fileID: -5890743249391319375}
   m_Layer: 0
   m_Name: rockPrefab
   m_TagString: throwRock
@@ -103,7 +103,51 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &-3855173271525421454
+--- !u!64 &-2678521719429849402
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461616216529896787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: ab695d0ee7e3b254cbf45440aa806481, type: 3}
+--- !u!114 &2856267946136306055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461616216529896787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c58f9e7e932f34fa539c6a5e0b8a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardian: {fileID: 0}
+  conviction: {fileID: 0}
+  collisionReached: 0
+  test: 1
+--- !u!136 &5909319735568225523
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461616216529896787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.06
+  m_Height: 0.3
+  m_Direction: 2
+  m_Center: {x: 0.0056038983, y: -0.0032402107, z: 0.10237586}
+--- !u!54 &-5890743249391319375
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,48 +163,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &-2678521719429849402
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7461616216529896787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ab695d0ee7e3b254cbf45440aa806481, type: 3}
---- !u!114 &-989181176466375227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7461616216529896787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 568119822d6d39f4c836c63206b6c677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guardian: {fileID: 0}
-  rb: {fileID: 0}
-  timer: 3
-  collisionReached: 0
-  hitEnemy: 0
---- !u!136 &8310625958967045597
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7461616216529896787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.06
-  m_Height: 0.3
-  m_Direction: 2
-  m_Center: {x: 0, y: -0.0032402107, z: 0.10237586}

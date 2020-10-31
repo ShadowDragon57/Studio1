@@ -4,164 +4,117 @@ using UnityEngine;
 using Cinemachine;
 using UnityEditor;
 using Boo.Lang.Environments;
+using UnityStandardAssets.Cameras;
 
 public class GuardianController2 : MonoBehaviour
 {
     //References
     public CinemachineFreeLook freeLook;
-    public PlayerController2 controller;
+    public PlayerController2 playerController;
 
     public GameObject rockPrefab;
-    public Vector3 positionMouse;
-    private Vector3 rockPosition;
-    private GameObject player;
 
-    //Holds value for where the mouse clicks
+
+    //Public Vars
+    public Quaternion playerRotation;
     public Vector3 hitPosition;
 
-    private GameObject throwableRock;
+    public bool lockedCam;
+    public bool flyingRock;
+    public bool antiMouseLock;
 
-    public Quaternion playerRotation;
-    public Quaternion camRotation;
+    public int rocksCollected;
 
-    [SerializeField]
-    private int numberOfRocks;
+    //Private Vars
+    private GameObject thrownRocks;
 
-    //Movement Values
-    [SerializeField]
-    private int xMovement = 300;
+    private Vector3 mouseLoc;
+    private Vector3 mouseWorldPos;
 
-    [SerializeField]
-    private int yMovement = 3;
+    private float xMovement = 300;
+    private float yMovement = 3;
 
-    [SerializeField]
-    private float speed;
-
-    //Mouse Button Triggers
-    [SerializeField]
-    private bool camLocked;
-
-    public bool leftButtonDown = false;
-
-    public bool flyingRock = false;
-    public bool holdingObject = false;
-    public bool antiMouseLock = false;
-    public bool rockReady = false;
-
-    // Start is called before the first frame update
-    void Start()
+    private int rockLimit = 16;
+    
+    public void Awake()
     {
-        camLocked = true;
-        numberOfRocks = 0;
-        speed = 10000;
-
+        lockedCam = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        //Tracks playerPosition;
-        player = GameObject.Find("Player");
-        rockPosition = player.GetComponent<Transform>().position;
+        mouseLoc = Input.mousePosition;
+        //This Z offset means the item will spawn a certain distance away from the camera
+        mouseLoc.z = 10;
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseLoc);
 
-        //Tracks Mouse Location
-        positionMouse = Input.mousePosition;
-        positionMouse.z = 10f;
-
-        //Allows interaction with game objects
-        GameObject playerController = GameObject.Find("Player Controller");
-
-
-        if (Input.GetMouseButtonDown(0) && antiMouseLock == false)
+        if (Input.GetMouseButtonDown(0))
         {
-            leftButtonDown = true;
-            RaycastHit hit;
-            //Uses an area within the cameras view to find teh mouse position
+            //Finds the point on the screen where the mouse is.
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit))
             {
-                //Spawn Rock
-                if (hit.transform.CompareTag("grabbableRock") && !rockReady && flyingRock == false)
+                if(hit.transform.gameObject.tag == "grabbableRock" && rocksCollected < rockLimit)
                 {
-                    Instantiate(rockPrefab, hit.point, Quaternion.Euler(0, playerController.GetComponent<Transform>().rotation.y, 0));
-                    playerRotation = playerController.GetComponent<Transform>().rotation;
+                    //Adds a collection of rocks to the 
+                    rocksCollected += 1;
                 }
 
-                //Throw Rock
-                else if (rockReady)
+                if (hit.transform.gameObject.tag != "grabbableRock")
                 {
-                    hitPosition = hit.transform.position;
-                }
+                    if (rocksCollected > 0)
+                    {
+                        rocksCollected -= 1;
+                        Instantiate(rockPrefab, mouseWorldPos, Quaternion.Euler(0, playerController.GetComponent<Transform>().rotation.y, 0));
+                        playerRotation = playerController.GetComponent<Transform>().rotation;
+                        hitPosition = hit.point;
+                    }
 
-                else
-                {
-                    return;
-                }
-            }
+                    if (rocksCollected <= 0)
+                    {
+                        Debug.Log("Coat says:" + " " + "No more rocks to throw");
+                    }
 
-            else
-            {
-                return;
+                    if (rocksCollected == rockLimit)
+                    {
+                        Debug.Log("You find yourself burdened by the weight of these material things. You cannot hold anymore");
+                    }
+                }
             }
         }
 
-        //Gets the spawned rock to follow the mouse while the left mouse button is being held
-        if (leftButtonDown && rockReady)
+        if (GameObject.Find("rockPrefab(Clone)") != null)
         {
-            throwableRock = GameObject.Find("rockPrefab(Clone)");
-            throwableRock.GetComponent<Transform>().position = Vector3.MoveTowards(throwableRock.GetComponent<Transform>().position, player.GetComponent<Transform>().position, 100 * Time.deltaTime);
+            thrownRocks = GameObject.Find("rockPrefab(Clone)");
+            thrownRocks.name = "Flying Rock";
         }
 
-        //If mouse button is pressed, then it will turn the bool to true
         if (Input.GetMouseButtonDown(1))
         {
-            camLocked = false;
+            lockedCam = false;
         }
-
-        //If mouse button goes up, the bools will be turned false
 
         if (Input.GetMouseButtonUp(1))
         {
-            camLocked = true;
+            lockedCam = true;
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            leftButtonDown = false;
-
-        }
-
-        if (flyingRock == true)
-        {
-            rockReady = false;
-            //makes object shoot off one mouse button is release
-            throwableRock.GetComponent<Rigidbody>().AddRelativeForce(transform.TransformDirection(throwableRock.transform.forward) * speed * Time.deltaTime);
-            //Allows another rock to be picked up and thrown
-            throwableRock.name = "Flying Rock";
-        }
 
         //Determine whether the camera can move or cannot move
-        if (camLocked == false)
+        if (lockedCam == false)
         {
             freeLook.m_YAxis.m_MaxSpeed = yMovement;
             freeLook.m_XAxis.m_MaxSpeed = xMovement;
         }
 
-        if (camLocked == true)
+        if (lockedCam == true)
         {
             freeLook.m_YAxis.m_MaxSpeed = 0;
             freeLook.m_XAxis.m_MaxSpeed = 0;
         }
-
     }
 
-    private void FixedUpdate()
-    {
-        if (antiMouseLock)
-        {
-            leftButtonDown = false;
-            antiMouseLock = false;
-        }
-    }
+
 }

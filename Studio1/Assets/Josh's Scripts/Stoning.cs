@@ -6,12 +6,21 @@ public class Stoning : MonoBehaviour
 {
     //References
     public GuardianController2 guardian;
-    public Rigidbody rb;
     public ConvictionCalculator conviction;
 
     //Public Vars
-    public float timer = 3;
     public bool collisionReached;
+    public bool test = true;
+
+    //Private Vars
+    private Vector3 endPoint;
+
+    private float speed = 100;
+    private float timer = 3;
+
+    private bool callibration = true;
+
+
 
     // Start is called before the first frame update
     void Awake()
@@ -29,10 +38,18 @@ public class Stoning : MonoBehaviour
         //Sends the gameObject flying towards it's given location
         if (gameObject.name == "Flying Rock")
         {
-            Quaternion rotation = guardian.playerRotation;
+            //Ensures that the rock will only face one direction
+            if (callibration == true)
+            {
+                endPoint = guardian.hitPosition;
+                transform.LookAt(endPoint);
+                callibration = false;
+            }
 
-            transform.position += Vector3.MoveTowards(transform.position, guardian.hitPosition, 100 * Time.deltaTime);
-            transform.rotation = rotation;
+
+            Quaternion rotation = transform.rotation;
+            Vector3 direction = rotation * Vector3.forward;
+            transform.position += direction * speed * Time.deltaTime;
         }
 
         //Destroys the rock after a certain amount of time has passed
@@ -42,7 +59,6 @@ public class Stoning : MonoBehaviour
 
             if (timer <= 0)
             {
-                guardian.flyingRock = false;
                 Destroy(gameObject);
             }
         }
@@ -53,27 +69,17 @@ public class Stoning : MonoBehaviour
     {
         if (col.gameObject.layer == 0 && col.gameObject.name != "Flying Rock")
         {
-            guardian.flyingRock = false;
-            Destroy(gameObject);
-        }
-
-        if (col.gameObject.CompareTag("Blade"))
-        {
-            guardian.flyingRock = false;
             Destroy(gameObject);
         }
 
         if (col.gameObject.CompareTag("Player"))
         {
-            guardian.antiMouseLock = true;
             conviction.convictionCount -= 10;
-            guardian.flyingRock = false;
             Destroy(gameObject);
         }
 
         else
         {
-            guardian.flyingRock = false;
             Destroy(gameObject);
         }
     }

@@ -17,10 +17,8 @@ public class BladeAI : MonoBehaviour
     //Timers
     [SerializeField]
     private float timer = 10;
-    private float previousTimerValue;
     [SerializeField]
     private float attackTimer = 1;
-    private float previousAttackValue = 1;
 
     public int timesHit = 0;
 
@@ -33,6 +31,7 @@ public class BladeAI : MonoBehaviour
 
     //Health and such
     public int bladeHealth = 1;
+    private bool beenHit;
 
     //Attack Variables
     public bool inRange = false;
@@ -51,16 +50,18 @@ public class BladeAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void Start()
-    {
-        previousAttackValue = attackTimer;
-        previousTimerValue = timer;
-    }
-
     // Update is called once per frame
     void Update()
     {
         playerLoc = player.GetComponent<Transform>().position;
+
+        //Deals damage to enemy
+        if (beenHit)
+        {
+            bladeHealth -= 1;
+            beenHit = false;
+        }
+
 
         //Checks if player is currently allowed to attack
         if (attackTimer != 0 && canAttack == false)
@@ -170,7 +171,8 @@ public class BladeAI : MonoBehaviour
     {
         if (col.gameObject.CompareTag("throwRock"))
         {
-            bladeHealth -= 1;
+            beenHit = true;
+            Destroy(col.gameObject);
         }
     }
 
@@ -215,7 +217,6 @@ public class BladeAI : MonoBehaviour
                 refreshTrigger = true;
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)

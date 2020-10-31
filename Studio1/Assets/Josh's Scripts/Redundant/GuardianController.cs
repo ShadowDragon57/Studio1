@@ -15,7 +15,6 @@ public class GuardianController : MonoBehaviour
     public Vector3 positionMouse;
 
     private GameObject throwableRock;
-    private GameObject currentHeldObject;
 
     public Quaternion playerRotation;
     public Quaternion camRotation;

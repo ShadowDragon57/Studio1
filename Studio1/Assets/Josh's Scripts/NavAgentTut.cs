@@ -25,7 +25,7 @@ public class NavAgentTut : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            motor.MoveToPoint()
+
         }
     }
 

@@ -10,7 +10,7 @@ public class PlayerController2 : MonoBehaviour
     public Animator anim;
     public Transform cam;
     //public SphereCollider col;
-    public GuardianController guardian;
+    public GuardianController2 guardian;
 
     //Ability Related
     public GameObject currentIdeology;

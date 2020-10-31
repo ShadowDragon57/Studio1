@@ -15,6 +15,7 @@ public class RockDestroyer : MonoBehaviour
     public bool collisionReached = false;
     public bool hitEnemy = false;
 
+
     public void Awake()
     {
         collisionReached = false;
@@ -28,11 +29,12 @@ public class RockDestroyer : MonoBehaviour
     {
         if (gameObject.name == "Flying Rock")
         {
+            
+
             Quaternion rotation = guardian.playerRotation;
             Vector3 direction = rotation * Vector3.forward;
 
             transform.position += direction * Time.deltaTime * 100;
-            transform.rotation = rotation;
         }
 
         if (collisionReached == false)
