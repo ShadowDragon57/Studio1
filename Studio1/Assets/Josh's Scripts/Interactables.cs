@@ -8,22 +8,29 @@ public class Interactables : MonoBehaviour
     private Vector3 mOffset;
     //Original Position;
     private Vector3 oriPos;
+    private EnvironmentInteraction environ;
 
     public bool grounded;
 
+    public bool inRange;
     private float mZCoord;
 
     public void Awake()
     {
         oriPos = transform.position;
+        environ = GameObject.Find("Collider").GetComponent<EnvironmentInteraction>();
     }
+
     private void OnMouseDown()
     {
+
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
         //Holds the object at the same position away from the character
         //Allows the player to move with an object
         mOffset = gameObject.transform.position - GetMouseWorldPos();
+
+
     }
 
     private Vector3 GetMouseWorldPos()
@@ -66,6 +73,11 @@ public class Interactables : MonoBehaviour
         if (other.gameObject.layer == 8)
         {
             grounded = true;
+        }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+
         }
     }
 }

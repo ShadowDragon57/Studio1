@@ -252,12 +252,6 @@ public class PlayerController2 : MonoBehaviour
             }
         }
     }
-    }
+}
 
-    //public void OnCollisionEnter(Collision col)
-    //{
-    //    if (col.gameObject.CompareTag("throwRock"))
-    //    {
-    //        guardian.flyingRock = false;
-    //    }
-    //}
+
