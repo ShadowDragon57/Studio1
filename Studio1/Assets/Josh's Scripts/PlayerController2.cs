@@ -212,7 +212,6 @@ public class PlayerController2 : MonoBehaviour
 
             if (currentIdeology.CompareTag("discontent"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().SunCast();
                 QabiUp = false;
             }
 

@@ -1,38 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< Updated upstream
-=======
---- !u!1 &367141550317823320
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6891634312641130792}
-  m_Layer: 0
-  m_Name: Abilities
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6891634312641130792
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367141550317823320}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1956889890320640480}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
 --- !u!1 &628254714099445839
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,11 +295,7 @@ MonoBehaviour:
   controller: {fileID: 2063490312707788443}
   anim: {fileID: 5604844258283533210}
   cam: {fileID: 0}
-<<<<<<< Updated upstream
   guardian: {fileID: 4136467826490266589}
-=======
-  guardian: {fileID: 0}
->>>>>>> Stashed changes
   currentIdeology: {fileID: 0}
   turnSmoothTime: 0.1
   gravity: -9.807
@@ -394,11 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2063490313235065222}
-<<<<<<< Updated upstream
   - component: {fileID: 4136467826490266589}
-=======
-  - component: {fileID: 7223482186947004399}
->>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Guardian Controller
   m_TagString: Player
@@ -420,11 +379,7 @@ Transform:
   m_Father: {fileID: 1956889890320640480}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
 --- !u!114 &4136467826490266589
-=======
---- !u!114 &7223482186947004399
->>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -433,7 +388,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2063490313235065223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: ac4ca8070863a2947bb482c1533e414b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -447,27 +401,6 @@ MonoBehaviour:
   flyingRock: 0
   antiMouseLock: 0
   rocksCollected: 0
-=======
-  m_Script: {fileID: 11500000, guid: 9fdd7811dce3d5d49b67a74e99ed943a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  freeLook: {fileID: 0}
-  controller: {fileID: 0}
-  rockPrefab: {fileID: 0}
-  positionMouse: {x: 0, y: 0, z: 0}
-  playerRotation: {x: 0, y: 0, z: 0, w: 0}
-  camRotation: {x: 0, y: 0, z: 0, w: 0}
-  numberOfRocks: 0
-  xMovement: 300
-  yMovement: 3
-  speed: 0
-  camLocked: 0
-  leftButtonDown: 0
-  flyingRock: 0
-  holdingObject: 0
-  antiMouseLock: 0
-  playerHit: 0
->>>>>>> Stashed changes
 --- !u!1 &2063490313827964075
 GameObject:
   m_ObjectHideFlags: 0
