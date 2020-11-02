@@ -5,7 +5,7 @@ using Cinemachine;
 using UnityEditor;
 using Boo.Lang.Environments;
 
-public class GuardianController2 : MonoBehaviour
+public class GuardianController : MonoBehaviour
 {
     //References
     public CinemachineFreeLook freeLook;
@@ -61,7 +61,7 @@ public class GuardianController2 : MonoBehaviour
         positionMouse.z = 10f;
 
         //Allows interaction with game objects
-        GameObject playerController = GameObject.Find("Player Controller");
+        GameObject playerController = GameObject.Find("Player");
 
         if (Input.GetMouseButtonDown(0) && antiMouseLock == false)
         {
@@ -78,6 +78,12 @@ public class GuardianController2 : MonoBehaviour
                     playerRotation = playerController.GetComponent<Transform>().rotation;
                     numberOfRocks += 1;
                 }
+
+                //if (hit.collider.gameObject.layer == 12)
+                //{
+                //    currentHeldObject = hit.collider.gameObject;
+                //    holdingObject = true;
+                //}
 
                 else
                 {
@@ -97,6 +103,17 @@ public class GuardianController2 : MonoBehaviour
             throwableRock = GameObject.Find("rockPrefab(Clone)");
             throwableRock.GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(positionMouse);
         }
+
+        //if (currentHeldObject != null && holdingObject)
+        //{
+        //    currentHeldObject.GetComponent<Transform>().position = Camera.main.ScreenToViewportPoint(positionMouse);
+
+        //    if (Input.GetMouseButtonUp(0))
+        //    {
+        //        currentHeldObject = null;
+        //    }
+        //}
+
 
         //If mouse button is pressed, then it will turn the bool to true
         if (Input.GetMouseButtonDown(1))
@@ -118,7 +135,7 @@ public class GuardianController2 : MonoBehaviour
             {
                 flyingRock = true;
             }
-
+           
         }
 
         if (flyingRock == true)
