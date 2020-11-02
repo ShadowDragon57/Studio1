@@ -17,10 +17,8 @@ public class BladeAI : MonoBehaviour
     //Timers
     [SerializeField]
     private float timer = 10;
-    private float previousTimerValue;
     [SerializeField]
     private float attackTimer = 1;
-    private float previousAttackValue = 1;
 
     public int timesHit = 0;
 
@@ -32,14 +30,15 @@ public class BladeAI : MonoBehaviour
     private NavMeshAgent agent;
 
     //Health and such
-    public int bladeHealth = 4;
+    public int bladeHealth = 1;
+    private bool beenHit;
 
     //Attack Variables
     public bool inRange = false;
     public bool canAttack= false;
 
     //Speed Variables
-    public float movementSpeed = 200;
+    public float movementSpeed = 20;
     public bool refreshTrigger = false;
 
 
@@ -51,16 +50,18 @@ public class BladeAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
     }
 
-    public void Start()
-    {
-        previousAttackValue = attackTimer;
-        previousTimerValue = timer;
-    }
-
     // Update is called once per frame
     void Update()
     {
         playerLoc = player.GetComponent<Transform>().position;
+
+        //Deals damage to enemy
+        if (beenHit)
+        {
+            bladeHealth -= 1;
+            beenHit = false;
+        }
+
 
         //Checks if player is currently allowed to attack
         if (attackTimer != 0 && canAttack == false)
@@ -170,7 +171,8 @@ public class BladeAI : MonoBehaviour
     {
         if (col.gameObject.CompareTag("throwRock"))
         {
-            bladeHealth -= 1;
+            beenHit = true;
+            Destroy(col.gameObject);
         }
     }
 
@@ -208,23 +210,22 @@ public class BladeAI : MonoBehaviour
                 //{
                 //    previousPlayerPosition = player.transform.position;
                 //}
+            }
 
-                else
-                {
-                    refreshTrigger = true;
-                }
+            else
+            {
+                refreshTrigger = true;
             }
         }
-
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        playerSighted = false;
-    //    }
-    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerSighted = false;
+        }
+    }
 
 
     //I DON'T KNOW WHY THIS FUNCTION WORKS BUT IT WORK, SO SCREW IT AND I AM GOING TO SLEEP
