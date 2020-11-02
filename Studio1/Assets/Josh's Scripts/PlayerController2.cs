@@ -10,10 +10,10 @@ public class PlayerController2 : MonoBehaviour
     public Animator anim;
     public Transform cam;
     //public SphereCollider col;
-    public GuardianController2 guardian;
+    public GuardianController guardian;
 
     //Ability Related
-    public GameObject currentIdeology;
+    private GameObject currentIdeology;
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -56,7 +56,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         //Grabbing the current ideology from ConvictionConsequences
-        currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
+        //currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
 
         //Ability CoolDowns
         if (Qtimer >= 0)
@@ -252,6 +252,12 @@ public class PlayerController2 : MonoBehaviour
             }
         }
     }
-}
+    }
 
-
+    //public void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.CompareTag("throwRock"))
+    //    {
+    //        guardian.flyingRock = false;
+    //    }
+    //}
