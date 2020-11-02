@@ -69,4 +69,9 @@ public class ConvictionCalculator : MonoBehaviour
     {
         convictionCount += 10f;
     }
+
+    public void CollisionInTutorial()
+    {
+        convictionCount += 100f;
+    }
 }
