@@ -297,6 +297,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   guardian: {fileID: 4136467826490266589}
   currentIdeology: {fileID: 0}
+  speedBoostCount: 0
   turnSmoothTime: 0.1
   gravity: -9.807
   groundCheck: {fileID: 2063490313827964074}
@@ -718,7 +719,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3033401818033087148}
   - component: {fileID: 1609649400272594768}
-  - component: {fileID: 8219763030257656388}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -753,18 +753,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8219763030257656388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3087287618991035665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27747d3f66d64b54da5c5e50031f39f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3744748831628261894
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,6 +72,16 @@ public class Abilities2 : MonoBehaviour
         GameObject.Find("Player").GetComponent<PlayerController2>().BoosterActivated();
     }
 
+    public void DestroyQAbility() //destroying the active abilities using the timer from the player controller
+    {
+        Destroy(qAbilityActive);
+    }
+
+    public void DestroyEAbility()
+    {
+        Destroy(eAbilityActive);
+    }
+
     void OnParticleCollision(GameObject other) //if the ability hits something with the enemy layer it destroys it
     {
         Destroy(other);
