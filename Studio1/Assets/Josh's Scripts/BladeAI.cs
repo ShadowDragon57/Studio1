@@ -170,7 +170,17 @@ public class BladeAI : MonoBehaviour
     {
         if (col.gameObject.CompareTag("throwRock"))
         {
+<<<<<<< Updated upstream
             bladeHealth -= 1;
+=======
+<<<<<<< HEAD
+            beenHit = true;
+            Destroy(col.gameObject);
+            GameObject.Find("Canvas").GetComponent<ConvictionCalculator>().EnemyKilledByGuardian();
+=======
+            bladeHealth -= 1;
+>>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
+>>>>>>> Stashed changes
         }
     }
 

@@ -13,7 +13,18 @@ public class PlayerController2 : MonoBehaviour
     public GuardianController guardian;
 
     //Ability Related
+<<<<<<< Updated upstream
     private GameObject currentIdeology;
+=======
+<<<<<<< HEAD
+    [SerializeField]
+    private GameObject currentIdeology;
+    public float speedBoostCount;
+    private bool boostActive;
+=======
+    private GameObject currentIdeology;
+>>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
+>>>>>>> Stashed changes
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -43,6 +54,7 @@ public class PlayerController2 : MonoBehaviour
 
     void Start()
     {
+        boostActive = false;
         //Defining Speed Vars
         leftSpeed = 20f;
         rightSpeed = 20f;
@@ -57,6 +69,28 @@ public class PlayerController2 : MonoBehaviour
     {
         //Grabbing the current ideology from ConvictionConsequences
         //currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
+<<<<<<< Updated upstream
+=======
+
+        //timer for the speed boost from booster ability, and the increase for the speed variables
+        if(boostActive == true)
+        {
+            speedBoostCount += Time.deltaTime;
+            leftSpeed = 35f;
+            rightSpeed = 35f;
+            forwardSpeed = 55f;
+            backSpeed = 35f;
+        }
+        if(speedBoostCount > 3)
+        {
+            leftSpeed = 20f;
+            rightSpeed = 20f;
+            forwardSpeed = 40f;
+            backSpeed = 20f;
+            boostActive = false;
+            speedBoostCount = 0;
+        }
+>>>>>>> Stashed changes
 
         //Ability CoolDowns
         if (Qtimer >= 0)
@@ -136,7 +170,7 @@ public class PlayerController2 : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
             Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
+            if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true ) 
             {
                 controller.Move(moveFor * forwardSpeed * Time.deltaTime);
             }
@@ -187,6 +221,11 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
+    public void BoosterActivated() //telling this script that the boost has been activated
+    {
+        boostActive = true;
+    }
+
     void FixedUpdate()
     {
         //Abilities
@@ -201,6 +240,7 @@ public class PlayerController2 : MonoBehaviour
 
             if (currentIdeology.CompareTag("bliss"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities2>().BeamCast();
                 QabiUp = false;
             }
 
@@ -212,6 +252,7 @@ public class PlayerController2 : MonoBehaviour
 
             if (currentIdeology.CompareTag("discontent"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities2>().SunCast();
                 QabiUp = false;
             }
 
@@ -232,6 +273,7 @@ public class PlayerController2 : MonoBehaviour
 
             if (currentIdeology.CompareTag("bliss"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities2>().BoosterCast();
                 EabiUp = false;
             }
 
@@ -243,6 +285,7 @@ public class PlayerController2 : MonoBehaviour
 
             if (currentIdeology.CompareTag("discontent"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities2>().WallCast();
                 EabiUp = false;
             }
 
