@@ -10,21 +10,14 @@ public class PlayerController2 : MonoBehaviour
     public Animator anim;
     public Transform cam;
     //public SphereCollider col;
-    public GuardianController guardian;
+    public GuardianController2 guardian;
 
-    //Ability Related
-<<<<<<< Updated upstream
-    private GameObject currentIdeology;
-=======
-<<<<<<< HEAD
+    //Ability related
     [SerializeField]
     private GameObject currentIdeology;
     public float speedBoostCount;
     private bool boostActive;
-=======
-    private GameObject currentIdeology;
->>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
->>>>>>> Stashed changes
+
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -68,9 +61,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         //Grabbing the current ideology from ConvictionConsequences
-        //currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
-<<<<<<< Updated upstream
-=======
+        currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
 
         //timer for the speed boost from booster ability, and the increase for the speed variables
         if(boostActive == true)
@@ -90,7 +81,6 @@ public class PlayerController2 : MonoBehaviour
             boostActive = false;
             speedBoostCount = 0;
         }
->>>>>>> Stashed changes
 
         //Ability CoolDowns
         if (Qtimer >= 0)
@@ -295,12 +285,6 @@ public class PlayerController2 : MonoBehaviour
             }
         }
     }
-    }
+}
 
-    //public void OnCollisionEnter(Collision col)
-    //{
-    //    if (col.gameObject.CompareTag("throwRock"))
-    //    {
-    //        guardian.flyingRock = false;
-    //    }
-    //}
+

@@ -419,6 +419,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
+--- !u!114 &14307907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2063490312707788442, guid: 39df258aa7ccc724586a74d2239b99b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835279584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715996614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d090af995f6e26640a553484abc3714c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &27797558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1872,6 +1884,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159642081}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
   m_LocalRotation: {x: 0.20412473, y: -0.0000000168441, z: 0.0000000035122478, w: 0.9789449}
   m_LocalPosition: {x: 262.96695, y: 12, z: 49.63642}
@@ -1884,6 +1897,10 @@ Transform:
   m_LocalPosition: {x: 262.96695, y: 12, z: 49.63642}
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+  m_LocalRotation: {x: 0.1355701, y: -0.39725617, z: 0.0594642, w: 0.9056888}
+  m_LocalPosition: {x: 289.96936, y: 12.797938, z: 49.777496}
+>>>>>>> parent of a7ac16e... pushformitch
   m_LocalScale: {x: 1, y: 0.80505985, z: 1.209131}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2730,12 +2747,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
---- !u!95 &224653532 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7595901520034365365, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1578626242}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &226666635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5766,9 +5777,12 @@ RectTransform:
   m_AnchoredPosition: {x: -63.6, y: -27.7}
   m_SizeDelta: {x: 127.188324, y: 55.35446}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> parent of a7ac16e... pushformitch
 --- !u!1001 &574324223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5776,6 +5790,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 73152924372847208, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Layer
@@ -5836,11 +5851,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of a7ac16e... pushformitch
     - target: {fileID: 3801579354823262069, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Name
       value: BladeModel
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 3801579354823262069, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Layer
@@ -5876,6 +5894,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of a7ac16e... pushformitch
     - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5971,6 +5991,7 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 5470368606033908851, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Layer
@@ -5991,6 +6012,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of a7ac16e... pushformitch
     - target: {fileID: 5990692314769946166, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: anim
@@ -6001,6 +6024,7 @@ PrefabInstance:
       propertyPath: bladeHealth
       value: 10
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 6162606100012260671, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Layer
@@ -6011,11 +6035,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of a7ac16e... pushformitch
     - target: {fileID: 6712974938145232156, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_TagString
       value: Blade
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 6712974938145232156, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Layer
@@ -6046,11 +6073,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of a7ac16e... pushformitch
     - target: {fileID: 8189780749700242935, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Direction
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 8275515448201424423, guid: 456d4ca468c7ab74cb1e8262ff66001a,
         type: 3}
       propertyPath: m_Layer
@@ -6081,6 +6111,10 @@ PrefabInstance:
 =======
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 456d4ca468c7ab74cb1e8262ff66001a, type: 3}
+>>>>>>> parent of a7ac16e... pushformitch
 --- !u!1001 &574739541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10655,6 +10689,7 @@ PrefabInstance:
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.x
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 0.22189744
 =======
@@ -10664,10 +10699,14 @@ PrefabInstance:
       value: 0.22189744
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.15290621
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.y
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 0.00000001396538
 =======
@@ -10677,10 +10716,14 @@ PrefabInstance:
       value: 0.00000001396538
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: -0.3960434
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.z
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: -8.268867e-10
 =======
@@ -10690,10 +10733,14 @@ PrefabInstance:
       value: -8.268867e-10
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.06706818
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.w
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 0.97507006
 =======
@@ -10703,6 +10750,9 @@ PrefabInstance:
       value: 0.97507006
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.90292376
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 612293830321448858, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
@@ -10757,11 +10807,12 @@ PrefabInstance:
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000008802424
+      value: -0.3982182
       objectReference: {fileID: 0}
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.z
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: -0.0000000034479992
 =======
@@ -10771,6 +10822,9 @@ PrefabInstance:
       value: -0.0000000034479992
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.05263766
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
@@ -10780,6 +10834,7 @@ PrefabInstance:
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.x
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 0.18633161
 =======
@@ -10789,15 +10844,19 @@ PrefabInstance:
       value: 0.18633161
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.1200066
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 1584624104347014269, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98248696
+      value: 0.90788215
       objectReference: {fileID: 0}
     - target: {fileID: 5568169999631680137, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.x
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 0.2041247
 =======
@@ -10807,10 +10866,14 @@ PrefabInstance:
       value: 0.2041247
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.13645715
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 5568169999631680137, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.y
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: -0.000000008062086
 =======
@@ -10820,10 +10883,14 @@ PrefabInstance:
       value: -0.000000008062086
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: -0.39719775
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 5568169999631680137, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.z
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 2.9809124e-11
 =======
@@ -10833,6 +10900,9 @@ PrefabInstance:
       value: 2.9809124e-11
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 0.059853252
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 5568169999631680137, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
@@ -10842,11 +10912,12 @@ PrefabInstance:
     - target: {fileID: 5568169999631680137, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9789449
+      value: 0.90555567
       objectReference: {fileID: 0}
     - target: {fileID: 8368099979504700282, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 262.96695
 =======
@@ -10856,10 +10927,14 @@ PrefabInstance:
       value: 262.96695
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 289.96936
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 8368099979504700282, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalPosition.y
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 12
 =======
@@ -10869,10 +10944,14 @@ PrefabInstance:
       value: 12
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 12.797938
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 8368099979504700282, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
       propertyPath: m_LocalPosition.z
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       value: 49.63642
 =======
@@ -10882,6 +10961,9 @@ PrefabInstance:
       value: 49.63642
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+      value: 49.777496
+>>>>>>> parent of a7ac16e... pushformitch
       objectReference: {fileID: 0}
     - target: {fileID: 8368099979504700282, guid: 0a56007069ca9d34a8782c3994c3c51c,
         type: 3}
@@ -14245,7 +14327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272975774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 266.681, y: 3.63, z: 62.53}
+  m_LocalPosition: {x: 262.37, y: 4.35, z: 64.01}
   m_LocalScale: {x: 2.8241577, y: 2.239813, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16703,6 +16785,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 940d55d4117386f4f9398ea3ff52d4cd, type: 3}
+--- !u!114 &1467329054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4136467826490266589, guid: 39df258aa7ccc724586a74d2239b99b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835279584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4ca8070863a2947bb482c1533e414b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1468578511 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 940d55d4117386f4f9398ea3ff52d4cd,
@@ -17558,80 +17652,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
---- !u!1001 &1578626242
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3801579354823262069, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_Name
-      value: BladeModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 262.03003
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 113.00852
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578538923525055951, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5990692314769946166, guid: 456d4ca468c7ab74cb1e8262ff66001a,
-        type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 224653532}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 456d4ca468c7ab74cb1e8262ff66001a, type: 3}
 --- !u!1001 &1580566298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19354,6 +19374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
@@ -19366,6 +19387,30 @@ Transform:
 =======
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+--- !u!1 &1715996614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1180950599218049882, guid: 39df258aa7ccc724586a74d2239b99b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1835279584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &1715996617
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715996614}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+>>>>>>> parent of a7ac16e... pushformitch
 --- !u!4 &1719069704 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 27bfdb9a40efac94b969eaf77cea92d9,
@@ -20306,7 +20351,7 @@ PrefabInstance:
     - target: {fileID: 1956889890320640480, guid: 39df258aa7ccc724586a74d2239b99b2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1956889890320640480, guid: 39df258aa7ccc724586a74d2239b99b2,
         type: 3}
@@ -20332,16 +20377,49 @@ PrefabInstance:
         type: 3}
       propertyPath: guardian
       value: 
-      objectReference: {fileID: 1865049399}
+      objectReference: {fileID: 1467329054}
+    - target: {fileID: 2063490312707788442, guid: 39df258aa7ccc724586a74d2239b99b2,
+        type: 3}
+      propertyPath: currentIdeology
+      value: 
+      objectReference: {fileID: 1056696574}
     - target: {fileID: 2063490313235065221, guid: 39df258aa7ccc724586a74d2239b99b2,
         type: 3}
       propertyPath: freeLook
       value: 
       objectReference: {fileID: 208120177}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+    - target: {fileID: 2063490313235065221, guid: 39df258aa7ccc724586a74d2239b99b2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136467826490266589, guid: 39df258aa7ccc724586a74d2239b99b2,
+        type: 3}
+      propertyPath: freeLook
+      value: 
+      objectReference: {fileID: 208120177}
+    - target: {fileID: 4136467826490266589, guid: 39df258aa7ccc724586a74d2239b99b2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4136467826490266589, guid: 39df258aa7ccc724586a74d2239b99b2,
+        type: 3}
+      propertyPath: freeCam
+      value: 
+      objectReference: {fileID: 208120177}
+    - target: {fileID: 4136467826490266589, guid: 39df258aa7ccc724586a74d2239b99b2,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 14307907}
+>>>>>>> parent of a7ac16e... pushformitch
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 940d55d4117386f4f9398ea3ff52d4cd, type: 3}
 --- !u!4 &1836957968 stripped
@@ -20941,6 +21019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27bfdb9a40efac94b969eaf77cea92d9, type: 3}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 <<<<<<< HEAD
@@ -20991,6 +21070,8 @@ MonoBehaviour:
 =======
 >>>>>>> a7ac16e1525bad776d1d8977bfc754387a43a63d
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of a7ac16e... pushformitch
 --- !u!1001 &1872293955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22981,6 +23062,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 5.1540003, z: 0}
+--- !u!95 &2036210514 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7595901520034365365, guid: 456d4ca468c7ab74cb1e8262ff66001a,
+    type: 3}
+  m_PrefabInstance: {fileID: 574324223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2036287449 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 27bfdb9a40efac94b969eaf77cea92d9,

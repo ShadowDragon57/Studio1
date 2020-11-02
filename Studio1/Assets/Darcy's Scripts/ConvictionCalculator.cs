@@ -21,8 +21,9 @@ public class ConvictionCalculator : MonoBehaviour
         {
             naturalTickAmount = 0.10f * convictionCount; //naturaltickamount is 10 percent of whatever the conviction is 
             tickTimeCount += Time.deltaTime;
+
             if (tickTimeCount >= 10) //allows for the tick to happen every set amount of seconds
-            {
+            { 
                 convictionCount -= naturalTickAmount; //conviction loses 10 percent of its value every tick
                 tickTimeCount = 0; //resetting time each tick
             }
@@ -31,8 +32,9 @@ public class ConvictionCalculator : MonoBehaviour
         {
             naturalTickAmount = 0.5f; //naturaltickamount now goes down by 0.5
             tickTimeCount += Time.deltaTime;
+
             if (tickTimeCount >= 10) //allows for the tick to happen every set amount of seconds
-            {
+            { 
                 convictionCount -= naturalTickAmount; //conviction goes down by 0.5 every tick
                 tickTimeCount = 0; //resetting time each tick
             }
