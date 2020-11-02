@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Interactables : MonoBehaviour
 {
+    private GameObject playerController;
+    private Vector3 playerPosition;
+    private float distance;
+
     //Offset for the mosue to keep the gameObject in it''s original relative position from the player
     private Vector3 mOffset;
     //Original Position;
     private Vector3 oriPos;
     private EnvironmentInteraction environ;
+
 
     public bool grounded;
 
@@ -23,14 +28,15 @@ public class Interactables : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (inRange)
+        {
+            mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 
-        mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+            //Holds the object at the same position away from the character
+            //Allows the player to move with an object
+            mOffset = gameObject.transform.position - GetMouseWorldPos();
 
-        //Holds the object at the same position away from the character
-        //Allows the player to move with an object
-        mOffset = gameObject.transform.position - GetMouseWorldPos();
-
-
+        }
     }
 
     private Vector3 GetMouseWorldPos()
@@ -46,13 +52,31 @@ public class Interactables : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        //Ensures that the mouse remains at its relative distance
-        transform.position = GetMouseWorldPos() + mOffset;
-
+        if (inRange)
+        {
+            //Ensures that the mouse remains at its relative distance
+            transform.position = GetMouseWorldPos() + mOffset;
+        }
     }
 
     public void Update()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player");
+        playerPosition = playerController.transform.position;
+        distance = Vector3.Distance(transform.position, playerPosition);
+
+
+        if (distance >= 200)
+        {
+            inRange = false;
+        }
+
+        if (distance <= 200)
+        {
+            inRange = true;
+        }
+
+
         if (transform.position.y <= -1)
         {
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
@@ -73,11 +97,6 @@ public class Interactables : MonoBehaviour
         if (other.gameObject.layer == 8)
         {
             grounded = true;
-        }
-
-        if (other.gameObject.CompareTag("Player"))
-        {
-
         }
     }
 }

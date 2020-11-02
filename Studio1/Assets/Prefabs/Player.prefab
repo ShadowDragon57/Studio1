@@ -402,7 +402,7 @@ MonoBehaviour:
   lockedCam: 0
   flyingRock: 0
   antiMouseLock: 0
-  rocksCollected: 0
+  rocksCollected: 100
 --- !u!1 &2063490313827964075
 GameObject:
   m_ObjectHideFlags: 0

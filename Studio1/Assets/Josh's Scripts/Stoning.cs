@@ -16,7 +16,7 @@ public class Stoning : MonoBehaviour
     private Vector3 endPoint;
 
     private float speed = 100;
-    private float timer = 5;
+    private float timer = 3;
 
     private bool callibration = true;
 
