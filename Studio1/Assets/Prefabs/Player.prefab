@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2063490312707788443}
   anim: {fileID: 5604844258283533210}
-  cam: {fileID: 0}
+  cam: {fileID: 8368099979504700282, guid: 0a56007069ca9d34a8782c3994c3c51c, type: 3}
   guardian: {fileID: 4136467826490266589}
   currentIdeology: {fileID: 0}
   speedBoostCount: 0
@@ -393,7 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4ca8070863a2947bb482c1533e414b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeLook: {fileID: 0}
+  freeLook: {fileID: 1184134244558465792, guid: 0a56007069ca9d34a8782c3994c3c51c,
+    type: 3}
   playerController: {fileID: 2063490312707788442}
   rockPrefab: {fileID: 7461616216529896787, guid: 658b5c223920f9846b00dd8c12168902,
     type: 3}

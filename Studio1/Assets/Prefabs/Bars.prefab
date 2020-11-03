@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3483249207714354716}
   m_Layer: 0
-  m_Name: Selected
+  m_Name: Ideology Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3483249207836091681}
   - component: {fileID: 3483249207836091680}
   m_Layer: 5
-  m_Name: Backing (2)
+  m_Name: Discontent Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 1f67880b73c479e45bfd1becba7964d7, type: 3}
+  m_Texture: {fileID: 2800000, guid: 156e368552a114d478fc51c812454eb1, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 3483249207867129988}
   - component: {fileID: 3483249207867129987}
   m_Layer: 5
-  m_Name: OrangeSelected
+  m_Name: Discontent Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 927707f3be676b640ada230ca3f3532f, type: 3}
+  m_Texture: {fileID: 2800000, guid: d772811df9c139d4895131bec471a999, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a38d65f35ba8e824e897750f3094ab0c, type: 3}
+  m_Texture: {fileID: 2800000, guid: 8e0685276c5fee8429138c5e9a4ad0e9, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 3483249207915688813}
   - component: {fileID: 3483249207915688812}
   m_Layer: 5
-  m_Name: RevelrySelected
+  m_Name: Revelry Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5fb68688a5929f443a1afddd77acb833, type: 3}
+  m_Texture: {fileID: 2800000, guid: 24dc2d29f6a766e4bb5db60d26537376, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 3483249208068555825}
   - component: {fileID: 3483249208068555824}
   m_Layer: 5
-  m_Name: AnimositySelected
+  m_Name: Animosity Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 21a3747fddb9e404a97b1e583a899240, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0c1630a27f4facb479d76992660998fc, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 3483249208221181443}
   - component: {fileID: 3483249208221181442}
   m_Layer: 5
-  m_Name: HatredSelected
+  m_Name: Hatred Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 130072a9ad7488a49963730c663514b3, type: 3}
+  m_Texture: {fileID: 2800000, guid: e4f4a838929714b469eb2b15257360bd, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 3483249208230019249}
   - component: {fileID: 3483249208230019248}
   m_Layer: 5
-  m_Name: Backing (3)
+  m_Name: Animosity Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 5450d0d738fc41d479452094582e6a9d, type: 3}
+  m_Texture: {fileID: 2800000, guid: 352cfba7cddbc2144aa2841438c5b767, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 3483249208236421561}
   - component: {fileID: 3483249208236421560}
   m_Layer: 5
-  m_Name: HealthbarBacking
+  m_Name: Healthbar Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,7 +566,7 @@ RectTransform:
   m_LocalScale: {x: 15.106008, y: 4.115728, z: 4.064916}
   m_Children: []
   m_Father: {fileID: 3483249209221025175}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 7778300b424a1bd439f0711f6cc01b00, type: 3}
+  m_Texture: {fileID: 2800000, guid: 9a4d738f12bfa6342992499955dab556, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 3483249208634225279}
   - component: {fileID: 3483249208634225278}
   m_Layer: 5
-  m_Name: Backing (4)
+  m_Name: Bliss Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0510616b650d1074383f09da887d7813, type: 3}
+  m_Texture: {fileID: 2800000, guid: 750b91b683f590c4f9f1a307ea6d3423, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 3483249208818351195}
   - component: {fileID: 3483249208818351194}
   m_Layer: 5
-  m_Name: IdeologyBacking
+  m_Name: Ideology Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 24a326642b2f10540be75ca0c365853a, type: 3}
+  m_Texture: {fileID: 2800000, guid: a2d219d062f3fdd49818c5f889a0d22b, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -761,7 +761,7 @@ GameObject:
   - component: {fileID: 3483249208852166998}
   - component: {fileID: 3483249208852166997}
   m_Layer: 5
-  m_Name: BlissSelected
+  m_Name: Bliss Selected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: c7ecbc8d9993e954ca2a25972a10b5a0, type: 3}
+  m_Texture: {fileID: 2800000, guid: 55cb404d3d152c94fa470fcf6a53ccb1, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 3483249208855633367}
   - component: {fileID: 3483249208855633366}
   m_Layer: 5
-  m_Name: Faceplaye
+  m_Name: Faceplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +851,7 @@ RectTransform:
   m_LocalScale: {x: 14.625938, y: 3.98493, z: 3.935733}
   m_Children: []
   m_Father: {fileID: 3483249209221025175}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 22415285dcdbb934d9f5c8e635fdb318, type: 3}
+  m_Texture: {fileID: 2800000, guid: 5d8d409afd7115246ae430b774003892, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -904,7 +904,7 @@ GameObject:
   - component: {fileID: 3483249208943698868}
   - component: {fileID: 3483249208943698867}
   m_Layer: 5
-  m_Name: Backing (5)
+  m_Name: Revelry Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 093e00039e0c76c4cade5a5fd57dfeb8, type: 3}
+  m_Texture: {fileID: 2800000, guid: a2962f1210a28f04e94f86bc129a26c4, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 3483249208978335113}
   - component: {fileID: 3483249208978335112}
   m_Layer: 5
-  m_Name: ConvictionBacking
+  m_Name: Conviction Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 17b7610e6980651499b2ddd4e0c47e80, type: 3}
+  m_Texture: {fileID: 2800000, guid: a9e31b7891cd2de4fa2f7aacaba75d4a, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1067,8 +1067,8 @@ RectTransform:
   - {fileID: 3483249207886348408}
   - {fileID: 3483249208818351193}
   - {fileID: 3483249208978335159}
-  - {fileID: 3483249208855633365}
   - {fileID: 3483249208236421543}
+  - {fileID: 3483249208855633365}
   - {fileID: 3483249207714354716}
   m_Father: {fileID: 3483249209561713201}
   m_RootOrder: 0
@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 3483249209331745939}
   - component: {fileID: 3483249209331745938}
   m_Layer: 5
-  m_Name: Backing (1)
+  m_Name: Hatred Backing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 3ab270881aa70714b98043dc603b7a22, type: 3}
+  m_Texture: {fileID: 2800000, guid: f13b0b98b3aeb574ab73a353c0db9f6c, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

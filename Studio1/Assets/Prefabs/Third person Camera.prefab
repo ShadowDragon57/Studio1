@@ -526,8 +526,10 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 1956889890320640480, guid: 5a98d34b575ac424ca53142d08df8c74,
+    type: 3}
+  m_Follow: {fileID: 1956889890320640480, guid: 5a98d34b575ac424ca53142d08df8c74,
+    type: 3}
   m_CommonLens: 1
   m_Lens:
     FieldOfView: 40
@@ -604,9 +606,9 @@ MonoBehaviour:
     m_Radius: 20
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2807845555826317959}
+  - {fileID: 3092453860364892629}
+  - {fileID: 7044183946277953504}
 --- !u!114 &462174057970021453
 MonoBehaviour:
   m_ObjectHideFlags: 0

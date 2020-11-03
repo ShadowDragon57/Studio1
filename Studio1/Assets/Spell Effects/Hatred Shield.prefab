@@ -9375,8 +9375,9 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
+  - component: {fileID: -4561416703868520999}
   m_Layer: 0
-  m_Name: ArcaneDome
+  m_Name: Hatred Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14139,6 +14140,29 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-4561416703868520999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d678c09864cff4c95bafec8a74013d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1956889890320640480, guid: 5a98d34b575ac424ca53142d08df8c74, type: 3}
+  boosterTransform: {fileID: 453974, guid: 0cf8b69f523437349a65357a1b490b5b, type: 3}
+  earthenTransform: {fileID: 486386, guid: 7cb0087b12b33cf489ea09a2c88f14f4, type: 3}
+  strike: {fileID: 156578, guid: f27b91ed5152a5745a77f092b78aa6a8, type: 3}
+  earthen: {fileID: 146746, guid: 7cb0087b12b33cf489ea09a2c88f14f4, type: 3}
+  sun: {fileID: 118354, guid: deddf22d4e65a7447b851e66ff6c334c, type: 3}
+  wall: {fileID: 492775306915007736, guid: d63f7e9bd2ce10c4d9fddfa3c509a0c9, type: 3}
+  beam: {fileID: 100008, guid: 8a675b5b52196c748abb1ae97c2d0f55, type: 3}
+  booster: {fileID: 131060, guid: 0cf8b69f523437349a65357a1b490b5b, type: 3}
+  qAbilityActive: {fileID: 0}
+  eAbilityActive: {fileID: 0}
 --- !u!1 &115124
 GameObject:
   m_ObjectHideFlags: 0
