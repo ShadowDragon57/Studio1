@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController2 : MonoBehaviour
 {
@@ -12,8 +13,13 @@ public class PlayerController2 : MonoBehaviour
     //public SphereCollider col;
     public GuardianController2 guardian;
 
-    //Ability Related
-    public GameObject currentIdeology;
+    //Ability related
+    [SerializeField]
+    private GameObject currentIdeology;
+    public float speedBoostCount;
+    private bool boostActive, qAbiUsed, eAbiUsed;
+    [SerializeField]
+    private Text qCooldownText, eCooldownText;
 
     //Direction Related
     public float turnSmoothTime = 0.1f;
@@ -30,19 +36,20 @@ public class PlayerController2 : MonoBehaviour
     //Other Vars
     public bool wDown;
     public bool fDown;
-    public bool QabiUp;
-    public bool EabiUp;
 
     //Movement Speed Varsbl
     [SerializeField]
     private float leftSpeed, rightSpeed, forwardSpeed, backSpeed, sprintSpeed, airMovement;
 
     //Timer Var
-    private float Qtimer;
-    private float Etimer;
+    [SerializeField]
+    private float qTimer, eTimer;
 
     void Start()
     {
+        boostActive = false;
+        qAbiUsed = false;
+        eAbiUsed = false;
         //Defining Speed Vars
         leftSpeed = 20f;
         rightSpeed = 20f;
@@ -58,17 +65,50 @@ public class PlayerController2 : MonoBehaviour
         //Grabbing the current ideology from ConvictionConsequences
         currentIdeology = GameObject.Find("Canvas").GetComponent<ConvictionConsequences>().currentIdeology;
 
-        //Ability CoolDowns
-        if (Qtimer >= 0)
+        //timer for the speed boost from booster ability, and the increase for the speed variables
+        if(boostActive == true)
         {
-            Qtimer -= Time.deltaTime;
-            QabiUp = true;
+            speedBoostCount += Time.deltaTime;
+            leftSpeed = 35f;
+            rightSpeed = 35f;
+            forwardSpeed = 55f;
+            backSpeed = 35f;
+        }
+        if(speedBoostCount > 3)
+        {
+            leftSpeed = 20f;
+            rightSpeed = 20f;
+            forwardSpeed = 40f;
+            backSpeed = 20f;
+            boostActive = false;
+            speedBoostCount = 0;
         }
 
-        if (Etimer >= 0)
+        //Ability CoolDowns
+        if (qAbiUsed == true)
         {
-            Etimer -= Time.deltaTime;
-            EabiUp = true;
+            qTimer += Time.deltaTime;
+            qCooldownText.text = qTimer.ToString("0");
+        }
+        if(qTimer >= 3)
+        {
+            qTimer = 0;
+            qCooldownText.text = qTimer.ToString("0");
+            GameObject.Find("Abilities").GetComponent<Abilities2>().DestroyQAbility();
+            qAbiUsed = false;
+        }
+
+        if(eAbiUsed == true)
+        {
+            eTimer += Time.deltaTime;
+            eCooldownText.text = eTimer.ToString("0");
+        }
+        if (eTimer >= 5)
+        {
+            eTimer = 0;
+            eCooldownText.text = eTimer.ToString("0");
+            GameObject.Find("Abilities").GetComponent<Abilities2>().DestroyEAbility();
+            eAbiUsed = false;
         }
 
         //Checks if the player is touching the ground
@@ -136,7 +176,7 @@ public class PlayerController2 : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
             Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true)
+            if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true ) 
             {
                 controller.Move(moveFor * forwardSpeed * Time.deltaTime);
             }
@@ -187,68 +227,77 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
+    public void BoosterActivated() //telling this script that the boost has been activated
+    {
+        boostActive = true;
+    }
+
     void FixedUpdate()
     {
         //Abilities
 
-        if (Input.GetKey(KeyCode.Q) /*&& QabiUp == true*/)
+        if (Input.GetKey(KeyCode.Q) && qAbiUsed == false)
         {
             //Changes Q Ability based on current ideology
             if (currentIdeology.CompareTag("revelry"))
             {
-                QabiUp = false;
+                qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("bliss"))
             {
-                QabiUp = false;
+                GameObject.Find("Abilities").GetComponent<Abilities2>().BeamCast();
+                qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("animosity"))
             {
                 GameObject.Find("Abilities").GetComponent<Abilities2>().StrikeCast();
-                QabiUp = false;
+                qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("discontent"))
             {
-                QabiUp = false;
+                GameObject.Find("Abilities").GetComponent<Abilities2>().SunCast();
+                qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("hatred"))
             {
-                QabiUp = false;
+                qAbiUsed = true;
             }
         }
 
 
-        if (Input.GetKey(KeyCode.E) /*&& EabiUp == true*/)
+        if (Input.GetKey(KeyCode.E) && eAbiUsed == false)
         {
             //Changes Q Ability based on current ideology
             if (currentIdeology.CompareTag("revelry"))
             {
-                EabiUp = false;
+                eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("bliss"))
             {
-                EabiUp = false;
+                GameObject.Find("Abilities").GetComponent<Abilities2>().BoosterCast();
+                eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("animosity"))
             {
                 GameObject.Find("Abilities").GetComponent<Abilities2>().EarthenCast();
-                EabiUp = false;
+                eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("discontent"))
             {
-                EabiUp = false;
+                GameObject.Find("Abilities").GetComponent<Abilities2>().WallCast();
+                eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("hatred"))
             {
-                EabiUp = false;
+                eAbiUsed = true;
             }
         }
     }

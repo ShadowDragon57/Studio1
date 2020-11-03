@@ -81,12 +81,12 @@ public class ConvictionConsequences : MonoBehaviour
     {
         convictionCount = GetComponent<ConvictionCalculator>().convictionCount; //getting the value of conviction from the calculator
 
-        if(current == 4) //this checks to see if the array is at its max
+        if(current == 3) //this checks to see if the array is at its max
         {
             activeTier = tiers[current];
             oneBelow = tiers[current - 1];
         }
-        else if (current == 0) //this checks to see if the array is at its min
+        else if (current == 1) //this checks to see if the array is at its min
         {
             activeTier = tiers[current];
             oneAbove = tiers[current + 1];
@@ -102,7 +102,7 @@ public class ConvictionConsequences : MonoBehaviour
         {
             if (convictionCount >= 100.0f) //checking to see if the conviction is at its max
             {
-                if(current < 4) //only allowed to happen if the array isnt at its max
+                if(current < 3) //only allowed to happen if the array isnt at its max
                 {
                     activeTier.SetActive(false);
                     oneAbove.SetActive(true);
@@ -113,7 +113,7 @@ public class ConvictionConsequences : MonoBehaviour
             }
             if (convictionCount <= 0.0f) //checking to see if the conviction is at its min
             {
-                if(current > 0) //only allowed to happen if the array isnt at its min
+                if(current > 1) //only allowed to happen if the array isnt at its min
                 {
                     activeTier.SetActive(false);
                     oneBelow.SetActive(true);

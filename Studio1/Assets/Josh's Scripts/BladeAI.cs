@@ -171,8 +171,10 @@ public class BladeAI : MonoBehaviour
     {
         if (col.gameObject.CompareTag("throwRock"))
         {
+            bladeHealth -= 1;
             beenHit = true;
             Destroy(col.gameObject);
+            GameObject.Find("Canvas").GetComponent<ConvictionCalculator>().EnemyKilledByGuardian();
         }
     }
 

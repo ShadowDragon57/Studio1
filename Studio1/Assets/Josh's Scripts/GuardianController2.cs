@@ -56,14 +56,19 @@ public class GuardianController2 : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.transform.gameObject.tag == "grabbableRock" && rocksCollected < rockLimit)
+                Debug.Log("Found " + hit.transform.gameObject.name + " at " + hit.distance);
+
+                if (hit.transform.gameObject.tag == "grabbableRock" && rocksCollected < rockLimit)
                 {
+                    Debug.Log("Hit");
                     //Adds a collection of rocks to the 
                     rocksCollected += 1;
                 }
 
                 if (hit.transform.gameObject.tag != "grabbableRock")
                 {
+
+
                     if (rocksCollected > 0)
                     {
                         rocksCollected -= 1;
