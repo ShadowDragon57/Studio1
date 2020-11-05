@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerController2 : MonoBehaviour
@@ -10,8 +11,8 @@ public class PlayerController2 : MonoBehaviour
     public CharacterController controller;
     public Animator anim;
     public Transform cam;
-    //public SphereCollider col;
     public GuardianController2 guardian;
+    public KeyController key;
 
     //Ability related
     [SerializeField]
@@ -22,8 +23,8 @@ public class PlayerController2 : MonoBehaviour
     private Text qCooldownText, eCooldownText;
 
     //Direction Related
-    public float turnSmoothTime = 0.1f;
-    float smoothVeloctiy;
+    private float turnSmoothTime = 0.15f;
+    float turnSmoothVeloctiy;
     Vector3 velocity;
     public float gravity = -9.807f;
 
@@ -34,12 +35,12 @@ public class PlayerController2 : MonoBehaviour
     public bool isGrounded;
 
     //Other Vars
-    public bool wDown;
     public bool fDown;
 
     //Movement Speed Varsbl
     [SerializeField]
     private float leftSpeed, rightSpeed, forwardSpeed, backSpeed, sprintSpeed, airMovement;
+    private float currentSpeed;
 
     //Timer Var
     [SerializeField]
@@ -119,17 +120,6 @@ public class PlayerController2 : MonoBehaviour
             velocity.y = -2f;
         }
 
-        //Checks if W is down to see if the player can incrase speed
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            wDown = true;
-        }
-
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            wDown = false;
-        }
-
         //Checks to see if the F button is being pressed
         if (Input.GetKeyDown(KeyCode.F) && Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -171,58 +161,104 @@ public class PlayerController2 : MonoBehaviour
 
             //Determines the angle
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothTime, smoothVeloctiy);
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVeloctiy, turnSmoothTime);
 
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f).normalized;
+            transform.rotation = Quaternion.Euler(0f, angle, 0f).normalized;
             Vector3 moveFor = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-            if (Input.GetKey(KeyCode.W) && fDown != true && isGrounded == true ) 
+            
+
+            if (key.numberOfButtonsDown > 0)
             {
-                controller.Move(moveFor * forwardSpeed * Time.deltaTime);
-            }
+                if (key.numberOfButtonsDown == 1)
+                {
+                    if (isGrounded)
+                    {
+                        if (key.wDown)
+                        {
+                            controller.Move(moveFor.normalized * forwardSpeed * Time.deltaTime);
+                        }
 
-            if (Input.GetKey(KeyCode.A) && isGrounded == true)
-            {
-                controller.Move(moveFor * leftSpeed * Time.deltaTime);
-            }
+                        if (key.aDown)
+                        {
+                            controller.Move(moveFor.normalized * leftSpeed * Time.deltaTime);
+                        }
 
-            if (Input.GetKey(KeyCode.S) && isGrounded == true)
-            {
+                        if (key.sDown)
+                        {
+                            controller.Move(moveFor.normalized * backSpeed * Time.deltaTime);
+                        }
 
-                controller.Move(moveFor * backSpeed * Time.deltaTime);
-            }
+                        if (key.dDown)
+                        {
+                            controller.Move(moveFor.normalized * rightSpeed * Time.deltaTime);
+                        }
+                    }
 
-            if (Input.GetKey(KeyCode.D) && isGrounded == true)
-            {
-                controller.Move(moveFor * rightSpeed * Time.deltaTime);
-            }
+                    if (!isGrounded)
+                    {
+                        controller.Move(moveFor.normalized * airMovement * Time.deltaTime);
+                    }
 
-            if (Input.GetKey(KeyCode.F) && wDown == true && isGrounded == true)
-            {
-                controller.Move(moveFor * sprintSpeed * Time.deltaTime);
-            }
+                }
 
-            //Checks if Player is in the air
-            //Air Movement
+                if (key.numberOfButtonsDown == 2)
+                {
+                    if (isGrounded)
+                    {
+                        if (key.wDown && key.aDown)
+                        {
+                            currentSpeed = Mathf.Pow(forwardSpeed, 2) + Mathf.Pow(leftSpeed, 2);
+                            currentSpeed = Mathf.Sqrt(currentSpeed);
+                            controller.Move(moveFor.normalized * currentSpeed * Time.deltaTime);
+                        }
 
-            if (Input.GetKey(KeyCode.W) && isGrounded == false)
-            {
-                controller.Move(moveFor * airMovement * Time.deltaTime);
-            }
+                        if (key.wDown && key.dDown)
+                        {
+                            currentSpeed = Mathf.Pow(forwardSpeed, 2) + Mathf.Pow(rightSpeed, 2);
+                            currentSpeed = Mathf.Sqrt(currentSpeed);
+                            controller.Move(moveFor.normalized * currentSpeed * Time.deltaTime);
+                        }
 
-            if (Input.GetKey(KeyCode.A) && isGrounded == false)
-            {
-                controller.Move(moveFor * airMovement * Time.deltaTime);
-            }
+                        if (key.sDown && key.aDown)
+                        {
+                            currentSpeed = Mathf.Pow(backSpeed, 2) + Mathf.Pow(leftSpeed, 2);
+                            currentSpeed = Mathf.Sqrt(currentSpeed);
+                            controller.Move(moveFor.normalized * currentSpeed * Time.deltaTime);
+                        }
 
-            if (Input.GetKey(KeyCode.S) && isGrounded == false)
-            {
-                controller.Move(moveFor * airMovement * Time.deltaTime);
-            }
+                        if (key.sDown && key.dDown)
+                        {
+                            currentSpeed = Mathf.Pow(backSpeed, 2) + Mathf.Pow(rightSpeed, 2);
+                            currentSpeed = Mathf.Sqrt(currentSpeed);
+                            controller.Move(moveFor.normalized * currentSpeed * Time.deltaTime);
+                        }
+                    }
 
-            if (Input.GetKey(KeyCode.D) && isGrounded == false)
-            {
-                controller.Move(moveFor * airMovement * Time.deltaTime);
+                    if (!isGrounded)
+                    {
+                        controller.Move(moveFor.normalized * airMovement * Time.deltaTime);
+                    }
+                }
+
+                if (key.numberOfButtonsDown == 3)
+                {
+                    if (key.sDown && key.aDown && key.dDown)
+                    {
+                        currentSpeed = Mathf.Pow(backSpeed, 3f) + Mathf.Pow(leftSpeed, 3f) + Mathf.Pow(rightSpeed, 3f);
+                        currentSpeed = Mathf.Pow(currentSpeed, 1f / 3f);
+                        controller.Move(moveFor.normalized * currentSpeed * Time.deltaTime);
+                    }
+
+                    if (key.wDown && key.aDown && key.dDown)
+                    {
+                        currentSpeed = Mathf.Pow(forwardSpeed, 3f) + Mathf.Pow(leftSpeed, 3f) + Mathf.Pow(rightSpeed, 3f);
+                        currentSpeed = Mathf.Pow(currentSpeed, 1f / 3f);
+                        controller.Move(moveFor.normalized * currentSpeed * Time.deltaTime);
+                    }
+                }
+
+
             }
         }
     }

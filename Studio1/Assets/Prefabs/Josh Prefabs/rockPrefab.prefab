@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7461616216531901331}
   - component: {fileID: 7461616216522520211}
   - component: {fileID: -2678521719429849402}
-  - component: {fileID: 2856267946136306055}
   - component: {fileID: 5909319735568225523}
+  - component: {fileID: 6663170144427176379}
   - component: {fileID: -5890743249391319375}
   m_Layer: 0
   m_Name: rockPrefab
@@ -117,22 +117,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ab695d0ee7e3b254cbf45440aa806481, type: 3}
---- !u!114 &2856267946136306055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7461616216529896787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f21a135d1e2fe4e43bd94eb834dea030, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  guardian: {fileID: 0}
-  conviction: {fileID: 0}
-  collisionReached: 0
-  test: 1
 --- !u!136 &5909319735568225523
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -147,6 +131,22 @@ CapsuleCollider:
   m_Height: 0.3
   m_Direction: 2
   m_Center: {x: 0.0056038983, y: -0.0032402107, z: 0.10237586}
+--- !u!114 &6663170144427176379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461616216529896787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12c58f9e7e932f34fa539c6a5e0b8a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guardian: {fileID: 0}
+  conviction: {fileID: 0}
+  collisionReached: 0
+  test: 1
 --- !u!54 &-5890743249391319375
 Rigidbody:
   m_ObjectHideFlags: 0
