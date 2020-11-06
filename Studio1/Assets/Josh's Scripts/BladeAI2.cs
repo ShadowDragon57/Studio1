@@ -8,14 +8,20 @@ public class BladeAI2 : MonoBehaviour
     Animator anim;
     Transform target;
     NavMeshAgent agent;
+    Patrol patrol;
 
-    public float triggerRadius = 10f;
+    GameObject player;
+
+    private float triggerRadius = 50f;
+    private float attackRadius = 10f;
     public float angleFOV = 110f;
 
     public int healthPoints = 5;
 
     public bool playerSighted = false;
     public Vector3 sightedLoc;
+    public Vector3 previousSighting;
+    public bool wereInSight = false;
 
     public bool beenHit = false;
 
@@ -53,8 +59,9 @@ public class BladeAI2 : MonoBehaviour
             anim.SetBool("running", true);
             anim.SetInteger("condition", 1);
             agent.SetDestination(target.position);
+            previousSighting = target.position;
 
-            if (distance <= agent.stoppingDistance)
+            if (distance <= agent.stoppingDistance && !patrol.patrolling)
             {
                 //Sophias Work
                 anim.SetBool("running", false);
@@ -77,7 +84,7 @@ public class BladeAI2 : MonoBehaviour
         //For Audio later
         if (CalculatePathLength(target.position) <= triggerRadius)
         {
-            sightedLoc = target.position;
+            previousSighting = target.position;
         }
 
         //Visual Detection
@@ -92,12 +99,14 @@ public class BladeAI2 : MonoBehaviour
             {
                 RaycastHit hit;
 
-                if (Physics.Raycast(transform.position + (transform.up * 2.25f), direction.normalized, out hit, distance))
+                if (Physics.Raycast(transform.position + (transform.up * 2.25f), direction.normalized, out hit, attackRadius))
                 {
                     if (hit.collider.gameObject.CompareTag("Player"))
                     {
+                        patrol.patrolling = false;
                         playerSighted = true;
                         sightedLoc = target.position;
+                        player = hit.collider.gameObject;
                     }
                 }
             }
