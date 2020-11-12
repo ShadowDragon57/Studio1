@@ -928,6 +928,7 @@ GameObject:
   - component: {fileID: 1839385541007628206}
   - component: {fileID: 37730269726630030}
   - component: {fileID: 7404667644316423282}
+  - component: {fileID: 1023758396722568210}
   - component: {fileID: 1315807019716483441}
   - component: {fileID: 3599603381353992208}
   m_Layer: 0
@@ -1021,12 +1022,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6671db1b32554a44aa57383bdf56cf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerRadius: 10
   angleFOV: 110
+  healthPoints: 5
   playerSighted: 0
   sightedLoc: {x: 0, y: 0, z: 0}
+  previousSighting: {x: 0, y: 0, z: 0}
+  wereInSight: 0
+  beenHit: 0
   attackTimer: 1
   canAttack: 0
+--- !u!114 &1023758396722568210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450310415619287501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4df3b8bd511f0f41b51a5449edb1036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolPoint1: {fileID: 0}
+  patrolPoint2: {fileID: 0}
+  patrolPoint3: {fileID: 0}
+  patrolPoint4: {fileID: 0}
+  patrolPoint5: {fileID: 0}
+  patrolling: 1
 --- !u!54 &1315807019716483441
 Rigidbody:
   m_ObjectHideFlags: 0
