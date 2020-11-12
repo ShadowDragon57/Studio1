@@ -8,7 +8,6 @@ public class BladeAI2 : MonoBehaviour
     Animator anim;
     Transform target;
     NavMeshAgent agent;
-    Patrol patrol;
 
     GameObject player;
 
@@ -61,7 +60,7 @@ public class BladeAI2 : MonoBehaviour
             agent.SetDestination(target.position);
             previousSighting = target.position;
 
-            if (distance <= agent.stoppingDistance && !patrol.patrolling)
+            if (distance <= agent.stoppingDistance)
             {
                 //Sophias Work
                 anim.SetBool("running", false);
@@ -103,7 +102,6 @@ public class BladeAI2 : MonoBehaviour
                 {
                     if (hit.collider.gameObject.CompareTag("Player"))
                     {
-                        patrol.patrolling = false;
                         playerSighted = true;
                         sightedLoc = target.position;
                         player = hit.collider.gameObject;
