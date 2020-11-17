@@ -5,8 +5,8 @@ using UnityEngine;
 public class Stoning : MonoBehaviour
 {
     //References
-    public GuardianController2 guardian;
-    public ConvictionCalculator conviction;
+    GuardianAttack guardian;
+    ConvictionCalculator conviction;
 
     //Public Vars
     public bool collisionReached;
@@ -28,8 +28,7 @@ public class Stoning : MonoBehaviour
         collisionReached = false;
 
         //If there are errors, ensure that the gameObject holding the guardian controller is named like this
-        GameObject guardianController = GameObject.Find("Guardian Controller");
-        guardian = guardianController.GetComponent<GuardianController2>();
+        guardian = GameObject.Find("Player Controller").GetComponent<GuardianAttack>();
     }
 
     // Update is called once per frame

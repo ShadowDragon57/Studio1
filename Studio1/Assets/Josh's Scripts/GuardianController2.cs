@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEditor;
-using Boo.Lang.Environments;
 using UnityStandardAssets.Cameras;
 
 public class GuardianController2 : MonoBehaviour
