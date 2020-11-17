@@ -18,7 +18,7 @@ public class TriggeredMovement : MonoBehaviour
     {
         if (triggered == true && Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Tutorial redux part 2");
+            SceneManager.LoadScene("tutorial part 2A");
         }
     }
 
