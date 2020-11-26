@@ -14,6 +14,7 @@ public class KeyController : MonoBehaviour
     public bool sDown;
     public bool dDown;
     public bool fDown;
+    public bool lShiftDown;
 
     // Update is called once per frame
     void Update()
@@ -69,13 +70,13 @@ public class KeyController : MonoBehaviour
 
         if (wDown)
         {
-            if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 fDown = true;
                 numberOfButtonsDown += 1;
             }
 
-            if (Input.GetKeyUp(KeyCode.F) || Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.F))
             {
                 fDown = false;
                 numberOfButtonsDown -= 1;

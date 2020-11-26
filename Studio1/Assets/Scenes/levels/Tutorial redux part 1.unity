@@ -3064,7 +3064,7 @@ GameObject:
   - component: {fileID: 1887199362}
   m_Layer: 0
   m_Name: CM FreeLook2
-  m_TagString: Untagged
+  m_TagString: CamController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
