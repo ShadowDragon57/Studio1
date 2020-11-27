@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+<<<<<<< Updated upstream
 using System.Security.Policy;
+=======
+//using System.Security.Policy;
+>>>>>>> Stashed changes
 using UnityEngine;
 
 public class RockDestroyer : MonoBehaviour

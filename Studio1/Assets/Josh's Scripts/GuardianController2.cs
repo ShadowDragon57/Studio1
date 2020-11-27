@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEditor;
+<<<<<<< Updated upstream
 using Boo.Lang.Environments;
+=======
+//using Boo.Lang.Environments;
+>>>>>>> Stashed changes
 using UnityStandardAssets.Cameras;
 
 public class GuardianController2 : MonoBehaviour

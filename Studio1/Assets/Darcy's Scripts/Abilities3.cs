@@ -37,7 +37,11 @@ public class Abilities3 : MonoBehaviour
         }
         if(beamCount >= 3) //deactivating the ability
         {
+<<<<<<< Updated upstream
             GameObject.Find("Player (Josh)").GetComponent<PlayerController3>().BeamDeactivated();
+=======
+            //GameObject.Find("Player Controller").GetComponent<PlayerController3>().BeamDeactivated();
+>>>>>>> Stashed changes
             Destroy(qAbilityActive);
             beamCount = 0;
             beamActive = false;
@@ -156,7 +160,11 @@ public class Abilities3 : MonoBehaviour
     }
     public void WallCast()
     {
+<<<<<<< Updated upstream
         playerPos = new Vector3(player.position.x, player.position.y - 22, player.position.z);
+=======
+        playerPos = new Vector3(player.position.x, player.position.y, player.position.z);
+>>>>>>> Stashed changes
         playerDirection = player.forward;
         spawnDis = 4;
         spawnPos = playerPos + playerDirection * spawnDis;
@@ -171,7 +179,11 @@ public class Abilities3 : MonoBehaviour
         Destroy(qAbilityActive); 
         qAbilityActive = Instantiate(beam, playerPos, player.rotation);
         beamActive = true;
+<<<<<<< Updated upstream
         GameObject.Find("Player (Josh)").GetComponent<PlayerController3>().BeamActivated();
+=======
+        //GameObject.Find("Player (Josh)").GetComponent<PlayerController3>().BeamActivated();
+>>>>>>> Stashed changes
     }
 
     public void BoosterCast()
@@ -181,7 +193,11 @@ public class Abilities3 : MonoBehaviour
         spawnPos = playerPos + playerDirection;
         Destroy(eAbilityActive);
         eAbilityActive = Instantiate(booster, spawnPos, boosterTransform.rotation);
+<<<<<<< Updated upstream
         GameObject.Find("Player (Josh)").GetComponent<PlayerController3>().BoosterActivated();
+=======
+        //GameObject.Find("Player (Josh)").GetComponent<PlayerController3>().BoosterActivated();
+>>>>>>> Stashed changes
     }
 
     //hatred abilities

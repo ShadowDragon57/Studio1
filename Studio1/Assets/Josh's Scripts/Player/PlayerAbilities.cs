@@ -82,29 +82,31 @@ public class PlayerAbilities : MonoBehaviour
             //Changes Q Ability based on current ideology
             if (currentIdeology.CompareTag("revelry"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities3>().PulseCast();
                 qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("bliss"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().BeamCast();
+                GameObject.Find("Abilities").GetComponent<Abilities3>().BeamCast();
                 qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("animosity"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().StrikeCast();
+                GameObject.Find("Abilities").GetComponent<Abilities3>().StrikeCast();
                 qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("discontent"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().SunCast();
+                GameObject.Find("Abilities").GetComponent<Abilities3>().SunCast();
                 qAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("hatred"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities3>().LanceCast();
                 qAbiUsed = true;
             }
         }
@@ -117,30 +119,32 @@ public class PlayerAbilities : MonoBehaviour
             //Changes Q Ability based on current ideology
             if (currentIdeology.CompareTag("revelry"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities3>().VoidCast();
                 eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("bliss"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().BoosterCast();
+                GameObject.Find("Abilities").GetComponent<Abilities3>().BoosterCast();
                 boostActive = true;
                 eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("animosity"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().EarthenCast();
+                GameObject.Find("Abilities").GetComponent<Abilities3>().EarthenCast();
                 eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("discontent"))
             {
-                GameObject.Find("Abilities").GetComponent<Abilities2>().WallCast();
+                GameObject.Find("Abilities").GetComponent<Abilities3>().WallCast();
                 eAbiUsed = true;
             }
 
             if (currentIdeology.CompareTag("hatred"))
             {
+                GameObject.Find("Abilities").GetComponent<Abilities3>().ShieldCast();
                 eAbiUsed = true;
             }
         }

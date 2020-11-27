@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TriggeredMovement : MonoBehaviour
 {
     bool triggered;
-    public GameObject flame, text;
+    public GameObject flame;
 
     // Update is called once per frame
     void Start()
@@ -24,12 +24,12 @@ public class TriggeredMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Entered");
-        if (collision.gameObject.name == "Player")
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "Graphics")
         {
+            
             triggered = true;
             flame.SetActive(true);
-            text.SetActive(true);
 
         }
     }
