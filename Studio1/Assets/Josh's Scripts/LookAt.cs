@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,48 +41,3 @@ public class LookAt : MonoBehaviour
         }
     }
 }
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LookAt : MonoBehaviour
-{
-    public Animator animator;
-    public bool ikActive = false;
-    public Transform lookObj = null;
-    public float lookWeight = 2f;
-
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    //a callback for calculating IK
-    void OnAnimatorIK()
-    {
-
-        if (animator)
-        {
-           
-            //if the IK is active, set the position and rotation directly to the goal. 
-            if (ikActive)
-            {
-                // Set the look target position, if one has been assigned
-                if (lookObj != null)
-                {
-                    animator.SetLookAtWeight(lookWeight);
-                    animator.SetLookAtPosition(lookObj.position);
-                }
-
-            }
-
-            //if the IK is not active, set the position and rotation of the hand and head back to the original position
-            else
-            {
-                animator.SetLookAtWeight(0);
-            }
-        }
-    }
-}
->>>>>>> Stashed changes
