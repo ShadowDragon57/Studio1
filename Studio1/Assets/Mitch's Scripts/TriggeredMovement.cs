@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class TriggeredMovement : MonoBehaviour
 {
     bool triggered;
-    public GameObject flame, text;
+    public GameObject flame;
 
     // Update is called once per frame
     void Start()
@@ -18,18 +18,18 @@ public class TriggeredMovement : MonoBehaviour
     {
         if (triggered == true && Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("Tutorial redux part 2");
+            SceneManager.LoadScene("tutorial part 2A");
         }
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Entered");
-        if (collision.gameObject.name == "Player")
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name == "Graphics")
         {
+            
             triggered = true;
             flame.SetActive(true);
-            text.SetActive(true);
 
         }
     }

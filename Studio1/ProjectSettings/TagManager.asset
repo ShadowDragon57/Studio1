@@ -16,6 +16,8 @@ TagManager:
   - Blade
   - Interactable
   - Enemy
+  - TutorialCard
+  - Obstacale
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,11 @@ TagManager:
   - Player
   - Enemy
   - Interactable
-  - 
+<<<<<<< Updated upstream
+  - Obstacle
+=======
+  - Obstacale
+>>>>>>> Stashed changes
   - 
   - 
   - 

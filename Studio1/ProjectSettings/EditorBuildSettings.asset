@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/levels/tutorial part 2A.unity
     guid: 5214eba7bdb44fa4d8c1046136d45d3f
   - enabled: 1
+    path: Assets/Scenes/levels/MainMenu.unity
+    guid: a9c124c2cc705844999e4b5a48d5805b
+  - enabled: 1
     path: Assets/Scenes/levels/Tutorial redux part 1.unity
     guid: 7480ea5054bed4d48ba5dc901b76f20e
   - enabled: 1
