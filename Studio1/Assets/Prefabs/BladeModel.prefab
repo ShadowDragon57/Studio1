@@ -511,9 +511,9 @@ GameObject:
   - component: {fileID: 4578538923525055951}
   - component: {fileID: 7595901520034365365}
   - component: {fileID: 5342380721777164566}
-  - component: {fileID: 5990692314769946166}
   - component: {fileID: 4748924939098722249}
   - component: {fileID: 7084551051289151144}
+  - component: {fileID: -351838586270111677}
   m_Layer: 0
   m_Name: BladeModel
   m_TagString: Blade
@@ -570,29 +570,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5990692314769946166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3801579354823262069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754c14603756e624db5701e626d91e06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fieldOfViewAngle: 110
-  playerSighted: 0
-  anim: {fileID: 7595901520034365365}
-  timer: 10
-  attackTimer: 2
-  timesHit: 0
-  bladeHealth: 4
-  inRange: 0
-  canAttack: 0
-  movementSpeed: 200
-  refreshTrigger: 0
 --- !u!54 &4748924939098722249
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -631,6 +608,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-351838586270111677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801579354823262069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4472ada935b8d4f917d6b384ce36ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleFOV: 110
+  healthPoints: 5
+  playerSighted: 0
+  sightedLoc: {x: 0, y: 0, z: 0}
+  previousSighting: {x: 0, y: 0, z: 0}
+  wereInSight: 0
+  beenHit: 0
+  attackTimer: 1
+  canAttack: 0
 --- !u!1 &3831906160718791392
 GameObject:
   m_ObjectHideFlags: 0

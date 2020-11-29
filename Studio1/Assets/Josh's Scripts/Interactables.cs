@@ -12,7 +12,6 @@ public class Interactables : MonoBehaviour
     private Vector3 mOffset;
     //Original Position;
     private Vector3 oriPos;
-    private EnvironmentInteraction environ;
 
 
     public bool grounded;
@@ -23,7 +22,6 @@ public class Interactables : MonoBehaviour
     public void Awake()
     {
         oriPos = transform.position;
-        environ = GameObject.Find("Collider").GetComponent<EnvironmentInteraction>();
     }
 
     private void OnMouseDown()
@@ -61,7 +59,7 @@ public class Interactables : MonoBehaviour
 
     public void Update()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player");
+        playerController = GameObject.Find("Graphics");
         playerPosition = playerController.transform.position;
         distance = Vector3.Distance(transform.position, playerPosition);
 
@@ -100,4 +98,3 @@ public class Interactables : MonoBehaviour
         }
     }
 }
-
