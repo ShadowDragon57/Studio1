@@ -196,7 +196,6 @@ public class Abilities3 : MonoBehaviour
         spawnPos = playerPos + playerDirection;
         Destroy(eAbilityActive);
         eAbilityActive = Instantiate(booster, spawnPos, boosterTransform.rotation);
-        GameObject.Find("Player (Josh)").GetComponent<PlayerController3>().BoosterActivated();
     }
 
     //hatred abilities
