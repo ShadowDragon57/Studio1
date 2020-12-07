@@ -16,6 +16,7 @@ TagManager:
   - Blade
   - Interactable
   - Enemy
+  - Music
   layers:
   - Default
   - TransparentFX

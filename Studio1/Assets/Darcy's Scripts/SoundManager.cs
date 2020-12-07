@@ -4,19 +4,63 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip test;
-    public void PlaySound()
+    [SerializeField]
+    private AudioClip test, ambient; 
+    public AudioClip mainMenuClip;
+    [SerializeField]
+    private bool mainMenu = true;
+
+    void Start()
+    {
+        PlayMainMenu(mainMenu);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            PlayAmbient();
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            mainMenu ^= true; //this swaps the bool over, if its false, makes it true, and if its true, makes it false.
+        }
+    }
+    public void PlaySound() //test from prototype, can be deleted when stuff works
     {
         GameObject soundGameObject = new GameObject("Sound");
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.PlayOneShot(test);
     }
 
-    void Update()
+    public void PlayAmbient() //ambient background music for during game
     {
-        if(Input.GetKey(KeyCode.Return))
+        GameObject ambientGameObject = new GameObject("Ambient"); //to make sounds work in unity, audio sources have to be attached to gameobjects,
+                                                                  //and then the clips have to attached to those audio sources
+        AudioSource ambientSource = ambientGameObject.AddComponent<AudioSource>();
+        ambientSource.clip = ambient; //the audio sourse can then be changed within the code to allow for things such as volume, looping, spacial sound, etc.
+        ambientSource.loop = true;
+        ambientSource.Play();
+    }
+
+    public void PlayMainMenu(bool mainMenu)
+    {
+        if (GameObject.FindGameObjectsWithTag("Music").Length == 0)
         {
-            PlaySound();
+            GameObject mainMenuGameObject = new GameObject("MainMenu");
+            mainMenuGameObject.tag = "Music";
+            AudioSource temp = GameObject.Find("MainMenu").AddComponent<AudioSource>();
+        }
+        AudioSource mainMenuSource = GameObject.Find("MainMenu").GetComponent<AudioSource>();
+        if (mainMenu)
+        {
+            mainMenuSource.clip = mainMenuClip;
+            mainMenuSource.loop = true;
+            mainMenuSource.Play();
+        }
+        if(!mainMenu)
+        {
+            mainMenuSource.Stop();
         }
     }
 }

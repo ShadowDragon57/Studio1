@@ -36,14 +36,6 @@ public class Abilities3 : MonoBehaviour
             elapsedCollision = 0;
             ableToCollide = true;
         }
-        //functionaltiy for the aiming system
-        //if(aimActive == true)
-        //{
-        //    playerDirection = player.forward;
-        //    spawnDis = 5;
-        //    spawnPos = player.position + playerDirection * spawnDis;
-        //    Instantiate(aimObject, spawnPos, aimTransform.rotation);
-        //}
         //functionaliy for beam following and rotating with player, and space to add for it to stop the player from moving when used.
         if (beamActive == true && beamCount < 3) //making the beam follow the character, and counts the amount of time for it to be active.
         {
