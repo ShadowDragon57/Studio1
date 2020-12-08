@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class SoundManager : MonoBehaviour
             mainMenu ^= true; //this swaps the bool over, if its false, makes it true, and if its true, makes it false.
             PlayMainMenu(mainMenu);
         }
+        AudioSource mainMenuSource = GameObject.Find("MainMenu").GetComponent<AudioSource>();
+        mainMenuSource.volume = GameObject.Find("Slider").GetComponent<Slider>().value;
     }
     public void PlaySound() //test from prototype, can be deleted when stuff works
     {
