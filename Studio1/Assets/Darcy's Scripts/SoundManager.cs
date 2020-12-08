@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             mainMenu ^= true; //this swaps the bool over, if its false, makes it true, and if its true, makes it false.
+            PlayMainMenu(mainMenu);
         }
     }
     public void PlaySound() //test from prototype, can be deleted when stuff works

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class MainMenu : MonoBehaviour
     Texture coatTexture;
     float ticker = 3.0f;
     bool completed;
+    public GameObject canvasButtons;
+    public VideoPlayer videoPlayer;
+    private bool mainMenu = true;
 
     // Start is called before the first frame update
     void Start()
@@ -22,17 +26,25 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            StartButton();
+        }
     }
 
+    
+    void CheckOver(UnityEngine.Video.VideoPlayer vp)
+    {
+        SceneManager.LoadScene("Tutorial redux part 1");
+    }
 
     public void StartButton()
     {
-        CoatDisplay();
-        if (completed == true)
-        {
-            SceneManager.LoadScene("Tutorial redux part 1");
-        }
+        videoPlayer.Play();
+        mainMenu = false;
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayMainMenu(mainMenu);
+        canvasButtons.SetActive(false);
+        videoPlayer.loopPointReached += CheckOver;
     }
 
     public void OptionsButton()
