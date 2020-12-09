@@ -112,7 +112,6 @@ public class PlayerController3 : MonoBehaviour
         {
             qTimer = 0;
             qCooldownText.text = qTimer.ToString("0");
-            GameObject.Find("Abilities").GetComponent<Abilities3>().DestroyQAbility();
             qAbiUsed = false;
         }
 
@@ -125,7 +124,6 @@ public class PlayerController3 : MonoBehaviour
         {
             eTimer = 0;
             eCooldownText.text = eTimer.ToString("0");
-            GameObject.Find("Abilities").GetComponent<Abilities3>().DestroyEAbility();
             eAbiUsed = false;
         }
 

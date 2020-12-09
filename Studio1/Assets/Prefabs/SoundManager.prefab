@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9148905964940958443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9148905964940958441}
+  - component: {fileID: 9148905964940958440}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9148905964940958441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148905964940958443}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 283.8465, y: -42.984924, z: 63.56619}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9148905964940958440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148905964940958443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2579d1c57870ed4dae4032ad130f36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClip: {fileID: 8300000, guid: 5b255a75a12a6bb429c5c991901f99c0, type: 3}
+  paperRustle: {fileID: 8300000, guid: 6cfddec8db1a2474bbf77a835e433cfe, type: 3}
+  voidClip: {fileID: 8300000, guid: 782fce694586b9f42ad90e9b45b4816c, type: 3}
+  pulse: {fileID: 8300000, guid: 2ceab92385611324ea54cbd2efe0fcbe, type: 3}
+  boost: {fileID: 8300000, guid: b8ab350a6f1885140b3a6f2fa54e20df, type: 3}
+  beam: {fileID: 8300000, guid: 7a3616e53326ce94384d3400d77abbec, type: 3}
+  earthen: {fileID: 8300000, guid: 18a7504a0a3d2a745911c70eaab3e65d, type: 3}
+  strike: {fileID: 8300000, guid: f9302813ea2094c48b676dfc5448b7d4, type: 3}
+  wall: {fileID: 8300000, guid: 18b4a593f18047c4c930b26087fca0cc, type: 3}
+  sun: {fileID: 8300000, guid: 296ac1f7038a8ff4b8c9422f5c3af8ea, type: 3}
+  shield: {fileID: 8300000, guid: 9c1eacd2912703244ad71f2bd801b363, type: 3}
+  lance: {fileID: 8300000, guid: 6bd4dc32af8c68f4eb2020fc36b74703, type: 3}

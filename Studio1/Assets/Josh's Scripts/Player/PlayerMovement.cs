@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float leftSpeed, rightSpeed, forwardSpeed, backSpeed, sprintSpeed, airMovement;
     private float oriLeft, oriRight, oriFor, oriBack, oriSprint;
     float currentSpeed;
+    private bool boostActive = false;
 
     //Ground Collision
     float groundDistance = 0.5f;
@@ -92,7 +93,30 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
 
-        
+        #region
+
+        boostActive = GameObject.Find("Abilities").GetComponent<Abilities3>().boostActive;
+        //Activates the changes that occur for boost
+        if (boostActive)
+        {
+            leftSpeed = 35f;
+            rightSpeed = 35f;
+            forwardSpeed = 55f;
+            backSpeed = 35f;
+            sprintSpeed = 95f;
+            airMovement = 5f;
+        }
+        if (!boostActive)
+        {
+            leftSpeed = 20f;
+            rightSpeed = 20f;
+            forwardSpeed = 40f;
+            backSpeed = 20f;
+            sprintSpeed = 80f;
+            airMovement = 5f;
+        }
+        #endregion
+
         //Magnitude checks if you're moving in any direction
         if (direction.magnitude >= 0.00000001f)
         {

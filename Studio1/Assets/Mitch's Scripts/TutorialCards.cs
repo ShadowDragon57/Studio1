@@ -178,6 +178,7 @@ public class TutorialCards : MonoBehaviour
         if (collision.gameObject.CompareTag("TutorialCard") == true)
         {
             cardPickup = collision.gameObject;
+            GameObject.Find("SoundManager").GetComponent<SoundManager>().PaperRustle();
             SetCardDisplay(cardPickup.GetComponent<cardVariables>().cardID);
             Debug.Log(collision.name);
             cardPickup.SetActive(false);

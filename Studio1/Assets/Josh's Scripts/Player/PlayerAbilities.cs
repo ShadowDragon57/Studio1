@@ -11,8 +11,8 @@ public class PlayerAbilities : MonoBehaviour
     PlayerMovement player;
 
     //Private Vars
-    bool qAbiUsed, eAbiUsed, boostActive, activated;
-    float qTimer, eTimer, boostTimer;
+    public bool qAbiUsed, eAbiUsed, activated;
+    public float qTimer, eTimer, boostTimer;
 
 
     // Start is called before the first frame update
@@ -24,6 +24,8 @@ public class PlayerAbilities : MonoBehaviour
 
         qAbiUsed = false;
         eAbiUsed = false;
+        qTimer = 3f;
+        eTimer = 5f;
     }
 
     // Update is called once per frame
@@ -37,8 +39,9 @@ public class PlayerAbilities : MonoBehaviour
         {
             qTimer -= Time.deltaTime;
 
-            if (qTimer <= 0)
+            if (qTimer <= 0.0f)
             {
+                qTimer = 3f;
                 qAbiUsed = false;
             }
         }
@@ -46,29 +49,11 @@ public class PlayerAbilities : MonoBehaviour
         if (eAbiUsed)
         {
             eTimer -= Time.deltaTime;
-
-            if (eTimer <= 0)
+            
+            if (eTimer <= 0.0f)
             {
+                eTimer = 5f;
                 eAbiUsed = false;
-            }
-        }
-        #endregion
-
-        #region Boost Ideology
-
-        //Activates the changes that occur for boost
-        if (boostActive)
-        {
-            player.leftSpeed = 35f;
-            player.rightSpeed = 35f;
-            player.forwardSpeed = 55f;
-            player.backSpeed = 35f;
-            boostTimer = 3;
-            boostTimer -= Time.deltaTime;
-
-            if (boostTimer <= 0)
-            {
-                boostActive = false;
             }
         }
         #endregion
@@ -77,7 +62,7 @@ public class PlayerAbilities : MonoBehaviour
     void FixedUpdate()
     {
         #region Q Abilities;
-        if (Input.GetKey(KeyCode.Q) && qAbiUsed == false)
+        if (Input.GetKey(KeyCode.Q) && !qAbiUsed)
         {
             //Changes Q Ability based on current ideology
             if (currentIdeology.CompareTag("revelry"))
@@ -114,7 +99,7 @@ public class PlayerAbilities : MonoBehaviour
         #endregion
 
         #region E Abilities
-        if (Input.GetKey(KeyCode.E) && eAbiUsed == false)
+        if (Input.GetKey(KeyCode.E) && !eAbiUsed)
         {
             //Changes Q Ability based on current ideology
             if (currentIdeology.CompareTag("revelry"))
@@ -126,7 +111,6 @@ public class PlayerAbilities : MonoBehaviour
             if (currentIdeology.CompareTag("bliss"))
             {
                 GameObject.Find("Abilities").GetComponent<Abilities3>().BoosterCast();
-                boostActive = true;
                 eAbiUsed = true;
             }
 

@@ -6,65 +6,138 @@ using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip test, ambient; 
-    public AudioClip mainMenuClip;
-    [SerializeField]
-    private bool mainMenu = true;
+    private AudioClip musicClip, paperRustle, voidClip, pulse, boost, beam, earthen, strike, wall, sun, shield, lance;
+    private GameObject qAbilityGameObject, eAbilityGameObject, paperObject;
+    private bool canPlayMusic = true;
+    private bool isTalking = false;
 
     void Start()
     {
-        PlayMainMenu(mainMenu);
+        PlayMusic(canPlayMusic);
+        qAbilityGameObject = new GameObject("qAbilitySoundObject");
+        eAbilityGameObject = new GameObject("eAbilitySoundObject");
+        paperObject = new GameObject("PaperRustle"); 
+
+        AudioSource qAbilityTemp = GameObject.Find("qAbilitySoundObject").AddComponent<AudioSource>();
+        AudioSource eAbilityTemp = GameObject.Find("eAbilitySoundObject").AddComponent<AudioSource>();
+        AudioSource paperTemp = GameObject.Find("PaperRustle").AddComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            PlayAmbient();
-        }
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            mainMenu ^= true; //this swaps the bool over, if its false, makes it true, and if its true, makes it false.
-            PlayMainMenu(mainMenu);
+            canPlayMusic ^= true; //this swaps the bool over, if its false, makes it true, and if its true, makes it false.
+            PlayMusic(canPlayMusic);
         }
-        AudioSource mainMenuSource = GameObject.Find("MainMenu").GetComponent<AudioSource>();
-        mainMenuSource.volume = GameObject.Find("Slider").GetComponent<Slider>().value;
-    }
-    public void PlaySound() //test from prototype, can be deleted when stuff works
-    {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(test);
-    }
-
-    public void PlayAmbient() //ambient background music for during game
-    {
-        GameObject ambientGameObject = new GameObject("Ambient"); //to make sounds work in unity, audio sources have to be attached to gameobjects,
-                                                                  //and then the clips have to attached to those audio sources
-        AudioSource ambientSource = ambientGameObject.AddComponent<AudioSource>();
-        ambientSource.clip = ambient; //the audio sourse can then be changed within the code to allow for things such as volume, looping, spacial sound, etc.
-        ambientSource.loop = true;
-        ambientSource.Play();
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            isTalking ^= true;
+        }
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            PaperRustle();
+        }
+        VolumeControl(isTalking);
     }
 
-    public void PlayMainMenu(bool mainMenu)
+    public void PlayMusic(bool canPlayMusic) //this method plays the music, is called at start, and turns off when needed to, based on the boolean's value
     {
-        if (GameObject.FindGameObjectsWithTag("Music").Length == 0)
+        if (GameObject.FindGameObjectsWithTag("Music").Length == 0) //ensuring that only one object gets created when called from an update method
         {
-            GameObject mainMenuGameObject = new GameObject("MainMenu");
-            mainMenuGameObject.tag = "Music";
-            AudioSource temp = GameObject.Find("MainMenu").AddComponent<AudioSource>();
+            GameObject musicObject = new GameObject("MusicPlaying");
+            musicObject.tag = "Music";
+            AudioSource temp = GameObject.Find("MusicPlaying").AddComponent<AudioSource>();
         }
-        AudioSource mainMenuSource = GameObject.Find("MainMenu").GetComponent<AudioSource>();
-        if (mainMenu)
+        AudioSource musicSource = GameObject.Find("MusicPlaying").GetComponent<AudioSource>();
+        if (canPlayMusic)
         {
-            mainMenuSource.clip = mainMenuClip;
-            mainMenuSource.loop = true;
-            mainMenuSource.Play();
+            musicSource.clip = musicClip;
+            musicSource.loop = true;
+            musicSource.Play();
         }
-        if(!mainMenu)
+        if(!canPlayMusic)
         {
-            mainMenuSource.Stop();
+            musicSource.Stop();
         }
+    }
+
+    public void PaperRustle() //paper rustling method that is called when the player picks up the tutorial or secret cards
+    {
+        AudioSource paperRustleSource = GameObject.Find("PaperRustle").GetComponent<AudioSource>();
+        paperRustleSource.clip = paperRustle;
+        paperRustleSource.Play();
+    }
+
+    public void AbilitySounds(string abilityUsed) //this method gets called in the abilities script whenever an ability is used, and plays the corresponding sound
+    {
+        AudioSource qAbilitySource = GameObject.Find("qAbilitySoundObject").GetComponent<AudioSource>();
+        AudioSource eAbilitySource = GameObject.Find("eAbilitySoundObject").GetComponent<AudioSource>();
+        switch (abilityUsed)
+        {
+            case "void":
+                eAbilitySource.clip = voidClip;
+                eAbilitySource.Play();
+                break;
+            case "pulse":
+                qAbilitySource.clip = pulse;
+                qAbilitySource.Play();
+                break;
+            case "boost":
+                eAbilitySource.clip = boost;
+                eAbilitySource.Play();
+                break;
+            case "beam":
+                qAbilitySource.clip = beam;
+                qAbilitySource.Play();
+                break;
+            case "earthen":
+                eAbilitySource.clip = earthen;
+                eAbilitySource.Play();
+                break;
+            case "strike":
+                qAbilitySource.clip = strike;
+                qAbilitySource.Play();
+                break;
+            case "wall":
+                eAbilitySource.clip = wall;
+                eAbilitySource.Play();
+                break;
+            case "sun":
+                qAbilitySource.clip = sun;
+                qAbilitySource.Play();
+                break;
+            case "shield":
+                eAbilitySource.clip = shield;
+                eAbilitySource.Play();
+                break;
+            case "lance":
+                qAbilitySource.clip = lance;
+                qAbilitySource.Play();
+                break;
+        }
+    }
+
+    public void VolumeControl(bool isTalking) //this method lowers the volume of the music playing while coat is talking to an npc, scaled based on the current user volume.
+    {
+        AudioSource qAbilitySource = GameObject.Find("qAbilitySoundObject").GetComponent<AudioSource>();
+        AudioSource eAbilitySource = GameObject.Find("eAbilitySoundObject").GetComponent<AudioSource>();
+        AudioSource paperSource = GameObject.Find("PaperRustle").GetComponent<AudioSource>();
+        AudioSource musicSource = GameObject.Find("MusicPlaying").GetComponent<AudioSource>();
+
+        //music volume control
+        if (isTalking)
+        {                                                                                            //if the player is talking to an npc, lowers the volume by
+            musicSource.volume = GameObject.Find("MusicSlider").GetComponent<Slider>().value * 0.6f; //60 percent    
+        }
+        if (!isTalking)
+        {
+            musicSource.volume = GameObject.Find("MusicSlider").GetComponent<Slider>().value;
+        }
+
+        //sound effect volume control
+        paperSource.volume = GameObject.Find("EffectSlider").GetComponent<Slider>().value;
+        qAbilitySource.volume = GameObject.Find("EffectSlider").GetComponent<Slider>().value;
+        eAbilitySource.volume = GameObject.Find("EffectSlider").GetComponent<Slider>().value;
     }
 }

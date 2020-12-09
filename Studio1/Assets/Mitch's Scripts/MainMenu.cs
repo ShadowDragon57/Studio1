@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour
     {
         videoPlayer.Play();
         mainMenu = false;
-        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayMainMenu(mainMenu);
+        GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayMusic(mainMenu);
         canvasButtons.SetActive(false);
         videoPlayer.loopPointReached += CheckOver;
     }
